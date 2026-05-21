@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { PortfolioHero } from "@/components/PortfolioHero";
+import { SiteFooter } from "@/components/portfolio/SiteFooter";
 
 export function GtaExperience() {
   const [showSplash, setShowSplash] = useState(true);
@@ -12,14 +13,15 @@ export function GtaExperience() {
   const splashRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
+    const lock = showSplash && !showContent;
+    document.documentElement.style.overflow = lock ? "hidden" : "";
+    document.body.style.overflow = lock ? "hidden" : "";
 
     return () => {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [showSplash, showContent]);
 
   useGSAP(
     () => {
@@ -111,7 +113,12 @@ export function GtaExperience() {
         </div>
       )}
 
-      {showContent && <PortfolioHero />}
+      {showContent && (
+        <>
+          <PortfolioHero />
+          <SiteFooter />
+        </>
+      )}
     </>
   );
 }
