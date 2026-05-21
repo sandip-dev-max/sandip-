@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --font-family-sans: var(--font-inter), "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --font-family-mono: var(--font-mono), "IBM Plex Mono", ui-monospace, monospace;
+  --color-brutal-bg: #f0ede6;
+  --color-brutal-fg: #111111;
+  --color-brutal-border: #e2dfd7;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background-color: #f0ede6;
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
+}

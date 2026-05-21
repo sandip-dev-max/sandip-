@@ -1,0 +1,41 @@
+# Next.js Production-Ready Guidelines
+
+## 1. Core Architecture
+
+- Always prioritize Server Components (RSC). Use 'use client' only when hooks, state, or event listeners are required.
+- Enforce strict TypeScript. No 'any' types. Use Zod for all runtime data validation (API, forms, env vars).
+- Maintain a clean domain-driven structure: `/app`, `/components`, `/lib`, `/actions`, `/types`.
+- Never place business logic inside UI components; move it to `/lib` or `/actions`.
+
+## 2. Performance & Loading
+
+- Wrap asynchronous data fetching in `<Suspense>` boundaries.
+- Use `next/image` for all images; enforce `priority` only for LCP elements.
+- Optimize bundle size: use `next/dynamic` for heavy client-side imports.
+- Minimize layout shifts (CLS); ensure fixed dimensions or aspect ratios for media.
+
+## 3. Security
+
+- Never expose sensitive logic/secrets to the client. Use `server-only` for server-side modules.
+- Server Actions MUST validate auth/session tokens on every invocation.
+- Sanitize all user inputs. Avoid `dangerouslySetInnerHTML`.
+- Keep Middleware thin; use it only for auth, i18n, or header manipulation.
+
+## 4. Error Handling & Reliability
+
+- Implement `error.tsx` and `global-error.tsx` in route segments.
+- All server-side errors must be caught and logged (use Sentry/console.error with context).
+- Ensure all forms use proper accessibility attributes (`aria-label`, `role`, etc.).
+
+## 5. Code Style
+
+- Prefer functional programming patterns.
+- Keep components small and focused.
+- Use Tailwind CSS for styling; prioritize utility-first consistency.
+- Follow the project's established folder/naming conventions strictly.
+
+## 6. AI Interaction Rules
+
+- When generating code, prioritize security and performance over brevity.
+- If a request risks breaking these rules, provide a warning and explain the trade-off.
+- Always provide Type-safe code.
