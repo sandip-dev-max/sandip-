@@ -11,6 +11,7 @@ import {
   MENU_MAIN_LINKS,
   MENU_SOCIAL_LINKS,
 } from "@/constants/menu";
+import { useLenis } from "@/components/providers/LenisProvider";
 import { SITE_CONTACT_EMAIL } from "@/constants/site";
 
 const pinyonScript = Pinyon_Script({
@@ -32,6 +33,7 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
   const hasAnimatedRef = useRef(false);
   const [mounted, setMounted] = useState(false);
   const [panelVisible, setPanelVisible] = useState(false);
+  const { lenis } = useLenis();
 
   useEffect(() => {
     setMounted(true);
@@ -95,12 +97,14 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
     if (open || panelVisible) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
+      lenis?.stop();
       return;
     }
 
     document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
-  }, [open, panelVisible]);
+    lenis?.start();
+  }, [open, panelVisible, lenis]);
 
   const handleNavClick = () => {
     onClose();

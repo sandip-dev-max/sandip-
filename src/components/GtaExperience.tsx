@@ -3,6 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
+import { useLenis } from "@/components/providers/LenisProvider";
 import { PortfolioHero } from "@/components/PortfolioHero";
 import { BlogSection } from "@/components/blog/BlogSection";
 import { SiteFooter } from "@/components/portfolio/SiteFooter";
@@ -13,17 +14,24 @@ export function GtaExperience() {
   const [showContent, setShowContent] = useState(false);
   const splashDoneRef = useRef(false);
   const splashRef = useRef<HTMLDivElement>(null);
+  const { lenis } = useLenis();
 
   useEffect(() => {
     const lock = showSplash && !showContent;
     document.documentElement.style.overflow = lock ? "hidden" : "";
     document.body.style.overflow = lock ? "hidden" : "";
 
+    if (lenis) {
+      if (lock) lenis.stop();
+      else lenis.start();
+    }
+
     return () => {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
+      lenis?.start();
     };
-  }, [showSplash, showContent]);
+  }, [showSplash, showContent, lenis]);
 
   useGSAP(
     () => {

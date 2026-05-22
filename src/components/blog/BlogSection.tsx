@@ -71,14 +71,14 @@ export function BlogSection() {
         <div className="mt-12 grid grid-cols-1 gap-10 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {BLOG_POSTS.map((post) => (
             <article key={post.id} className="group">
-              <Link href="#" className="block">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-brutal-fg/5">
+              <Link href={post.href} className="block">
+                <div className="relative aspect-[4/3] overflow-hidden bg-brutal-fg/5">
                   <Image
                     src={post.image}
                     alt={post.imageAlt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                   <div className="absolute right-3 top-3">
                     <BlogCardArrow />

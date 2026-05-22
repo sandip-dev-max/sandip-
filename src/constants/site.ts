@@ -1,4 +1,4 @@
-export const SITE_CONTACT_EMAIL = "hello@yudeat.dev";
+export const SITE_CONTACT_EMAIL = "ayushtiwaei0@gmail.com";
 export const SITE_PHONE_DISPLAY = "+977 9800000000";
 export const SITE_PHONE_TEL = "+9779800000000";
 export const SITE_LINKEDIN_URL = "https://www.linkedin.com/in/yudeat/";

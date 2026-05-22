@@ -4,35 +4,40 @@ export type BlogPost = {
   date: string;
   image: string;
   imageAlt: string;
+  href: string;
 };
 
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "1",
-    title: "The power of simplicity in modern real brand design",
+    title: "Transparent admissions beats black-box consultancies",
     date: "November 11, 2025",
-    image: "https://images.unsplash.com/photo-1610701596007-11534563df4c?w=800&q=80",
-    imageAlt: "Minimal product packaging on a neutral surface",
+    image: "/project1.png",
+    imageAlt: "Article cover — education platform UI",
+    href: "#",
   },
   {
     id: "2",
-    title: "From idea to execution: building products that last",
+    title: "Designing wholesale marketplaces people trust",
     date: "July 10, 2025",
-    image: "https://images.unsplash.com/photo-1565688534245-05d1bfb46719?w=800&q=80",
-    imageAlt: "Industrial metal component on a red backdrop",
+    image: "/project2.png",
+    imageAlt: "Article cover — clean B2B storefront",
+    href: "#",
   },
   {
     id: "3",
-    title: "Why great brands are built on clarity, not complexity",
+    title: "Industrial brands online: clarity over clutter",
     date: "May 10, 2025",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c1f58b?w=800&q=80",
-    imageAlt: "Dark electronic device with subtle indicator lights",
+    image: "/project3.png",
+    imageAlt: "Article cover — materials and construction web UI",
+    href: "#",
   },
   {
     id: "4",
-    title: "Designing digital systems that scale your business",
+    title: "Scroll storytelling with Lenis and GSAP",
     date: "April 10, 2025",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
-    imageAlt: "Smartwatch on a wrist against a blue sky",
+    image: "/project4.png",
+    imageAlt: "Article cover — bold portfolio typography",
+    href: "#",
   },
 ];
