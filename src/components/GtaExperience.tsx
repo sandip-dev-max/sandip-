@@ -4,7 +4,9 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { PortfolioHero } from "@/components/PortfolioHero";
+import { BlogSection } from "@/components/blog/BlogSection";
 import { SiteFooter } from "@/components/portfolio/SiteFooter";
+import { ScrollMaskSection } from "@/components/scroll/ScrollMaskSection";
 
 export function GtaExperience() {
   const [showSplash, setShowSplash] = useState(true);
@@ -116,6 +118,8 @@ export function GtaExperience() {
       {showContent && (
         <>
           <PortfolioHero />
+          <ScrollMaskSection />
+          <BlogSection />
           <SiteFooter />
         </>
       )}
