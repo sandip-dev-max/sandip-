@@ -2,7 +2,7 @@ export const FOOTER_FAQS = [
   {
     question: "What kind of projects do you take on?",
     answer:
-      "Product sites, portfolios, dashboards, and front-end builds with Next.js and TypeScript. I focus on fast, maintainable UI that ships.",
+      "Product sites, portfolios, dashboards, and front-end builds with Next.js and TypeScript.Also Backend development with Node.js and TypeScript. I focus on fast, maintainable UI and backend that ships.",
   },
   {
     question: "Are you open for freelance or full-time work?",
