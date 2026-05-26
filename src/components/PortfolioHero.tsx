@@ -259,7 +259,7 @@ export function PortfolioHero() {
                 type="button"
                 className="flex items-center gap-2 transition-colors hover:text-brutal-fg"
               >
-                Shoot
+              Climb
                 <span className="h-1.5 w-1.5 rounded-full bg-brutal-fg" aria-hidden />
               </button>
             </div>
