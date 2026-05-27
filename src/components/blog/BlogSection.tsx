@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BLOG_POSTS } from "@/constants/blog-posts";
 import { buildBlogBottomPath } from "@/lib/blog-curve-path";
 
@@ -9,15 +10,7 @@ function BlogCardArrow() {
       className="flex size-9 items-center justify-center rounded-full bg-white/90 text-brutal-fg shadow-sm backdrop-blur-sm"
       aria-hidden
     >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M7 17L17 7M17 7H9M17 7V15"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <ArrowIcon />
     </span>
   );
 }
@@ -55,15 +48,7 @@ export function BlogSection() {
               className="flex size-6 items-center justify-center rounded-full bg-white text-brutal-fg"
               aria-hidden
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M7 17L17 7M17 7H9M17 7V15"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowIcon size={12} />
             </span>
           </Link>
         </div>

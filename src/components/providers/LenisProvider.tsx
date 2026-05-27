@@ -1,7 +1,6 @@
 "use client";
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import Lenis from "lenis";
 import {
   createContext,
@@ -10,8 +9,6 @@ import {
   useState,
   type ReactNode,
 } from "react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type LenisContextValue = {
   lenis: Lenis | null;

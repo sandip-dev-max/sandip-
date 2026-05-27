@@ -1,7 +1,7 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
+import { gsap } from "@/lib/gsap";
 import { Pinyon_Script } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
