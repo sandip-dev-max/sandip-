@@ -9,7 +9,7 @@ const SCROLL_ROWS = [
   "Built different",
   "Code with passion",
   "Create with vision",
-  "Innovate always",
+  "Test For Quality",
 ] as const;
 
 const ROW_TOP_CLASSES = [
