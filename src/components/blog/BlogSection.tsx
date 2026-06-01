@@ -87,12 +87,12 @@ export function BlogSection() {
       </div>
 
       <svg
-        className="relative z-0 -mt-px block w-full text-brutal-bg"
+        className="relative z-0 -mt-px block w-full text-white"
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"
         aria-hidden
       >
-        <path className="fill-brutal-bg" d={buildBlogBottomPath()} />
+        <path className="fill-white" d={buildBlogBottomPath()} />
       </svg>
     </section>
   );

@@ -38,3 +38,24 @@ body {
   color: #111111;
   -webkit-font-smoothing: antialiased;
 }
+
+@keyframes testimonial-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .testimonial-float {
+    animation: testimonial-float 7s ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+}
+
+.service-image-layer[data-active="true"] {
+  z-index: 2;
+}

@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useLenis } from "@/components/providers/LenisProvider";
 import { PortfolioHero } from "@/components/PortfolioHero";
 import { BlogSection } from "@/components/blog/BlogSection";
+import { ServicesSection } from "@/components/services/ServicesSection";
+import { WorkSection } from "@/components/work/WorkSection";
+import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 import { SiteFooter } from "@/components/portfolio/SiteFooter";
 import { ScrollMaskSection } from "@/components/scroll/ScrollMaskSection";
 import { SplashScreen } from "@/components/splash/SplashScreen";
@@ -29,7 +32,10 @@ export function GtaExperience() {
         <>
           <PortfolioHero />
           <ScrollMaskSection />
+          <WorkSection />
+          <ServicesSection />
           <BlogSection />
+          <TestimonialsSection />
           <SiteFooter />
         </>
       )}

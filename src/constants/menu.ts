@@ -1,14 +1,15 @@
 export const MENU_MAIN_LINKS = [
-  { label: "All work", href: "#" },
+  { label: "All work", href: "#work" },
+  { label: "Services", href: "#services" },
   { label: "About me", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
 export const MENU_LATEST_WORK = [
-  { label: "GTA portfolio", href: "#" },
-  { label: "UI systems", href: "#" },
-  { label: "Next.js builds", href: "#" },
-  { label: "Studio experiments", href: "#" },
+  { label: "GTA portfolio", href: "#work" },
+  { label: "UI systems", href: "#work" },
+  { label: "Next.js builds", href: "#work" },
+  { label: "Studio experiments", href: "#work" },
 ] as const;
 
 export const MENU_SOCIAL_LINKS = [
