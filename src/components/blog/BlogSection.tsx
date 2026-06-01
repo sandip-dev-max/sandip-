@@ -36,7 +36,7 @@ export function BlogSection() {
             id="blog-heading"
             className="text-center font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-brutal-fg sm:flex-1"
           >
-            Smart insights.
+         Whats Trending All Along
           </h2>
 
           <Link
