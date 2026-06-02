@@ -13,36 +13,36 @@ export const SERVICES: Service[] = [
     number: "001",
     title: "Web Design",
     description:
-      "Interface systems, landing pages, and product UI — structured layouts with clear hierarchy and motion that feels intentional.",
+      "Interface systems, landing pages, and product UI  structured layouts with clear hierarchy and motion that feels intentional.",
     image: "/project4.png",
     imageAlt: "Web design — portfolio interface preview",
   },
   {
-    id: "social-media",
+    id: "video-editing",
     number: "002",
-    title: "Social Media",
+    title: "Video Editing",
     description:
-      "Campaign-ready visuals and scroll-stopping layouts built for feeds, stories, and brand consistency across platforms.",
+      "Video editing to help you create professional and engaging videos.",
     image: "/project2.png",
-    imageAlt: "Social media — e-commerce brand layout",
+    imageAlt: "Video editing — e-commerce brand layout",
   },
   {
     id: "development",
     number: "003",
     title: "Development",
     description:
-      "Fast, scalable websites engineered for performance and growth — Next.js, type-safe APIs, and production-ready delivery.",
+      "Fast, scalable websites engineered for performance and growth  Next.js, type safe APIs, and production ready delivery.",
     image: "/hero.png",
     imageAlt: "Development — workspace with laptop in low light",
   },
   {
-    id: "brand-identity",
+    id: "seo",
     number: "004",
-    title: "Brand Identity",
+    title: "SEO",
     description:
-      "Visual direction, typography, and digital brand kits that translate cleanly from moodboard to live product.",
+      "SEO services to help your website rank higher in search engines and attract more traffic.",
     image: "/project3.png",
-    imageAlt: "Brand identity — industrial brand hero",
+    imageAlt: "SEO services  e-commerce brand layout",
   },
   {
     id: "marketing",
@@ -52,6 +52,15 @@ export const SERVICES: Service[] = [
       "Conversion-focused pages, SEO foundations, and launch assets that help teams ship campaigns without friction.",
     image: "/project1.png",
     imageAlt: "Marketing — education platform landing",
+  },
+  {
+    id: "devops",
+    number: "006",
+    title: "DevOps",
+    description:
+      "DevOps services to help you deploy and manage your applications.",
+    image: "/hero.png",
+    imageAlt: "DevOps — education platform landing",
   },
 ];
 

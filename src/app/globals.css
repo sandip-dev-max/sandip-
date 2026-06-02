@@ -80,6 +80,27 @@ html.scroll-locked body {
   }
 }
 
+.scroll-mask-eyebrow {
+  font-weight: 400;
+}
+
+.scroll-mask-headline {
+  font-size: clamp(2.75rem, 8.5vw, 6.5rem);
+  line-height: 1.05;
+}
+
+.scroll-mask-headline-lead {
+  color: #746969;
+}
+
+.scroll-mask-headline-rest {
+  color: rgb(255 255 255 / 100%);
+}
+
+.scroll-mask-guide-dot {
+  top: 50%;
+}
+
 [data-stack="front"] {
   z-index: 20;
 }
