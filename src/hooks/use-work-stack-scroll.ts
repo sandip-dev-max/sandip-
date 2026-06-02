@@ -8,6 +8,7 @@ import {
   killScrollTriggersFor,
   scheduleScrollTriggerRefresh,
 } from "@/lib/scroll-trigger";
+import { setStackLayer, type StackLayerKey } from "@/lib/stack-layer";
 
 const PROJECT_COUNT = PROJECTS.length;
 const STACK_Y_OFFSET = 5.5;
@@ -33,10 +34,12 @@ function resetCardsForMobile(cards: HTMLElement[]) {
   cards.forEach((card, index) => {
     gsap.set(card, {
       clearProps: "transform,opacity",
+      opacity: index === 0 ? 1 : 0,
     });
-    card.style.opacity = index === 0 ? "1" : "0";
-    card.style.pointerEvents = index === 0 ? "auto" : "none";
-    card.style.zIndex = String(index + 1);
+    setStackLayer(card, {
+      interactive: index === 0,
+      stack: index === 0 ? "front" : ((index + 1) as StackLayerKey),
+    });
   });
 }
 
@@ -49,8 +52,10 @@ function showMobileCard(cards: HTMLElement[], index: number) {
       ease: "power2.out",
       overwrite: "auto",
     });
-    card.style.pointerEvents = visible ? "auto" : "none";
-    card.style.zIndex = visible ? String(PROJECT_COUNT + 1) : String(i + 1);
+    setStackLayer(card, {
+      interactive: visible,
+      stack: visible ? "front" : ((i + 1) as StackLayerKey),
+    });
   });
 }
 
@@ -105,9 +110,11 @@ export function useWorkStackScroll(
                 scale: 1,
                 opacity: index === 0 ? 1 : 0,
                 rotation: 0,
-                zIndex: 10 + index,
               });
-              card.style.pointerEvents = index === 0 ? "auto" : "none";
+              setStackLayer(card, {
+                interactive: index === 0,
+                stack: index === 0 ? "front" : ((index + 1) as StackLayerKey),
+              });
             });
             return () => {};
           }
@@ -119,13 +126,15 @@ export function useWorkStackScroll(
               gsap.set(card, {
                 transformOrigin: "center top",
                 force3D: true,
-                zIndex: index + 1,
                 yPercent: index === 0 ? 0 : 115,
                 scale: index === 0 ? 1 : 0.88,
                 opacity: index === 0 ? 1 : 0,
                 rotation: 0,
               });
-              card.style.pointerEvents = index === 0 ? "auto" : "none";
+              setStackLayer(card, {
+                interactive: index === 0,
+                stack: index === 0 ? "front" : ((index + 1) as StackLayerKey),
+              });
             });
 
             const timeline = gsap.timeline({
@@ -147,8 +156,13 @@ export function useWorkStackScroll(
                   onIndexChangeRef.current(index);
 
                   cards.forEach((card, cardIndex) => {
-                    card.style.pointerEvents =
-                      cardIndex === index ? "auto" : "none";
+                    setStackLayer(card, {
+                      interactive: cardIndex === index,
+                      stack:
+                        cardIndex === index
+                          ? "front"
+                          : ((cardIndex + 1) as StackLayerKey),
+                    });
                   });
                 },
               },

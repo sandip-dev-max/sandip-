@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, type CSSProperties } from "react";
+import { useEffect } from "react";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import {
   TESTIMONIALS,
@@ -29,11 +29,7 @@ function TestimonialBubble({
     >
       <div
         className={`relative ${reducedMotion ? "" : "testimonial-float"}`}
-        style={
-          reducedMotion
-            ? undefined
-            : ({ "--float-delay": floatDelay } as CSSProperties)
-        }
+        data-delay={reducedMotion ? undefined : floatDelay}
       >
         <blockquote className="relative rounded-[1.35rem] bg-brutal-fg px-4 py-4 font-sans text-[0.8125rem] font-medium leading-[1.45] tracking-[-0.015em] text-white/95 shadow-[0_20px_50px_-12px_rgba(17,17,17,0.35)] ring-1 ring-white/10 transition-shadow duration-500 group-hover:shadow-[0_28px_60px_-14px_rgba(17,17,17,0.42)] sm:px-[1.125rem] sm:py-[1.125rem] sm:text-[0.875rem]">
           <span

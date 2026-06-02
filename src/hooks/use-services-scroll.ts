@@ -8,6 +8,7 @@ import {
   killScrollTriggersFor,
   scheduleScrollTriggerRefresh,
 } from "@/lib/scroll-trigger";
+import { setStackLayer, type StackLayerKey } from "@/lib/stack-layer";
 
 const SERVICE_COUNT = SERVICES.length;
 const DESKTOP_MQ = "(min-width: 1024px)";
@@ -32,7 +33,10 @@ function applyMobileState(refs: ServicesScrollRefs, index: number) {
       opacity: visible ? 1 : 0,
       scale: 1,
       y: 0,
-      pointerEvents: visible ? "auto" : "none",
+    });
+    setStackLayer(layer, {
+      interactive: visible,
+      stack: visible ? "front" : ((i + 1) as StackLayerKey),
     });
   });
 
@@ -109,9 +113,11 @@ export function useServicesScroll(
                 opacity: index === 0 ? 1 : 0,
                 scale: 1,
                 y: 0,
-                zIndex: index + 1,
               });
-              layer.style.pointerEvents = index === 0 ? "auto" : "none";
+              setStackLayer(layer, {
+                interactive: index === 0,
+                stack: index === 0 ? "front" : ((index + 1) as StackLayerKey),
+              });
             });
 
             descriptions.forEach((desc, index) => {
@@ -140,9 +146,10 @@ export function useServicesScroll(
                   onIndexChangeRef.current(index);
 
                   images.forEach((layer, i) => {
-                    layer.style.pointerEvents = i === index ? "auto" : "none";
-                    layer.style.zIndex =
-                      i === index ? String(SERVICE_COUNT + 1) : String(i + 1);
+                    setStackLayer(layer, {
+                      interactive: i === index,
+                      stack: i === index ? "front" : ((i + 1) as StackLayerKey),
+                    });
                   });
                 },
               },

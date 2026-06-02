@@ -13,6 +13,7 @@ import {
 } from "@/constants/menu";
 import { useLenis } from "@/components/providers/LenisProvider";
 import { SITE_CONTACT_EMAIL } from "@/constants/site";
+import { setScrollLocked } from "@/lib/scroll-lock";
 
 const pinyonScript = Pinyon_Script({
   weight: "400",
@@ -85,8 +86,6 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
     };
 
     document.addEventListener("keydown", onKeyDown);
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
@@ -94,16 +93,16 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
   }, [open, onClose]);
 
   useEffect(() => {
-    if (open || panelVisible) {
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-      lenis?.stop();
-      return;
-    }
+    const locked = open || panelVisible;
+    setScrollLocked(locked);
 
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-    lenis?.start();
+    if (locked) lenis?.stop();
+    else lenis?.start();
+
+    return () => {
+      setScrollLocked(false);
+      lenis?.start();
+    };
   }, [open, panelVisible, lenis]);
 
   const handleNavClick = () => {

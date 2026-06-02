@@ -1,17 +1,16 @@
 import Lenis from "lenis";
 import { useEffect } from "react";
+import { setScrollLocked } from "@/lib/scroll-lock";
 
 export function useScrollLock(locked: boolean, lenis: Lenis | null) {
   useEffect(() => {
-    document.documentElement.style.overflow = locked ? "hidden" : "";
-    document.body.style.overflow = locked ? "hidden" : "";
+    setScrollLocked(locked);
 
     if (locked) lenis?.stop();
     else lenis?.start();
 
     return () => {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
+      setScrollLocked(false);
       lenis?.start();
     };
   }, [locked, lenis]);

@@ -127,21 +127,40 @@ export function WorkSection() {
               >
                 {PROJECTS.map((project, index) => {
                   const isActive = index === activeIndex;
+                  const tabClassName = `rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors ${
+                    isActive
+                      ? "bg-brutal-fg text-brutal-bg"
+                      : "bg-brutal-fg/6 text-brutal-fg/55 hover:bg-brutal-fg/10 hover:text-brutal-fg"
+                  }`;
+                  const label = String(index + 1).padStart(2, "0");
+
+                  if (isActive) {
+                    return (
+                      <button
+                        key={project.id}
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="work-featured-panel"
+                        onClick={() => selectProject(index)}
+                        className={tabClassName}
+                      >
+                        {label}
+                      </button>
+                    );
+                  }
+
                   return (
                     <button
                       key={project.id}
                       type="button"
                       role="tab"
-                      aria-selected={isActive}
+                      aria-selected="false"
                       aria-controls="work-featured-panel"
                       onClick={() => selectProject(index)}
-                      className={`rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors ${
-                        isActive
-                          ? "bg-brutal-fg text-brutal-bg"
-                          : "bg-brutal-fg/6 text-brutal-fg/55 hover:bg-brutal-fg/10 hover:text-brutal-fg"
-                      }`}
+                      className={tabClassName}
                     >
-                      {String(index + 1).padStart(2, "0")}
+                      {label}
                     </button>
                   );
                 })}

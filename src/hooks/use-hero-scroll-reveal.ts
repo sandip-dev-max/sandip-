@@ -45,9 +45,13 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
       }
 
       const setGalleryInteractive = (interactive: boolean) => {
-        heroContent.current?.style.setProperty(
-          "pointer-events",
-          interactive ? "none" : "auto",
+        heroContent.current?.classList.toggle(
+          "pointer-events-none",
+          interactive,
+        );
+        heroContent.current?.classList.toggle(
+          "pointer-events-auto",
+          !interactive,
         );
         galleryGrid.current?.classList.toggle(
           "pointer-events-none",

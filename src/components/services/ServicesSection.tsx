@@ -83,18 +83,32 @@ export function ServicesSection() {
           >
             {SERVICES.map((service, index) => {
               const isActive = index === activeIndex;
+              const dotClassName = `rounded-full transition-all duration-300 ${
+                isActive
+                  ? "size-2 bg-brutal-fg"
+                  : "size-1.5 bg-brutal-fg/20 hover:bg-brutal-fg/35"
+              }`;
+
+              if (isActive) {
+                return (
+                  <button
+                    key={service.id}
+                    type="button"
+                    aria-label={`Show ${service.title}`}
+                    aria-current="true"
+                    onClick={() => selectIndex(index)}
+                    className={dotClassName}
+                  />
+                );
+              }
+
               return (
                 <button
                   key={service.id}
                   type="button"
                   aria-label={`Show ${service.title}`}
-                  aria-current={isActive ? "true" : undefined}
                   onClick={() => selectIndex(index)}
-                  className={`rounded-full transition-all duration-300 ${
-                    isActive
-                      ? "size-2 bg-brutal-fg"
-                      : "size-1.5 bg-brutal-fg/20 hover:bg-brutal-fg/35"
-                  }`}
+                  className={dotClassName}
                 />
               );
             })}
@@ -185,8 +199,9 @@ export function ServicesSection() {
                 <div
                   key={service.id}
                   ref={(el) => registerImageRef(index, el)}
-                  className="absolute inset-0 will-change-transform"
-                  style={{ opacity: index === 0 ? 1 : 0 }}
+                  className={`absolute inset-0 will-change-transform ${
+                    index === activeIndex ? "opacity-100" : "opacity-0"
+                  }`}
                 >
                   <Image
                     src={service.image}
