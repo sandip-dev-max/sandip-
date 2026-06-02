@@ -124,7 +124,7 @@ export function ScrollMaskSection() {
   return (
     <section
       ref={sectionRef}
-      className="scroll-mask-section relative h-screen w-full overflow-hidden bg-[#121212] text-white"
+      className="scroll-mask-section relative isolate z-10 h-screen w-full overflow-hidden bg-[#121212] text-white"
       aria-labelledby="vision-heading"
     >
       <p className="scroll-mask-eyebrow pointer-events-none absolute left-1/2 top-8 z-20 -translate-x-1/2 font-sans text-sm tracking-[-0.01em] text-white/90 sm:top-10">

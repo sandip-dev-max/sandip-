@@ -56,7 +56,7 @@ export function ServicesSection() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative w-full bg-white text-brutal-fg"
+      className="relative isolate z-0 w-full overflow-hidden bg-white text-brutal-fg"
       aria-labelledby="services-heading"
     >
       <div
@@ -66,7 +66,7 @@ export function ServicesSection() {
 
       <div
         ref={pinRef}
-        className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-7xl flex-col px-5 sm:px-8 lg:px-10"
+        className="relative z-[1] mx-auto flex min-h-[100dvh] w-full max-w-7xl flex-col px-5 sm:px-8 lg:px-10"
       >
         <header className="grid shrink-0 grid-cols-[1fr_auto_1fr] items-center border-b border-brutal-fg/10 py-5 sm:py-6">
           <p
