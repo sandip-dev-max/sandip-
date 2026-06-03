@@ -34,8 +34,9 @@ export function GtaExperience() {
           <ScrollMaskSection />
           <WorkSection />
           <ServicesSection />
-          <BlogSection />
           <TestimonialsSection />
+          <BlogSection />
+        
           <SiteFooter />
         </>
       )}
