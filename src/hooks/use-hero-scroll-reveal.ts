@@ -9,6 +9,7 @@ const GALLERY_INTERACTIVE_AT = 0.55;
 export type HeroRevealRefs = {
   scrollSection: RefObject<HTMLDivElement | null>;
   stickyContainer: RefObject<HTMLDivElement | null>;
+  header: RefObject<HTMLDivElement | null>;
   leftColumn: RefObject<HTMLDivElement | null>;
   rightColumn: RefObject<HTMLDivElement | null>;
   footer: RefObject<HTMLElement | null>;
@@ -23,6 +24,7 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
       const {
         scrollSection,
         stickyContainer,
+        header,
         leftColumn,
         rightColumn,
         footer,
@@ -34,6 +36,7 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
       if (
         !scrollSection.current ||
         !stickyContainer.current ||
+        !header.current ||
         !leftColumn.current ||
         !rightColumn.current ||
         !footer.current ||
@@ -45,6 +48,7 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
       }
 
       const setGalleryInteractive = (interactive: boolean) => {
+        header.current?.classList.toggle("pointer-events-none", interactive);
         heroContent.current?.classList.toggle(
           "pointer-events-none",
           interactive,
@@ -61,8 +65,8 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
 
       setGalleryInteractive(false);
 
-      const projectImages =
-        galleryGrid.current.querySelectorAll<HTMLImageElement>(".project-img");
+      const bentoCards =
+        galleryGrid.current.querySelectorAll<HTMLElement>(".reveal-bento-card");
 
       const fade = { duration: REVEAL_DURATION, ease: REVEAL_EASE };
 
@@ -83,15 +87,23 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
       });
 
       timeline
+        .to(header.current, { opacity: 0, y: -16, ...fade }, 0)
         .to(heroBackdrop.current, { opacity: 0, ...fade }, 0)
         .to(heroContent.current, { opacity: 0, ...fade }, 0)
         .to(leftColumn.current, { xPercent: -120, opacity: 0, ...fade }, 0)
         .to(rightColumn.current, { xPercent: 120, opacity: 0, ...fade }, 0)
         .to(footer.current, { yPercent: 100, opacity: 0, ...fade }, 0)
         .to(galleryGrid.current, { opacity: 1, scale: 1, ...fade }, 0)
-        .to(
-          projectImages,
-          { scale: 1.05, yPercent: -6, duration: REVEAL_DURATION, ease: "none" },
+        .fromTo(
+          bentoCards,
+          { yPercent: 8, opacity: 0.85 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: REVEAL_DURATION,
+            ease: "none",
+            stagger: 0.08,
+          },
           0,
         );
 

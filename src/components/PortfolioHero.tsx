@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { LiveClock } from "@/components/portfolio/LiveClock";
 import { PortfolioHeader } from "@/components/portfolio/PortfolioHeader";
-import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
+import { WhoWeAreReveal } from "@/components/portfolio/WhoWeAreReveal";
 import { HERO_TECH_TAGS } from "@/constants/hero";
 import { useHeroScrollReveal } from "@/hooks/use-hero-scroll-reveal";
 import { gsap } from "@/lib/gsap";
@@ -18,10 +18,12 @@ export function PortfolioHero() {
   const heroBackdropRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const galleryGridRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useHeroScrollReveal({
     scrollSection: scrollSectionRef,
     stickyContainer: stickyContainerRef,
+    header: headerRef,
     leftColumn: leftColumnRef,
     rightColumn: rightColumnRef,
     footer: footerRef,
@@ -43,14 +45,21 @@ export function PortfolioHero() {
   );
 
   return (
-    <div ref={scrollSectionRef} className="relative w-full bg-brutal-bg">
+    <div
+      id="hero"
+      ref={scrollSectionRef}
+      className="relative w-full bg-brutal-bg"
+    >
       <div
         ref={stickyContainerRef}
         className="relative flex h-screen w-screen flex-col overflow-hidden"
       >
-        <ProjectGallery galleryRef={galleryGridRef} />
+        <WhoWeAreReveal revealRef={galleryGridRef} />
 
-        <div className="relative z-50 shrink-0 pointer-events-auto">
+        <div
+          ref={headerRef}
+          className="relative z-50 shrink-0 pointer-events-auto will-change-[opacity,transform]"
+        >
           <PortfolioHeader />
         </div>
 

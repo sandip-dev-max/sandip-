@@ -13,18 +13,6 @@ export type Project = {
 /** Update liveUrl / githubUrl with your deployed sites and repos. */
 export const PROJECTS: Project[] = [
   {
-    id: "1",
-    title: "Exile Platform",
-    description:
-      "A dark education OS with structured learning paths, role-based access, and a calm interface built for long study sessions.",
-    image: "/project1.png",
-    imageAlt: "Exile Platform — dark education OS landing page",
-    tags: ["NextJS", "Prisma"],
-    liveUrl: "https://exileos.com",
-    githubUrl: "https://github.com/Yudeat/Liminal",
-    date: "November 11, 2025",
-  },
-  {
     id: "2",
     title: "Kachu Kart",
     description:
@@ -35,6 +23,18 @@ export const PROJECTS: Project[] = [
     liveUrl: "https://demo-chi-lilac-49.vercel.app/",
     githubUrl: "https://github.com/yudeat",
     date: "July 10, 2025",
+  },
+  {
+    id: "1",
+    title: "Exile Platform",
+    description:
+      "A dark education OS with structured learning paths, role-based access, and a calm interface built for long study sessions.",
+    image: "/project1.png",
+    imageAlt: "Exile Platform — dark education OS landing page",
+    tags: ["NextJS", "Prisma"],
+    liveUrl: "https://exileos.com",
+    githubUrl: "https://github.com/Yudeat/Liminal",
+    date: "November 11, 2025",
   },
   {
     id: "3",

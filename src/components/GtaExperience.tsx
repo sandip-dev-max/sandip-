@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLenis } from "@/components/providers/LenisProvider";
+import { DockMenu } from "@/components/portfolio/DockMenu";
 import { PortfolioHero } from "@/components/PortfolioHero";
 import { BlogSection } from "@/components/blog/BlogSection";
 import { ServicesSection } from "@/components/services/ServicesSection";
@@ -31,6 +32,7 @@ export function GtaExperience() {
       {showContent && (
         <>
           <PortfolioHero />
+          <DockMenu />
           <ScrollMaskSection />
           <WorkSection />
           <ServicesSection />

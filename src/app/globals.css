@@ -80,6 +80,66 @@ html.scroll-locked body {
   }
 }
 
+.who-we-are-reveal {
+  background-color: #f3f3f1;
+  background-image: radial-gradient(
+    ellipse 90% 60% at 50% -10%,
+    rgb(240 237 230 / 0.9),
+    transparent 70%
+  );
+}
+
+.who-we-are-grid-lines {
+  background-image:
+    linear-gradient(to right, rgb(17 17 17 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(17 17 17 / 0.055) 1px, transparent 1px);
+  background-size: calc(100% / 8) 100%, 100% calc(100% / 10);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 95%);
+}
+
+.who-we-are-guide {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgb(17 17 17 / 0.18) 12%,
+    rgb(17 17 17 / 0.18) 88%,
+    transparent 100%
+  );
+}
+
+.who-we-are-team-dots {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(255 255 255 / 0.14) 1px,
+    transparent 0
+  );
+  background-size: 12px 12px;
+  mask-image: linear-gradient(to top, black 20%, transparent 100%);
+}
+
+.who-we-are-collab-scrim {
+  background-color: rgb(17 17 17 / 0.22);
+}
+
+.who-we-are-chat-panel {
+  background: rgb(255 255 255 / 0.72);
+  box-shadow:
+    0 24px 50px -18px rgb(17 17 17 / 0.35),
+    inset 0 1px 0 rgb(255 255 255 / 0.85);
+}
+
+.who-we-are-bento-light {
+  box-shadow:
+    0 20px 50px -24px rgb(17 17 17 / 0.12),
+    0 0 0 1px rgb(17 17 17 / 0.06);
+}
+
+.who-we-are-bento-dark {
+  box-shadow:
+    0 28px 60px -20px rgb(0 0 0 / 0.55),
+    inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
 .scroll-mask-eyebrow {
   font-weight: 400;
 }
