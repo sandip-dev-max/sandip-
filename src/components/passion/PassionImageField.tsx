@@ -2,14 +2,20 @@
 
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
+import type { CSSProperties } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
   IMAGE_FIELD_INNER_ITEMS,
-  IMAGE_FIELD_ITEMS,
+  IMAGE_FIELD_SURFACE_ITEMS,
   IMAGE_FIELD_TAGS,
   type ImageFieldItem,
   type ImageFieldTag,
 } from "@/constants/image-field";
+import {
+  fieldLayoutToStyle,
+  getInnerFieldLayout,
+  getSurfaceFieldLayout,
+} from "@/lib/field-photo-layout";
 import { PassionFieldFooter } from "@/components/passion/PassionFieldFooter";
 import { useFieldScrollDive } from "@/hooks/use-field-scroll-dive";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -19,17 +25,20 @@ function FieldPiece({
   item,
   setRef,
   variant,
+  layoutStyle,
 }: {
   item: ImageFieldItem;
   setRef: (id: string) => (node: HTMLDivElement | null) => void;
   variant: "outer" | "inner";
+  layoutStyle: CSSProperties;
 }) {
   return (
     <div
       ref={setRef(item.id)}
-      className={`field-piece ${item.slot} ${
+      className={`field-piece ${
         variant === "inner" ? "field-piece--inner" : "field-piece--outer"
       }`}
+      style={layoutStyle}
       data-tags={item.tags.join(" ")}
       data-depth={variant}
     >
@@ -44,9 +53,8 @@ function FieldPiece({
                 ? "(max-width: 768px) 28vw, 12vw"
                 : "(max-width: 768px) 42vw, 18vw"
             }
-            className={`field-piece-image object-cover ${
-              item.id === "hero-crop" ? "object-[center_20%]" : "object-center"
-            }`}
+            className="field-piece-image object-cover object-center"
+            loading={variant === "inner" ? "lazy" : undefined}
           />
         </div>
       </div>
@@ -90,6 +98,28 @@ export function PassionImageField() {
     [activeTag],
   );
 
+  const surfaceLayouts = useMemo(
+    () =>
+      IMAGE_FIELD_SURFACE_ITEMS.map((item) =>
+        fieldLayoutToStyle(
+          getSurfaceFieldLayout(item.index, IMAGE_FIELD_SURFACE_ITEMS.length),
+          "surface",
+        ),
+      ),
+    [],
+  );
+
+  const innerLayouts = useMemo(
+    () =>
+      IMAGE_FIELD_INNER_ITEMS.map((item) =>
+        fieldLayoutToStyle(
+          getInnerFieldLayout(item.index, IMAGE_FIELD_INNER_ITEMS.length),
+          "inner",
+        ),
+      ),
+    [],
+  );
+
   useFieldScrollDive(
     {
       scrollStage: scrollStageRef,
@@ -108,7 +138,7 @@ export function PassionImageField() {
 
   useGSAP(
     () => {
-      IMAGE_FIELD_ITEMS.forEach((item) => {
+      IMAGE_FIELD_SURFACE_ITEMS.forEach((item) => {
         const node = outerRefs.current[item.id];
         if (!node) return;
 
@@ -202,20 +232,22 @@ export function PassionImageField() {
                 ref={worldRef}
                 className="field-world-3d relative h-full w-full will-change-transform"
               >
-                {IMAGE_FIELD_ITEMS.map((item) => (
+                {IMAGE_FIELD_SURFACE_ITEMS.map((item, index) => (
                   <FieldPiece
                     key={item.id}
                     item={item}
                     setRef={setOuterRef}
                     variant="outer"
+                    layoutStyle={surfaceLayouts[index]!}
                   />
                 ))}
-                {IMAGE_FIELD_INNER_ITEMS.map((item) => (
+                {IMAGE_FIELD_INNER_ITEMS.map((item, index) => (
                   <FieldPiece
                     key={item.id}
                     item={item}
                     setRef={setInnerRef}
                     variant="inner"
+                    layoutStyle={innerLayouts[index]!}
                   />
                 ))}
               </div>

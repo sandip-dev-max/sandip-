@@ -5,12 +5,13 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { PassionCollectionSection } from "@/components/passion/PassionCollectionSection";
+import { PassionFieldBridge } from "@/components/passion/PassionFieldBridge";
 import { PassionImageField } from "@/components/passion/PassionImageField";
 import { PassionFigureBlock } from "@/components/passion/PassionFigure";
+import { PassionIntroHero } from "@/components/passion/PassionIntroHero";
 import { PASSION_COLLECTIONS } from "@/constants/passion-collections";
 import {
   PASSION_CHAPTERS,
-  PASSION_INTRO,
   PASSION_PAGE_NAV,
 } from "@/constants/passion-story";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -71,122 +72,199 @@ export function PassionStoryExperience() {
       if (!root) return;
 
       const ctx = gsap.context(() => {
-      const chapters = root.querySelectorAll<HTMLElement>("[data-story-chapter]");
-      const intro = root.querySelector<HTMLElement>("[data-story-intro]");
-      const svgs = root.querySelectorAll<SVGSVGElement>("[data-story-draw]");
+        const chapters = root.querySelectorAll<HTMLElement>("[data-story-chapter]");
+        const intro = root.querySelector<HTMLElement>("[data-story-intro]");
+        const svgs = root.querySelectorAll<SVGSVGElement>("[data-story-draw]");
+        const bridge = root.querySelector<HTMLElement>("[data-passion-bridge]");
 
-      svgs.forEach((svg) => animateDrawPaths(svg, reducedMotion));
+        svgs.forEach((svg) => animateDrawPaths(svg, reducedMotion));
 
-      if (intro) {
-        const introItems = intro.querySelectorAll("[data-story-reveal]");
-        if (reducedMotion) {
-          gsap.set(introItems, { opacity: 1, y: 0 });
-        } else {
-          gsap.from(introItems, {
-            y: 36,
+        if (intro) {
+          const introItems = intro.querySelectorAll("[data-story-reveal]");
+          const rule = intro.querySelector(".passion-chapter-rule");
+
+          if (reducedMotion) {
+            gsap.set(introItems, { opacity: 1, y: 0 });
+            if (rule) gsap.set(rule, { scaleX: 1 });
+          } else {
+            gsap.from(introItems, {
+              y: 40,
+              opacity: 0,
+              duration: 1.05,
+              stagger: 0.1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: intro,
+                start: "top 88%",
+                toggleActions: "play none none reverse",
+              },
+            });
+
+            if (rule) {
+              gsap.from(rule, {
+                scaleX: 0,
+                duration: 1.1,
+                ease: "power3.inOut",
+                scrollTrigger: {
+                  trigger: intro,
+                  start: "top 78%",
+                  toggleActions: "play none none reverse",
+                },
+              });
+            }
+          }
+        }
+
+        const collections = root.querySelectorAll<HTMLElement>(
+          "[data-passion-collection]",
+        );
+
+        collections.forEach((collection) => {
+          const title = collection.querySelector("[data-story-reveal]");
+          const reveals = collection.querySelectorAll(".passion-collection-item");
+          const media = collection.querySelectorAll(".passion-collection-media");
+
+          if (reducedMotion) {
+            gsap.set([title, ...reveals], { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" });
+            return;
+          }
+
+          if (title) {
+            gsap.from(title, {
+              y: 32,
+              opacity: 0,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: collection,
+                start: "top 84%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+
+          gsap.from(reveals, {
+            y: 48,
             opacity: 0,
-            duration: 1,
+            duration: 0.95,
             stagger: 0.14,
             ease: "power3.out",
             scrollTrigger: {
-              trigger: intro,
-              start: "top 86%",
-              toggleActions: "play none none reverse",
-            },
-          });
-        }
-      }
-
-      const collections = root.querySelectorAll<HTMLElement>(
-        "[data-passion-collection]",
-      );
-
-      collections.forEach((collection) => {
-        const title = collection.querySelector("[data-story-reveal]");
-        const reveals = collection.querySelectorAll(".passion-collection-item");
-
-        if (reducedMotion) {
-          gsap.set([title, ...reveals], { opacity: 1, y: 0 });
-          return;
-        }
-
-        if (title) {
-          gsap.from(title, {
-            y: 28,
-            opacity: 0,
-            duration: 0.85,
-            ease: "power3.out",
-            scrollTrigger: {
               trigger: collection,
-              start: "top 82%",
+              start: "top 76%",
               toggleActions: "play none none reverse",
             },
           });
-        }
 
-        gsap.from(reveals, {
-          y: 36,
-          opacity: 0,
-          duration: 0.9,
-          stagger: 0.12,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: collection,
-            start: "top 74%",
-            toggleActions: "play none none reverse",
-          },
+          media.forEach((node, index) => {
+            gsap.from(node, {
+              clipPath: "inset(8% 8% 8% 8%)",
+              duration: 1.1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: node,
+                start: "top 86%",
+                toggleActions: "play none none reverse",
+              },
+              delay: index * 0.04,
+            });
+          });
         });
-      });
 
-      chapters.forEach((chapter) => {
-        const number = chapter.querySelector("[data-story-number]");
-        const reveals = chapter.querySelectorAll("[data-story-reveal]");
+        chapters.forEach((chapter) => {
+          const number = chapter.querySelector("[data-story-number]");
+          const reveals = chapter.querySelectorAll("[data-story-reveal]");
+          const rule = chapter.querySelector(".passion-chapter-rule");
+          const figures = chapter.querySelectorAll(".passion-figure");
 
-        if (reducedMotion) {
-          gsap.set([number, ...reveals], { opacity: 1, y: 0, scale: 1 });
-          return;
-        }
+          if (reducedMotion) {
+            gsap.set([number, ...reveals], { opacity: 1, y: 0, scale: 1 });
+            if (rule) gsap.set(rule, { scaleX: 1 });
+            return;
+          }
 
-        if (number) {
-          gsap.from(number, {
-            scale: 0.88,
+          if (number) {
+            gsap.from(number, {
+              scale: 0.82,
+              opacity: 0,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: chapter,
+                start: "top 82%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+
+          gsap.from(reveals, {
+            y: 48,
             opacity: 0,
-            duration: 0.9,
+            duration: 1,
+            stagger: 0.12,
             ease: "power3.out",
             scrollTrigger: {
               trigger: chapter,
-              start: "top 80%",
+              start: "top 78%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          if (rule) {
+            gsap.from(rule, {
+              scaleX: 0,
+              duration: 1,
+              ease: "power3.inOut",
+              scrollTrigger: {
+                trigger: chapter,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+
+          figures.forEach((figure, index) => {
+            gsap.to(figure, {
+              y: index % 2 === 0 ? -20 : 14,
+              ease: "none",
+              scrollTrigger: {
+                trigger: chapter,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+          });
+        });
+
+        if (bridge && !reducedMotion) {
+          const bridgeReveals = bridge.querySelectorAll("[data-story-reveal]");
+          gsap.from(bridgeReveals, {
+            y: 36,
+            opacity: 0,
+            duration: 0.95,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: bridge,
+              start: "top 84%",
               toggleActions: "play none none reverse",
             },
           });
         }
 
-        gsap.from(reveals, {
-          y: 42,
-          opacity: 0,
-          duration: 0.95,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: chapter,
-            start: "top 76%",
-            toggleActions: "play none none reverse",
-          },
-        });
-      });
-
-      if (progress && !reducedMotion) {
-        gsap.to(progress, {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: root,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 0.35,
-          },
-        });
-      }
+        if (progress && !reducedMotion) {
+          gsap.to(progress, {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.35,
+            },
+          });
+        }
       }, root);
 
       return () => ctx.revert();
@@ -201,8 +279,13 @@ export function PassionStoryExperience() {
         className="passion-story relative min-h-screen bg-[#f7f7f5] text-brutal-fg"
       >
         <div
+          className="passion-story-ambient pointer-events-none absolute inset-0"
+          aria-hidden="true"
+        />
+
+        <div
           ref={progressRef}
-          className="passion-progress pointer-events-none fixed left-3 top-0 z-[5] hidden h-full origin-top bg-brutal-fg/18 sm:left-5 lg:block"
+          className="passion-progress pointer-events-none fixed left-3 top-0 z-[5] hidden h-full origin-top lg:left-5 lg:block"
           aria-hidden="true"
         />
 
@@ -217,9 +300,9 @@ export function PassionStoryExperience() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="group block transition-opacity hover:opacity-55"
+                  className="passion-nav-link group block"
                 >
-                  <p className="font-sans text-[0.9375rem] font-medium tracking-[-0.02em] text-brutal-fg">
+                  <p className="font-sans text-[0.9375rem] font-medium tracking-[-0.02em] text-brutal-fg transition-opacity group-hover:opacity-55">
                     {item.label}
                   </p>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-brutal-fg/42">
@@ -233,83 +316,67 @@ export function PassionStoryExperience() {
 
         <main className="relative z-10">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <header
-            data-story-intro
-            className="border-b border-brutal-fg/[0.07] py-14 sm:py-16 lg:py-20"
-          >
-            <p
-              data-story-reveal
-              className="font-mono text-[10px] uppercase tracking-[0.2em] text-brutal-fg/45"
-            >
-              {PASSION_INTRO.eyebrow}
-            </p>
-            <h1
-              data-story-reveal
-              className="mt-5 max-w-3xl font-sans text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-brutal-fg"
-            >
-              {PASSION_INTRO.title}
-            </h1>
-            <p
-              data-story-reveal
-              className="mt-5 max-w-2xl font-sans text-[1.0625rem] leading-relaxed tracking-[-0.015em] text-brutal-fg/62"
-            >
-              {PASSION_INTRO.subtitle}
-            </p>
-          </header>
+            <PassionIntroHero />
 
-          <div className="space-y-20 py-16 sm:space-y-24 sm:py-20 lg:space-y-28 lg:py-24">
-            {PASSION_CHAPTERS.map((chapter) => (
-              <section
-                key={chapter.id}
-                id={chapter.id}
-                data-story-chapter
-                className="passion-chapter grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10"
-                aria-labelledby={`${chapter.id}-title`}
-              >
-                <div
-                  data-story-number
-                  className="lg:col-span-1"
-                  aria-hidden="true"
+            <div className="space-y-20 py-16 sm:space-y-24 sm:py-20 lg:space-y-28 lg:py-24">
+              {PASSION_CHAPTERS.map((chapter) => (
+                <section
+                  key={chapter.id}
+                  id={chapter.id}
+                  data-story-chapter
+                  className="passion-chapter grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10"
+                  aria-labelledby={`${chapter.id}-title`}
                 >
-                  <span className="passion-chapter-number font-sans text-[clamp(2.5rem,6vw,4rem)] font-semibold leading-none tracking-[-0.05em] text-brutal-fg">
-                    {chapter.number}
-                  </span>
-                </div>
-
-                <div className="grid gap-10 lg:col-span-11 lg:grid-cols-11 lg:gap-8">
-                  <div className="space-y-6 lg:col-span-5">
-                    {chapter.paragraphs.map((paragraph, index) => (
-                      <p
-                        key={index}
-                        data-story-reveal
-                        id={index === 0 ? `${chapter.id}-title` : undefined}
-                        className="passion-paragraph font-sans text-[1.0625rem] leading-[1.78] tracking-[-0.015em] text-brutal-fg/88"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
+                  <div
+                    data-story-number
+                    className="lg:col-span-1"
+                    aria-hidden="true"
+                  >
+                    <span className="passion-chapter-number font-sans text-[clamp(2.5rem,6vw,4rem)] font-semibold leading-none tracking-[-0.05em] text-brutal-fg">
+                      {chapter.number}
+                    </span>
                   </div>
 
-                  <div className="grid gap-10 sm:grid-cols-2 lg:col-span-6 lg:grid-cols-2 lg:gap-8">
-                    {chapter.figures.map((figure) => (
-                      <PassionFigureBlock key={figure.id} figure={figure} />
-                    ))}
+                  <div className="grid gap-10 lg:col-span-11 lg:grid-cols-11 lg:gap-8">
+                    <div className="space-y-6 lg:col-span-5">
+                      {chapter.paragraphs.map((paragraph, index) => (
+                        <p
+                          key={index}
+                          data-story-reveal
+                          id={index === 0 ? `${chapter.id}-title` : undefined}
+                          className="passion-paragraph font-sans text-[1.0625rem] leading-[1.78] tracking-[-0.015em] text-brutal-fg/88"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+
+                    <div className="grid gap-10 sm:grid-cols-2 lg:col-span-6 lg:grid-cols-2 lg:gap-8">
+                      {chapter.figures.map((figure) => (
+                        <PassionFigureBlock key={figure.id} figure={figure} />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </section>
-            ))}
+
+                  <div
+                    className="passion-chapter-rule col-span-full mt-2 origin-left bg-gradient-to-r from-brutal-fg/22 via-brutal-fg/8 to-transparent lg:col-span-12"
+                    aria-hidden="true"
+                  />
+                </section>
+              ))}
+            </div>
+
+            <div className="space-y-4">
+              {PASSION_COLLECTIONS.map((collection) => (
+                <PassionCollectionSection
+                  key={collection.id}
+                  collection={collection}
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="space-y-4">
-            {PASSION_COLLECTIONS.map((collection) => (
-              <PassionCollectionSection
-                key={collection.id}
-                collection={collection}
-              />
-            ))}
-          </div>
-          </div>
-
+          <PassionFieldBridge />
           <PassionImageField />
         </main>
       </div>

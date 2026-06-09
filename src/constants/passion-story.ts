@@ -44,6 +44,21 @@ export const PASSION_INTRO = {
     "Code pays the bills. Photography, mountains, and visual culture keep the work honest.",
 };
 
+export const PASSION_INTRO_PHOTOS = [
+  {
+    src: "/field/IMG_6730.jpg",
+    alt: "Himalayan ridgeline above a cloud inversion",
+  },
+  {
+    src: "/field/IMG_6711.jpg",
+    alt: "Mountain light on a valley walk",
+  },
+  {
+    src: "/field/IMG_6695.jpg",
+    alt: "Field frame from a ridge study",
+  },
+] as const;
+
 export const PASSION_CHAPTERS: PassionChapter[] = [
   {
     id: "chapter-1",
@@ -62,8 +77,8 @@ export const PASSION_CHAPTERS: PassionChapter[] = [
         id: "fig-2",
         type: "photo",
         caption: "Fig 2: Kathmandu mornings",
-        imageSrc: "/hero.png",
-        imageAlt: "Portrait in front of lake and mountains near Kathmandu",
+        imageSrc: "/field/IMG_6662.jpg",
+        imageAlt: "Morning light in the Kathmandu valley",
       },
     ],
   },
@@ -101,14 +116,14 @@ export const PASSION_CHAPTERS: PassionChapter[] = [
         id: "fig-5",
         type: "mountain",
         caption: "Fig 5: Field study",
-        imageSrc: "/about-mountain.png",
+        imageSrc: "/field/IMG_6730.jpg",
         imageAlt: "Snow peaks above a sea of clouds in the Himalayas",
       },
       {
         id: "fig-6",
         type: "photo",
         caption: "Fig 6: Distance & scale",
-        imageSrc: "/who-we-are-collab-bg.png",
+        imageSrc: "/field/IMG_6706.jpg",
         imageAlt: "Rolling hills and soft morning light",
       },
     ],

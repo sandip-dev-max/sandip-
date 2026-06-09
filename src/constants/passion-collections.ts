@@ -35,7 +35,7 @@ export const PASSION_COLLECTIONS: PassionCollection[] = [
         title: "Ridge Studies",
         description:
           "A personal series that isolates Himalayan ridgelines from context — only snow, rock, and negative space. The frame becomes the story.",
-        imageSrc: "/about-mountain.png",
+        imageSrc: "/field/IMG_6730.jpg",
         imageAlt: "Snow-covered peaks rising above a cloud inversion",
         href: "/passion#chapter-3",
       },
@@ -45,8 +45,8 @@ export const PASSION_COLLECTIONS: PassionCollection[] = [
         title: "Scroll Rooms",
         description:
           "Experimental browser scenes where each scroll step opens a new room — part portfolio, part comic, part spatial essay about how we read interfaces.",
-        imageSrc: "/about-creative-hero.png",
-        imageAlt: "Laptop displaying a bold digital experience with warm lighting",
+        imageSrc: "/field/IMG_6689.jpg",
+        imageAlt: "Warm light across a mountain landscape",
       },
       {
         id: "facades",
@@ -54,8 +54,8 @@ export const PASSION_COLLECTIONS: PassionCollection[] = [
         title: "Facades",
         description:
           "Photographing concrete, brick, and temple timber without perspective drama. Straight lines, honest materials, and the quiet geometry of Kathmandu alleys.",
-        imageSrc: "/project3.png",
-        imageAlt: "Industrial building facade with structured materials catalog",
+        imageSrc: "/field/IMG_6664.jpg",
+        imageAlt: "Concrete and timber geometry in Kathmandu alleys",
       },
     ],
   },
@@ -69,8 +69,8 @@ export const PASSION_COLLECTIONS: PassionCollection[] = [
         title: "Street Signs of Kathmandu",
         description:
           "Hand-painted shop boards, rusted wayfinding, and improvised typography on corrugated metal. A growing archive of urban vernacular.",
-        imageSrc: "/hero.png",
-        imageAlt: "Portrait with lake and mountains near Kathmandu",
+        imageSrc: "/field/IMG_6659.jpg",
+        imageAlt: "Street typography and urban vernacular in Kathmandu",
         caption: "Field notes from Thamel to Patan",
       },
       {
@@ -88,8 +88,8 @@ export const PASSION_COLLECTIONS: PassionCollection[] = [
         title: "Form & Field",
         description:
           "I collect visual rhymes. I photograph ordinary spaces and pair frames that complete each other — hills with grids, handwriting with wireframes.",
-        imageSrc: "/about-writing-hand.png",
-        imageAlt: "Illustrated hand writing with a pen",
+        imageSrc: "/field/IMG_6704.jpg",
+        imageAlt: "Field frame pairing landscape with visual rhythm",
       },
     ],
   },
