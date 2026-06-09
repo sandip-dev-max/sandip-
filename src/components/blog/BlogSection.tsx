@@ -1,98 +1,73 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { BLOG_POSTS } from "@/constants/blog-posts";
+import { BlogPostCard } from "@/components/blog/BlogPostCard";
+import { getAllBlogPosts } from "@/lib/blog";
 import { buildBlogBottomPath } from "@/lib/blog-curve-path";
 
-function BlogCardArrow() {
-  return (
-    <span
-      className="flex size-9 items-center justify-center rounded-full bg-white/90 text-brutal-fg shadow-sm backdrop-blur-sm"
-      aria-hidden
-    >
-      <ArrowIcon />
-    </span>
-  );
-}
-
 export function BlogSection() {
+  const posts = getAllBlogPosts().slice(0, 4);
+
   return (
     <section
-      className="relative w-full bg-[#f5f5f7] text-brutal-fg"
+      id="blog"
+      className="relative w-full overflow-hidden bg-blog-bg text-white"
       aria-labelledby="blog-heading"
     >
       <div
-        className="pointer-events-none absolute left-1/2 top-0 z-0 h-full w-px -translate-x-1/2 bg-brutal-fg/10"
-        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(232,93,76,0.14),transparent)]"
+        aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 pb-28 pt-16 sm:px-8 sm:pb-32 sm:pt-20 lg:px-10 lg:pt-24">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-brutal-fg/50">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-8 sm:pb-24 sm:pt-20 lg:px-10 lg:pt-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
             (Blog)
           </p>
-
           <h2
             id="blog-heading"
-            className="text-center font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-brutal-fg sm:flex-1"
+            className="mt-5 font-sans text-[clamp(2rem,5.5vw,3.5rem)] font-semibold uppercase leading-[1.02] tracking-[-0.04em] text-blog-accent"
           >
-         Whats Trending All Along
+            Notes from the studio
           </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-pretty font-sans text-[0.9375rem] uppercase leading-relaxed tracking-[0.08em] text-white/65">
+            Writing on product, design, and shipping real software for clients
+            who care about clarity.
+          </p>
+        </div>
 
+        <div className="mt-14 grid grid-cols-1 gap-12 sm:mt-16 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-14">
+          {posts.map((post) => (
+            <BlogPostCard key={post.id} post={post} />
+          ))}
+        </div>
+
+        <div className="mt-14 flex justify-center sm:mt-16">
           <Link
-            href="#"
-            className="inline-flex w-fit items-center gap-2 self-center rounded-full bg-brutal-fg px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest text-brutal-bg shadow-[0_12px_32px_rgba(17,17,17,0.18)] transition-transform hover:-translate-y-0.5 sm:self-auto"
+            href="/blog"
+            className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-6 py-3 font-mono text-[11px] uppercase tracking-widest text-white transition-colors hover:border-blog-accent/50 hover:bg-blog-accent/10"
           >
-            See all
+            See all articles
             <span
-              className="flex size-6 items-center justify-center rounded-full bg-white text-brutal-fg"
-              aria-hidden
+              className="flex size-7 items-center justify-center rounded-full bg-blog-accent text-white"
+              aria-hidden="true"
             >
               <ArrowIcon size={12} />
             </span>
           </Link>
         </div>
-
-        <div className="mt-12 grid grid-cols-1 gap-10 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {BLOG_POSTS.map((post) => (
-            <article key={post.id} className="group">
-              <Link href={post.href} className="block">
-                <div className="relative aspect-[4/3] overflow-hidden bg-brutal-fg/5">
-                  <Image
-                    src={post.image}
-                    alt={post.imageAlt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute right-3 top-3">
-                    <BlogCardArrow />
-                  </div>
-                </div>
-
-                <p className="mt-4 font-mono text-[11px] text-brutal-fg/45">
-                  {post.date}
-                </p>
-                <h3 className="mt-2 font-sans text-lg font-semibold leading-snug tracking-[-0.02em] text-brutal-fg transition-opacity group-hover:opacity-65">
-                  {post.title}
-                </h3>
-              </Link>
-            </article>
-          ))}
-        </div>
       </div>
 
-      <div className="relative z-10 h-px w-full bg-brutal-fg/12" aria-hidden>
-        <div className="absolute left-1/2 top-1/2 z-10 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brutal-fg" />
+      <div className="relative z-10 h-px w-full bg-white/10" aria-hidden="true">
+        <div className="absolute left-1/2 top-1/2 z-10 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blog-accent ring-4 ring-blog-bg" />
       </div>
 
       <svg
-        className="relative z-0 -mt-px block w-full text-white"
+        className="relative z-0 -mt-px block w-full text-brutal-bg"
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"
-        aria-hidden
+        aria-hidden="true"
       >
-        <path className="fill-white" d={buildBlogBottomPath()} />
+        <path className="fill-brutal-bg" d={buildBlogBottomPath()} />
       </svg>
     </section>
   );

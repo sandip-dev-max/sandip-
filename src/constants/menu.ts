@@ -1,6 +1,8 @@
 export const MENU_MAIN_LINKS = [
   { label: "All work", href: "#work" },
   { label: "Services", href: "#services" },
+  { label: "Blog", href: "/blog" },
+  { label: "Passion", href: "/passion" },
   { label: "About me", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;

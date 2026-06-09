@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LenisProvider } from "@/components/providers/LenisProvider";
+import { IdentitySidebar } from "@/components/portfolio/IdentitySidebar";
 import { IBM_Plex_Mono, Inter } from "next/font/google";
 import "remixicon/fonts/remixicon.css";
 import "./globals.css";
@@ -31,7 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body className="font-sans antialiased">
-        <LenisProvider>{children}</LenisProvider>
+        <LenisProvider>
+          <IdentitySidebar />
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

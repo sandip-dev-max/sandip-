@@ -1,9 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Pinyon_Script } from "next/font/google";
 import Link from "next/link";
 import { useCallback, useState } from "react";
-import { PortfolioMenu } from "@/components/portfolio/PortfolioMenu";
+import { PortfolioChat } from "@/components/portfolio/PortfolioChat";
+
+const PortfolioMenu = dynamic(
+  () =>
+    import("@/components/portfolio/PortfolioMenu").then(
+      (module) => module.PortfolioMenu,
+    ),
+  { ssr: false },
+);
 
 const pinyonScript = Pinyon_Script({
   weight: "400",
@@ -17,7 +26,17 @@ type PortfolioHeaderProps = {
 
 export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeChat = useCallback(() => setChatOpen(false), []);
+  const openChat = useCallback(() => {
+    setMenuOpen(false);
+    setChatOpen(true);
+  }, []);
+  const openMenu = useCallback(() => {
+    setChatOpen(false);
+    setMenuOpen(true);
+  }, []);
 
   const fg = overlay ? "text-white" : "text-brutal-fg";
   const border = overlay ? "border-white/25" : "border-brutal-border";
@@ -39,11 +58,12 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
       <header
         className={`relative z-[210] flex shrink-0 items-center justify-between gap-4 px-5 py-4 sm:px-8 sm:py-5 lg:px-10 ${headerBorder}`}
       >
-        <span
+        <Link
+          href="/"
           className={`${pinyonScript.className} text-2xl leading-none sm:text-3xl ${overlay ? "text-white" : "text-brutal-fg"}`}
         >
           Yudeat
-        </span>
+        </Link>
 
         <div className="flex items-center gap-2 sm:gap-3">
           <span
@@ -55,6 +75,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
 
           <button
             type="button"
+            onClick={openChat}
             className={`rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest transition-colors ${border} ${fg} ${overlay ? "hover:bg-white/10" : "hover:border-brutal-fg"}`}
           >
             Messages
@@ -85,7 +106,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
               type="button"
               aria-label="Close menu"
               aria-expanded="true"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
               className={menuButtonClass}
             >
               {menuIcon}
@@ -95,7 +116,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
               type="button"
               aria-label="Open menu"
               aria-expanded="false"
-              onClick={() => setMenuOpen(true)}
+              onClick={openMenu}
               className={menuButtonClass}
             >
               {menuIcon}
@@ -105,6 +126,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
       </header>
 
       <PortfolioMenu open={menuOpen} onClose={closeMenu} />
+      <PortfolioChat open={chatOpen} onClose={closeChat} />
     </>
   );
 }

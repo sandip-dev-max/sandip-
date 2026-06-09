@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import { HeroTypewriterTitle } from "@/components/portfolio/HeroTypewriterTitle";
 import { LiveClock } from "@/components/portfolio/LiveClock";
 import { PortfolioHeader } from "@/components/portfolio/PortfolioHeader";
 import { WhoWeAreReveal } from "@/components/portfolio/WhoWeAreReveal";
@@ -79,11 +80,7 @@ export function PortfolioHero() {
                 ref={leftColumnRef}
                 className="flex min-h-0 flex-col will-change-transform lg:col-span-7"
               >
-                <h1 className="font-sans text-4xl font-black uppercase leading-[0.88] tracking-tighter md:text-7xl lg:text-8xl">
-                  Software
-                  <br />
-                  Developer
-                </h1>
+                <HeroTypewriterTitle />
 
                 <div className="mt-4 flex flex-wrap gap-2 md:mt-5">
                   {HERO_TECH_TAGS.map((tag) => (

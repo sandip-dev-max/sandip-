@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: projectRoot,
   // Hides the bottom-left dev indicator; reduces devtools RSC manifest glitches.
   devIndicators: false,
   experimental: {

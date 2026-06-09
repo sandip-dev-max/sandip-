@@ -1,44 +1,56 @@
-export type WhoWeAreChatMessage = {
-  id: string;
-  text: string;
-  side: "left" | "right";
-  time?: string;
-};
+import {
+  SITE_CONTACT_EMAIL,
+  SITE_LOCATION,
+  SITE_PHONE_DISPLAY,
+} from "@/constants/site";
 
-export const WHO_WE_ARE_EYEBROW = "(About me)";
-
-export const WHO_WE_ARE_HEADLINE =
-  "I design and ship web products with clarity, speed, and intent.";
-
-/** Left-top card — portfolio / delivery highlights. */
-export const WHO_WE_ARE_HIGHLIGHT = {
-  count: "4+",
-  label: "projects shipped for real users",
-  eyebrow: "Selected work",
-  avatarInitials: ["EX", "KK", "SW", "PF"],
-  extraCount: "",
+export const WHO_WE_ARE_IMAGE = {
+  src: "/about-mountain.png",
+  alt: "Snow-capped Himalayan peaks above clouds at sunrise",
 } as const;
 
-/** Left-bottom card — how you work + CTA. */
-export const WHO_WE_ARE_APPROACH = {
-  eyebrow: "How I work",
-  title: "From idea to launch — design, code, and polish",
-  ctaLabel: "View services",
-  ctaHref: "#services",
-  stats: [
-    { label: "Stack", value: "Next.js · TypeScript" },
-    { label: "Focus", value: "UI · Motion · SEO" },
-  ],
+export const WHO_WE_ARE_CREATIVE_IMAGE = {
+  src: "/about-creative-hero.png",
+  alt: "Laptop showing a bold digital experience design with warm orange lighting",
 } as const;
 
-export const WHO_WE_ARE_COLLAB = {
-  eyebrow: "Client feedback",
-  messages: [
-    { id: "1", text: "Can we make the hero feel more premium?", side: "left" },
-    { id: "2", text: "Love the direction so far.", side: "left" },
-    { id: "3", text: "Timeline still works for next week?", side: "left" },
-    { id: "4", text: "Yes — on track.", side: "right", time: "Today 17:01" },
-    { id: "5", text: "I'll send the updated build tonight.", side: "right" },
-    { id: "6", text: "Perfect. Let's ship it.", side: "left" },
-  ] satisfies WhoWeAreChatMessage[],
+export const WHO_WE_ARE_WRITING_IMAGE = {
+  src: "/about-writing-hand.png",
+  alt: "Illustrated hand writing with a pen — storytelling and craft",
 } as const;
+
+export const WHO_WE_ARE_NAV = {
+  indexLabel: "Index",
+  indexHref: "#work",
+  infoLabel: "Info",
+  journalLabel: "Field",
+  journalHref: "/passion#image-field",
+} as const;
+
+export const WHO_WE_ARE_BIO = {
+  name: "Yudeat",
+  headline: "Building digital experiences that stick",
+  lead:
+    "My name is Yudeat — designer, front-end developer, and visual storyteller. I care about typography, brutalist structure, and work that feels alive in the browser.",
+  trail: `Based in ${SITE_LOCATION}, I ship for clients worldwide and keep one foot in the mountains.`,
+  readMoreLabel: "Read my story",
+  readMoreHref: "/passion",
+  contactLabel: "Say hello",
+  contactHref: "#contact",
+} as const;
+
+export const WHO_WE_ARE_STAT = {
+  value: "4+",
+  label: "projects shipped",
+  note: "Real products for real users — design, code, and polish in one loop.",
+} as const;
+
+export const WHO_WE_ARE_CONTACT_CARD = {
+  name: "Yudeat",
+  role: "designer & front-end developer",
+  phone: SITE_PHONE_DISPLAY,
+  email: SITE_CONTACT_EMAIL,
+  coordinates: "27°42′ N, 85°19′ E",
+} as const;
+
+export const WHO_WE_ARE_STAMP_LABEL = "Design Dev";

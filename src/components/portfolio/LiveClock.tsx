@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+type LiveClockProps = {
+  variant?: "default" | "24h";
+};
+
 function formatClock(date: Date) {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const day = days[date.getDay()];
@@ -13,15 +17,24 @@ function formatClock(date: Date) {
   return `${day} ${h}:${minutes} ${period}`;
 }
 
-export function LiveClock() {
+function formatClock24(date: Date) {
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
+export function LiveClock({ variant = "default" }: LiveClockProps) {
   const [time, setTime] = useState<string | null>(null);
 
   useEffect(() => {
-    const tick = () => setTime(formatClock(new Date()));
+    const tick = () =>
+      setTime(
+        variant === "24h" ? formatClock24(new Date()) : formatClock(new Date()),
+      );
     tick();
     const id = window.setInterval(tick, 1_000);
     return () => window.clearInterval(id);
-  }, []);
+  }, [variant]);
 
   return (
     <span suppressHydrationWarning className="tabular-nums">
