@@ -17,8 +17,8 @@ export const DOCK_MENU_RIGHT: DockMenuItem[] = [
 /** Section ids observed for active-state highlighting. */
 export const DOCK_SECTION_IDS = [
   "hero",
-  "work",
   "services",
+  "work",
   "testimonials",
   "contact",
 ] as const;

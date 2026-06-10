@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react";
-
 type FieldLayout = {
   left: string;
   top: string;
@@ -33,8 +31,7 @@ export function getSurfaceFieldLayout(index: number, total: number): FieldLayout
   };
 }
 
-export function getInnerFieldLayout(index: number, total: number): FieldLayout {
-  const angle = (index / Math.max(total, 1)) * Math.PI * 2;
+export function getInnerFieldLayout(index: number, _total: number): FieldLayout {
   const size = 4.5 + seededOffset(index, 6) * 3.5;
   const aspect = 0.9 + seededOffset(index, 7) * 0.35;
 
@@ -48,30 +45,3 @@ export function getInnerFieldLayout(index: number, total: number): FieldLayout {
   };
 }
 
-export function fieldLayoutToStyle(
-  layout: FieldLayout,
-  depth: "surface" | "inner",
-): CSSProperties {
-  const base: CSSProperties = {
-    left: layout.left,
-    top: layout.top,
-    width: layout.width,
-    height: layout.height,
-    zIndex: layout.zIndex,
-    transform: `rotate(${layout.rotate})`,
-  };
-
-  if (depth === "inner") {
-    return {
-      ...base,
-      marginLeft: `calc(${layout.width} / -2)`,
-      marginTop: `calc(${layout.height} / -2)`,
-    };
-  }
-
-  return {
-    ...base,
-    marginLeft: `calc(${layout.width} / -2)`,
-    marginTop: `calc(${layout.height} / -2)`,
-  };
-}

@@ -8,9 +8,11 @@ import {
   killScrollTriggersFor,
   scheduleScrollTriggerRefresh,
 } from "@/lib/scroll-trigger";
+import { pinScrollDistance, SCROLL_PIN_DEFAULTS } from "@/lib/scroll-pin";
 import { setStackLayer, type StackLayerKey } from "@/lib/stack-layer";
 
 const SERVICE_COUNT = SERVICES.length;
+const SERVICE_SCROLL_VH = 48;
 const DESKTOP_MQ = "(min-width: 1024px)";
 const MAX_SETUP_FRAMES = 120;
 
@@ -131,11 +133,10 @@ export function useServicesScroll(
               scrollTrigger: {
                 trigger: section,
                 start: "top top",
-                end: `+=${SERVICE_COUNT * 75}%`,
+                end: pinScrollDistance(SERVICE_COUNT, SERVICE_SCROLL_VH),
                 pin,
                 scrub: 0.75,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
+                ...SCROLL_PIN_DEFAULTS,
                 onUpdate: (self) => {
                   const index = Math.min(
                     SERVICE_COUNT - 1,
@@ -158,7 +159,7 @@ export function useServicesScroll(
             scrollTriggerRef.current = timeline.scrollTrigger ?? null;
 
             for (let i = 1; i < SERVICE_COUNT; i += 1) {
-              const position = (i - 0.12) / SERVICE_COUNT;
+              const position = i / SERVICE_COUNT;
               const incoming = images[i];
               const outgoing = images[i - 1];
               const inDesc = descriptions[i];

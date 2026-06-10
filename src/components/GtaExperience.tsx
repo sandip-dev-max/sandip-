@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLenis } from "@/components/providers/LenisProvider";
+import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
 import { DockMenu } from "@/components/portfolio/DockMenu";
 import { PortfolioHero } from "@/components/PortfolioHero";
 import { BlogSection } from "@/components/blog/BlogSection";
 import { ServicesSection } from "@/components/services/ServicesSection";
+import { WorkWithUsSection } from "@/components/work-with-us/WorkWithUsSection";
 import { WorkSection } from "@/components/work/WorkSection";
 import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 import { SiteFooter } from "@/components/portfolio/SiteFooter";
-import { ScrollMaskSection } from "@/components/scroll/ScrollMaskSection";
 import { SplashScreen } from "@/components/splash/SplashScreen";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 
@@ -25,6 +26,21 @@ export function GtaExperience() {
     setShowContent(true);
   };
 
+  useEffect(() => {
+    if (!showContent) return;
+
+    const refresh = () => scheduleScrollTriggerRefresh();
+    const frame = requestAnimationFrame(refresh);
+    const timer = window.setTimeout(refresh, 350);
+    const lateTimer = window.setTimeout(refresh, 900);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+      window.clearTimeout(lateTimer);
+    };
+  }, [showContent]);
+
   return (
     <>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
@@ -33,9 +49,9 @@ export function GtaExperience() {
         <>
           <PortfolioHero />
           <DockMenu />
-          <ScrollMaskSection />
-          <WorkSection />
           <ServicesSection />
+          <WorkWithUsSection />
+          <WorkSection />
           <TestimonialsSection />
           <BlogSection />
         

@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import type { RefObject } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { pinScrollDistance, SCROLL_PIN_DEFAULTS } from "@/lib/scroll-pin";
 import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
 
 type FieldDiveRefs = {
@@ -122,11 +123,10 @@ export function useFieldScrollDive(
             scrollTrigger: {
               trigger: scrollStage.current,
               start: "top top",
-              end: "+=300%",
+              end: pinScrollDistance(3, 90),
               pin: pinViewport.current,
               scrub: 0.85,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
+              ...SCROLL_PIN_DEFAULTS,
             },
           });
 
@@ -235,10 +235,10 @@ export function useFieldScrollDive(
             scrollTrigger: {
               trigger: scrollStage.current,
               start: "top top",
-              end: "+=200%",
+              end: pinScrollDistance(2, 90),
               pin: pinViewport.current,
               scrub: 0.85,
-              anticipatePin: 1,
+              ...SCROLL_PIN_DEFAULTS,
             },
           });
 

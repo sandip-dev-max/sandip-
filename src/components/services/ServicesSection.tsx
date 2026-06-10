@@ -194,12 +194,12 @@ export function ServicesSection() {
             aria-labelledby={`service-tab-${activeService.id}`}
             className="flex min-h-0 flex-col justify-center lg:pl-4 xl:pl-8"
           >
-            <div className="relative min-h-[14rem] flex-1 overflow-hidden rounded-[1.25rem] bg-brutal-fg/5 ring-1 ring-brutal-fg/[0.06] sm:min-h-[18rem] sm:rounded-[1.5rem] lg:min-h-0 lg:max-h-[min(58vh,560px)] lg:flex-1">
+            <div className="services-image-stack relative grid min-h-[14rem] flex-1 grid-cols-1 grid-rows-1 overflow-hidden rounded-[1.25rem] bg-brutal-fg/5 ring-1 ring-brutal-fg/[0.06] sm:min-h-[18rem] sm:rounded-[1.5rem] lg:min-h-0 lg:max-h-[min(58vh,560px)] lg:flex-1">
               {SERVICES.map((service, index) => (
                 <div
                   key={service.id}
                   ref={(el) => registerImageRef(index, el)}
-                  className={`absolute inset-0 will-change-transform ${
+                  className={`col-start-1 row-start-1 will-change-transform ${
                     index === activeIndex ? "opacity-100" : "opacity-0"
                   }`}
                 >
@@ -217,17 +217,17 @@ export function ServicesSection() {
               ))}
             </div>
 
-            <div className="relative mt-6 min-h-[4.5rem] max-w-md shrink-0 sm:mt-8">
+            <div className="services-desc-stack relative mt-6 grid min-h-[4.5rem] max-w-md shrink-0 grid-cols-1 grid-rows-1 sm:mt-8">
               {SERVICES.map((service, index) => (
                 <p
                   key={service.id}
                   ref={(el) => {
                     descriptionRefs.current[index] = el;
                   }}
-                  className={`text-pretty font-sans text-[0.9375rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/75 sm:text-base ${
+                  className={`col-start-1 row-start-1 text-pretty font-sans text-[0.9375rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/75 sm:text-base ${
                     index === activeIndex
-                      ? "relative z-[1]"
-                      : "pointer-events-none absolute inset-0"
+                      ? "relative z-[1] opacity-100"
+                      : "pointer-events-none opacity-0"
                   }`}
                   hidden={index !== activeIndex}
                 >

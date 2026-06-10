@@ -1,6 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { useRef } from "react";
 import { FOOTER_FAQS } from "@/constants/footer-faqs";
 import {
   SITE_BRAND_NAME,
@@ -13,6 +14,8 @@ import {
   SITE_PHONE_TEL,
 } from "@/constants/site";
 import { useContactForm } from "@/hooks/use-contact-form";
+import { useFooterReveal } from "@/hooks/use-footer-reveal";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 function FooterCreditBlock({
   className = "",
@@ -45,19 +48,24 @@ function onNewsletterSubmit(e: FormEvent<HTMLFormElement>) {
 }
 
 export function SiteFooter() {
+  const reducedMotion = usePrefersReducedMotion();
+  const footerRef = useRef<HTMLElement>(null);
   const {
     status: contactStatus,
     error: contactError,
     handleSubmit: handleContactSubmit,
   } = useContactForm();
 
+  useFooterReveal({ footerRef }, reducedMotion);
+
   return (
     <footer
+      ref={footerRef}
       id="contact"
-      className="relative min-h-[100dvh] overflow-hidden bg-brutal-bg px-5 py-[max(8vh,3rem)] text-brutal-fg sm:px-10 lg:px-16"
+      className="scroll-story-section relative min-h-[100dvh] overflow-hidden bg-brutal-bg px-5 py-[max(8vh,3rem)] text-brutal-fg sm:px-10 lg:px-16"
     >
       <div className="mx-auto flex min-h-[calc(100dvh-6rem)] w-full max-w-7xl flex-col justify-center">
-        <div>
+        <div data-footer-hero>
           <p className="inline-flex items-center gap-2 font-mono text-[0.68rem] font-medium uppercase tracking-widest text-brutal-fg/70">
             <span className="size-1.5 rounded-full bg-brutal-fg" aria-hidden />
             Get in touch
@@ -70,7 +78,10 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <div className="mt-10 border-t border-brutal-border pt-10 sm:mt-14 sm:pt-14">
+        <div
+          data-footer-contact
+          className="mt-10 border-t border-brutal-border pt-10 sm:mt-14 sm:pt-14"
+        >
           <div className="grid gap-10 lg:grid-cols-[minmax(220px,0.72fr)_minmax(0,1.8fr)] lg:gap-20">
             <aside className="h-fit rounded-xl border border-brutal-border bg-brutal-bg p-5 text-sm text-brutal-fg/80 sm:p-6">
               <div
@@ -165,7 +176,10 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <section className="mt-16 grid gap-10 border-t border-brutal-border pt-12 sm:mt-20 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:gap-20">
+        <section
+          data-footer-faq
+          className="mt-16 grid gap-10 border-t border-brutal-border pt-12 sm:mt-20 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:gap-20"
+        >
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-brutal-border px-3 py-1 font-mono text-[0.68rem] font-medium uppercase tracking-widest text-brutal-fg/70">
               <span className="size-1.5 rounded-full bg-brutal-fg" aria-hidden />
@@ -208,6 +222,7 @@ export function SiteFooter() {
         </section>
 
         <section
+          data-footer-newsletter
           className="mt-20 border-t border-brutal-border pt-14 sm:mt-24 sm:pt-16"
           aria-label="Newsletter signup"
         >
@@ -281,7 +296,10 @@ export function SiteFooter() {
 
             <div className="flex min-w-0 shrink-0 flex-col items-center justify-center gap-5 px-0 py-2 text-center sm:gap-6 lg:px-4 xl:px-8">
               <FooterCreditBlock className="text-center" hiddenFromA11y />
-              <p className="select-none text-center font-sans text-[clamp(2.75rem,12vw,7.5rem)] font-black uppercase leading-[0.82] tracking-tighter text-brutal-fg sm:text-[clamp(3rem,14vw,9rem)] lg:text-[clamp(3.25rem,12vw,10rem)]">
+              <p
+                data-footer-brand
+                className="select-none text-center font-sans text-[clamp(2.75rem,12vw,7.5rem)] font-black uppercase leading-[0.82] tracking-tighter text-brutal-fg sm:text-[clamp(3rem,14vw,9rem)] lg:text-[clamp(3.25rem,12vw,10rem)]"
+              >
                 YUDEAT
               </p>
               <FooterCreditBlock className="text-center" />

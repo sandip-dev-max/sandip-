@@ -2,8 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import type { CSSProperties } from "react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   IMAGE_FIELD_INNER_ITEMS,
   IMAGE_FIELD_SURFACE_ITEMS,
@@ -11,11 +10,6 @@ import {
   type ImageFieldItem,
   type ImageFieldTag,
 } from "@/constants/image-field";
-import {
-  fieldLayoutToStyle,
-  getInnerFieldLayout,
-  getSurfaceFieldLayout,
-} from "@/lib/field-photo-layout";
 import { PassionFieldFooter } from "@/components/passion/PassionFieldFooter";
 import { useFieldScrollDive } from "@/hooks/use-field-scroll-dive";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -25,12 +19,10 @@ function FieldPiece({
   item,
   setRef,
   variant,
-  layoutStyle,
 }: {
   item: ImageFieldItem;
   setRef: (id: string) => (node: HTMLDivElement | null) => void;
   variant: "outer" | "inner";
-  layoutStyle: CSSProperties;
 }) {
   return (
     <div
@@ -38,7 +30,7 @@ function FieldPiece({
       className={`field-piece ${
         variant === "inner" ? "field-piece--inner" : "field-piece--outer"
       }`}
-      style={layoutStyle}
+      data-field-id={item.id}
       data-tags={item.tags.join(" ")}
       data-depth={variant}
     >
@@ -96,28 +88,6 @@ export function PassionImageField() {
     (tags: ImageFieldItem["tags"]) =>
       activeTag === "all" || tags.includes(activeTag),
     [activeTag],
-  );
-
-  const surfaceLayouts = useMemo(
-    () =>
-      IMAGE_FIELD_SURFACE_ITEMS.map((item) =>
-        fieldLayoutToStyle(
-          getSurfaceFieldLayout(item.index, IMAGE_FIELD_SURFACE_ITEMS.length),
-          "surface",
-        ),
-      ),
-    [],
-  );
-
-  const innerLayouts = useMemo(
-    () =>
-      IMAGE_FIELD_INNER_ITEMS.map((item) =>
-        fieldLayoutToStyle(
-          getInnerFieldLayout(item.index, IMAGE_FIELD_INNER_ITEMS.length),
-          "inner",
-        ),
-      ),
-    [],
   );
 
   useFieldScrollDive(
@@ -232,22 +202,20 @@ export function PassionImageField() {
                 ref={worldRef}
                 className="field-world-3d relative h-full w-full will-change-transform"
               >
-                {IMAGE_FIELD_SURFACE_ITEMS.map((item, index) => (
+                {IMAGE_FIELD_SURFACE_ITEMS.map((item) => (
                   <FieldPiece
                     key={item.id}
                     item={item}
                     setRef={setOuterRef}
                     variant="outer"
-                    layoutStyle={surfaceLayouts[index]!}
                   />
                 ))}
-                {IMAGE_FIELD_INNER_ITEMS.map((item, index) => (
+                {IMAGE_FIELD_INNER_ITEMS.map((item) => (
                   <FieldPiece
                     key={item.id}
                     item={item}
                     setRef={setInnerRef}
                     variant="inner"
-                    layoutStyle={innerLayouts[index]!}
                   />
                 ))}
               </div>

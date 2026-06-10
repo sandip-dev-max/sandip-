@@ -75,10 +75,10 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
     <div
       id="about"
       ref={revealRef}
-      className={`${aboutSerif.className} who-we-are-reveal absolute inset-0 z-[15] flex flex-col overflow-hidden opacity-0 scale-[0.98] pointer-events-none will-change-[opacity,transform]`}
+      className={`${aboutSerif.className} who-we-are-reveal col-start-1 row-start-1 grid min-h-0 grid-rows-[auto_1fr] overflow-x-hidden opacity-0 scale-[0.98] pointer-events-none will-change-[opacity,transform]`}
       aria-label="About me"
     >
-      <div className="about-ambient pointer-events-none absolute inset-0" aria-hidden="true">
+      <div className="about-ambient pointer-events-none" aria-hidden="true">
         <span className="about-watermark font-sans uppercase">{SITE_BRAND_NAME}</span>
         <span className="about-orb about-orb-a" />
         <span className="about-orb about-orb-b" />
@@ -111,11 +111,11 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
       </nav>
 
       <div className="about-stage relative z-20 mx-auto flex min-h-0 w-full max-w-[90rem] flex-1 flex-col px-5 pb-16 pt-2 sm:px-8 sm:pb-20 lg:px-10">
-        <div className="relative min-h-[36rem] flex-1 sm:min-h-[40rem] lg:min-h-[44rem]">
+        <div className="about-collage-grid grid min-h-0 flex-1 gap-3 sm:gap-4">
           <FloatWrap
             reducedMotion={reducedMotion}
             delay="0s"
-            className="reveal-bento-card absolute left-0 top-[8%] z-[24] w-[min(38vw,11rem)] sm:left-[2%] sm:w-[13rem] lg:left-[4%] lg:w-[15rem]"
+            className="reveal-bento-card about-collage-writing self-start justify-self-start"
           >
             <figure className="about-writing-frame overflow-hidden rounded-[1rem] bg-[#eceae4] shadow-[0_24px_60px_-28px_rgba(17,17,17,0.35)] ring-1 ring-brutal-fg/[0.08]">
               <div className="relative aspect-[3/4] w-full">
@@ -136,7 +136,7 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
           <FloatWrap
             reducedMotion={reducedMotion}
             delay="0.4s"
-            className="reveal-bento-card absolute right-0 top-[6%] z-[26] w-[min(52vw,16rem)] rotate-[6deg] sm:right-[2%] sm:w-[18rem] lg:right-[5%] lg:w-[22rem]"
+            className="reveal-bento-card about-collage-creative rotate-[4deg] sm:rotate-[6deg]"
           >
             <figure className="overflow-hidden rounded-[1.1rem] bg-white shadow-[0_36px_80px_-32px_rgba(232,93,76,0.45)] ring-1 ring-brutal-fg/[0.08]">
               <div className="relative aspect-[4/3] w-full">
@@ -156,7 +156,7 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
           </FloatWrap>
 
           <div
-            className="reveal-bento-card about-photo-frame pointer-events-none absolute left-[30%] top-[14%] z-[12] w-[min(40vw,18rem)] -rotate-[9deg] overflow-hidden rounded-[1.25rem] bg-white shadow-[0_40px_90px_-30px_rgba(17,17,17,0.4)] sm:left-[34%] sm:w-[20rem] lg:left-[36%] lg:w-[22rem]"
+            className="reveal-bento-card about-photo-frame about-collage-portrait overflow-hidden rounded-[1.25rem] bg-white shadow-[0_40px_90px_-30px_rgba(17,17,17,0.4)] sm:-rotate-[6deg] lg:rotate-0"
             aria-hidden="true"
           >
             <div className="relative aspect-[4/5] w-full">
@@ -170,7 +170,7 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
             </div>
           </div>
 
-          <div className="reveal-bento-card about-stat-pill absolute right-[8%] top-[38%] z-[28] hidden max-w-[14rem] rounded-[1rem] border border-brutal-fg/8 bg-white/90 p-4 shadow-[0_20px_50px_-24px_rgba(17,17,17,0.28)] backdrop-blur-sm sm:block lg:right-[12%]">
+          <div className="reveal-bento-card about-stat-pill about-collage-stat hidden rounded-[1rem] border border-brutal-fg/8 bg-white/90 p-4 shadow-[0_20px_50px_-24px_rgba(17,17,17,0.28)] backdrop-blur-sm sm:block">
             <p className="font-sans text-2xl font-semibold tracking-[-0.04em] text-[#e85d4c]">
               ↑ {WHO_WE_ARE_STAT.value}
             </p>
@@ -182,29 +182,7 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
             </p>
           </div>
 
-          <div className="reveal-bento-card about-card-outline absolute bottom-[18%] left-[2%] z-[18] hidden rounded-[0.35rem] border border-brutal-fg/20 bg-white/85 px-4 py-7 shadow-[0_24px_60px_-28px_rgba(17,17,17,0.3)] backdrop-blur-sm sm:block sm:bottom-[20%] sm:left-[8%]">
-            <StampLabel variant="outline" />
-          </div>
-
-          <div className="reveal-bento-card about-card-contact absolute bottom-[8%] left-[14%] z-[22] w-[min(72vw,14.5rem)] rotate-[-3deg] rounded-[0.35rem] border border-brutal-fg/10 bg-white px-4 py-5 shadow-[0_28px_70px_-32px_rgba(17,17,17,0.38)] sm:left-[18%] sm:w-[15rem] lg:left-[22%]">
-            <p className="font-sans text-[0.875rem] font-medium leading-snug tracking-[-0.02em] text-brutal-fg">
-              {WHO_WE_ARE_CONTACT_CARD.name},
-              <br />
-              <span className="font-normal text-brutal-fg/72">
-                {WHO_WE_ARE_CONTACT_CARD.role}
-              </span>
-            </p>
-            <ul className="mt-4 space-y-1.5 font-sans text-[0.75rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/68">
-              <li>{WHO_WE_ARE_CONTACT_CARD.phone}</li>
-              <li className="break-all">{WHO_WE_ARE_CONTACT_CARD.email}</li>
-            </ul>
-          </div>
-
-          <div className="reveal-bento-card about-card-stamp absolute bottom-[22%] right-[3%] z-[20] hidden rounded-[0.35rem] border border-brutal-fg/10 bg-white px-4 py-7 shadow-[0_30px_70px_-30px_rgba(17,17,17,0.35)] rotate-[8deg] sm:block sm:right-[6%]">
-            <StampLabel variant="solid" />
-          </div>
-
-          <div className="about-bio relative z-[30] mx-auto flex max-w-[38rem] flex-col items-center pt-4 text-center sm:max-w-[42rem] sm:pt-8 lg:max-w-[44rem] lg:pt-6">
+          <div className="about-bio about-collage-bio flex flex-col items-center self-center justify-self-center text-center">
             <p className="reveal-bento-card font-mono text-[10px] uppercase tracking-[0.2em] text-brutal-fg/45">
               (About me)
             </p>
@@ -232,6 +210,28 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
                 {WHO_WE_ARE_BIO.contactLabel}
               </Link>
             </div>
+          </div>
+
+          <div className="reveal-bento-card about-card-outline about-collage-outline hidden rounded-[0.35rem] border border-brutal-fg/20 bg-white/85 px-4 py-7 shadow-[0_24px_60px_-28px_rgba(17,17,17,0.3)] backdrop-blur-sm sm:block">
+            <StampLabel variant="outline" />
+          </div>
+
+          <div className="reveal-bento-card about-card-contact about-collage-contact rotate-[-2deg] rounded-[0.35rem] border border-brutal-fg/10 bg-white px-4 py-5 shadow-[0_28px_70px_-32px_rgba(17,17,17,0.38)] sm:rotate-[-3deg]">
+            <p className="font-sans text-[0.875rem] font-medium leading-snug tracking-[-0.02em] text-brutal-fg">
+              {WHO_WE_ARE_CONTACT_CARD.name},
+              <br />
+              <span className="font-normal text-brutal-fg/72">
+                {WHO_WE_ARE_CONTACT_CARD.role}
+              </span>
+            </p>
+            <ul className="mt-4 space-y-1.5 font-sans text-[0.75rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/68">
+              <li>{WHO_WE_ARE_CONTACT_CARD.phone}</li>
+              <li className="break-all">{WHO_WE_ARE_CONTACT_CARD.email}</li>
+            </ul>
+          </div>
+
+          <div className="reveal-bento-card about-card-stamp about-collage-stamp hidden rotate-[8deg] rounded-[0.35rem] border border-brutal-fg/10 bg-white px-4 py-7 shadow-[0_30px_70px_-30px_rgba(17,17,17,0.35)] sm:block">
+            <StampLabel variant="solid" />
           </div>
         </div>
       </div>

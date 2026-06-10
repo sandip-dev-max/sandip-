@@ -1,10 +1,15 @@
 import { useGSAP } from "@gsap/react";
 import type { RefObject } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
+import { pinScrollDistance, SCROLL_PIN_DEFAULTS } from "@/lib/scroll-pin";
+import { killScrollTriggersFor } from "@/lib/scroll-trigger";
+import { scheduleRevealRefresh } from "@/lib/section-reveal";
 
 const REVEAL_DURATION = 1;
 const REVEAL_EASE = "power2.inOut";
-const GALLERY_INTERACTIVE_AT = 0.55;
+const GALLERY_INTERACTIVE_AT = 0.72;
+const HERO_SCROLL_STEPS = 1;
+const HERO_SCROLL_VH = 100;
 
 export type HeroRevealRefs = {
   scrollSection: RefObject<HTMLDivElement | null>;
@@ -18,7 +23,10 @@ export type HeroRevealRefs = {
   galleryGrid: RefObject<HTMLDivElement | null>;
 };
 
-export function useHeroScrollReveal(refs: HeroRevealRefs) {
+export function useHeroScrollReveal(
+  refs: HeroRevealRefs,
+  reducedMotion: boolean,
+) {
   useGSAP(
     () => {
       const {
@@ -47,6 +55,8 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
         return;
       }
 
+      killScrollTriggersFor(scrollSection.current);
+
       const setGalleryInteractive = (interactive: boolean) => {
         header.current?.classList.toggle("pointer-events-none", interactive);
         heroContent.current?.classList.toggle(
@@ -68,16 +78,37 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
       const bentoCards =
         galleryGrid.current.querySelectorAll<HTMLElement>(".reveal-bento-card");
 
+      if (reducedMotion) {
+        gsap.set(galleryGrid.current, { opacity: 0, pointerEvents: "none" });
+        gsap.set(bentoCards, { clearProps: "all" });
+        gsap.set(
+          [
+            header.current,
+            leftColumn.current,
+            rightColumn.current,
+            footer.current,
+            heroBackdrop.current,
+            heroContent.current,
+          ],
+          { clearProps: "all" },
+        );
+        setGalleryInteractive(false);
+        return;
+      }
+
+      gsap.set(galleryGrid.current, { opacity: 0, scale: 0.98 });
+      gsap.set(bentoCards, { yPercent: 8, opacity: 0.85 });
+
       const fade = { duration: REVEAL_DURATION, ease: REVEAL_EASE };
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: scrollSection.current,
           start: "top top",
-          end: "+=120%",
+          end: pinScrollDistance(HERO_SCROLL_STEPS, HERO_SCROLL_VH),
           pin: stickyContainer.current,
           scrub: 0.6,
-          invalidateOnRefresh: true,
+          ...SCROLL_PIN_DEFAULTS,
           onUpdate: (self) => {
             setGalleryInteractive(self.progress >= GALLERY_INTERACTIVE_AT);
           },
@@ -94,9 +125,8 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
         .to(rightColumn.current, { xPercent: 120, opacity: 0, ...fade }, 0)
         .to(footer.current, { yPercent: 100, opacity: 0, ...fade }, 0)
         .to(galleryGrid.current, { opacity: 1, scale: 1, ...fade }, 0)
-        .fromTo(
+        .to(
           bentoCards,
-          { yPercent: 8, opacity: 0.85 },
           {
             yPercent: 0,
             opacity: 1,
@@ -107,7 +137,7 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
           0,
         );
 
-      requestAnimationFrame(() => ScrollTrigger.refresh());
+      scheduleRevealRefresh();
 
       return () => {
         timeline.scrollTrigger?.kill();
@@ -115,6 +145,6 @@ export function useHeroScrollReveal(refs: HeroRevealRefs) {
         setGalleryInteractive(false);
       };
     },
-    { scope: refs.scrollSection },
+    { scope: refs.scrollSection, dependencies: [reducedMotion], revertOnUpdate: true },
   );
 }

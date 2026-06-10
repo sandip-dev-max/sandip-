@@ -2,7 +2,6 @@
 
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import { useRef } from "react";
 import {
   PASSION_INTRO,
@@ -12,9 +11,9 @@ import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { gsap } from "@/lib/gsap";
 
 const COLLAGE_OFFSETS = [
-  { className: "passion-intro-photo-a", rotate: -7, delay: "0s" },
-  { className: "passion-intro-photo-b", rotate: 5, delay: "0.35s" },
-  { className: "passion-intro-photo-c", rotate: -3, delay: "0.7s" },
+  { className: "passion-intro-photo-a", delay: "0s" },
+  { className: "passion-intro-photo-b", delay: "0.35s" },
+  { className: "passion-intro-photo-c", delay: "0.7s" },
 ] as const;
 
 export function PassionIntroHero() {
@@ -124,11 +123,6 @@ export function PassionIntroHero() {
                     reducedMotion ? "" : "passion-float"
                   }`}
                   data-delay={reducedMotion ? undefined : offset.delay}
-                  style={
-                    {
-                      "--passion-rotate": `${offset.rotate}deg`,
-                    } as CSSProperties
-                  }
                 >
                   <div className="passion-media-frame relative h-full w-full overflow-hidden bg-[#f1f0ed] shadow-[0_22px_50px_-28px_rgba(17,17,17,0.42)] ring-1 ring-brutal-fg/[0.07]">
                     <Image

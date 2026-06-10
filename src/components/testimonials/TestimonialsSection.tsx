@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useRef } from "react";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import {
   TESTIMONIALS,
   getTestimonialPositionClass,
 } from "@/constants/testimonials";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useTestimonialsReveal } from "@/hooks/use-testimonials-reveal";
 import { buildBlogBottomPath } from "@/lib/blog-curve-path";
-import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
 
 function TestimonialBubble({
   quote,
@@ -25,6 +25,7 @@ function TestimonialBubble({
 }) {
   return (
     <figure
+      data-testimonial-bubble
       className={`group w-full max-w-[min(100%,18rem)] transition-transform duration-500 ease-out hover:scale-[1.02] sm:max-w-[19rem] ${tiltClass}`}
     >
       <div
@@ -65,15 +66,15 @@ function TestimonialBubble({
 
 export function TestimonialsSection() {
   const reducedMotion = usePrefersReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    scheduleScrollTriggerRefresh();
-  }, []);
+  useTestimonialsReveal({ sectionRef }, reducedMotion);
 
   return (
     <section
+      ref={sectionRef}
       id="testimonials"
-      className="relative w-full overflow-hidden bg-[#fafaf8] text-brutal-fg"
+      className="scroll-story-section relative w-full overflow-hidden bg-[#fafaf8] text-brutal-fg"
       aria-labelledby="testimonials-heading"
     >
       <div
@@ -101,20 +102,28 @@ export function TestimonialsSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:min-h-[100dvh] lg:px-10 lg:py-24">
         <div className="relative mx-auto lg:min-h-[calc(100dvh-12rem)]">
           <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center lg:absolute lg:inset-x-0 lg:top-1/2 lg:-translate-y-1/2">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-brutal-fg/45">
+            <p
+              data-testimonial-header
+              className="font-mono text-[10px] uppercase tracking-[0.22em] text-brutal-fg/45"
+            >
               (Voices)
             </p>
             <h2
               id="testimonials-heading"
+              data-testimonial-header
               className="mt-5 text-balance font-sans text-[clamp(2.25rem,5.5vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-brutal-fg"
             >
               What others have been saying about my work
             </h2>
-            <p className="mt-5 max-w-md text-pretty font-sans text-[0.9375rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/50">
+            <p
+              data-testimonial-header
+              className="mt-5 max-w-md text-pretty font-sans text-[0.9375rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/50"
+            >
               Real notes from clients and collaborators — the kind you get when
               the work ships on time and still feels considered.
             </p>
             <Link
+              data-testimonial-cta
               href="#contact"
               className="mt-9 inline-flex items-center gap-2.5 rounded-full border border-brutal-fg/8 bg-white/80 px-6 py-3 font-sans text-sm font-medium tracking-[-0.02em] text-brutal-fg shadow-[0_8px_30px_rgba(17,17,17,0.06)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brutal-fg/14 hover:bg-white hover:shadow-[0_14px_40px_rgba(17,17,17,0.1)]"
             >
