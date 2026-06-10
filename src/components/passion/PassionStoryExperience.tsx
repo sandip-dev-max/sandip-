@@ -9,6 +9,7 @@ import { PassionFieldBridge } from "@/components/passion/PassionFieldBridge";
 import { PassionImageField } from "@/components/passion/PassionImageField";
 import { PassionFigureBlock } from "@/components/passion/PassionFigure";
 import { PassionIntroHero } from "@/components/passion/PassionIntroHero";
+import { PassionProfileIntro } from "@/components/passion/PassionProfileIntro";
 import { PASSION_COLLECTIONS } from "@/constants/passion-collections";
 import {
   PASSION_CHAPTERS,
@@ -112,6 +113,28 @@ export function PassionStoryExperience() {
                 },
               });
             }
+          }
+        }
+
+        const profile = root.querySelector<HTMLElement>("[data-passion-profile]");
+        if (profile) {
+          const profileItems = profile.querySelectorAll("[data-story-reveal]");
+
+          if (reducedMotion) {
+            gsap.set(profileItems, { opacity: 1, y: 0 });
+          } else {
+            gsap.from(profileItems, {
+              y: 32,
+              opacity: 0,
+              duration: 0.95,
+              stagger: 0.12,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: profile,
+                start: "top 86%",
+                toggleActions: "play none none reverse",
+              },
+            });
           }
         }
 
@@ -317,6 +340,7 @@ export function PassionStoryExperience() {
         <main className="relative z-10">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <PassionIntroHero />
+            <PassionProfileIntro />
 
             <div className="space-y-20 py-16 sm:space-y-24 sm:py-20 lg:space-y-28 lg:py-24">
               {PASSION_CHAPTERS.map((chapter) => (

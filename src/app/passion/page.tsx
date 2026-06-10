@@ -5,7 +5,7 @@ import { SITE_BRAND_NAME } from "@/constants/site";
 export const metadata: Metadata = {
   title: `Passion & Story — ${SITE_BRAND_NAME}`,
   description:
-    "The other half of what I make — photography, mountains, visual culture, and the story behind the work.",
+    "Born in Parbat, Nepal — mountaineering studies, high-altitude field work, and the story behind the craft.",
 };
 
 export default function PassionPage() {

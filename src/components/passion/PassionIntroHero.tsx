@@ -98,8 +98,8 @@ export function PassionIntroHero() {
             data-story-reveal
             className="mt-8 flex flex-wrap items-center gap-4 font-mono text-[10px] uppercase tracking-[0.16em] text-brutal-fg/40"
           >
-            <span className="passion-intro-chip">4 chapters</span>
-            <span className="passion-intro-chip">2 collections</span>
+            <span className="passion-intro-chip">Parbat, Nepal</span>
+            <span className="passion-intro-chip">Mountaineering studies</span>
             <span className="passion-intro-chip">97 field frames</span>
           </div>
         </div>

@@ -38,10 +38,33 @@ export const PASSION_PAGE_NAV: PassionNavItem[] = [
 ];
 
 export const PASSION_INTRO = {
-  eyebrow: "Profession & passion",
-  title: "The other half of what I make",
+  eyebrow: "Mountaineer & maker",
+  title: "Rooted in the Annapurna",
   subtitle:
-    "Code pays the bills. Photography, mountains, and visual culture keep the work honest.",
+    "From Parbat to the high country — studying mountains formally while building for the web.",
+};
+
+export type PassionProfileSection = {
+  label: string;
+  body: string;
+};
+
+export const PASSION_PROFILE = {
+  title: "Profile Introduction",
+  sections: [
+    {
+      label: "Origin & Roots",
+      body: "Born in Parbat, Nepal — a region defined by its proximity to the Annapurna range. This early environment fostered a foundational connection to mountain landscapes and high-altitude geography.",
+    },
+    {
+      label: "Core Evolution",
+      body: "Developed a deep sense of belonging to the mountains, transitioning from a background in technology and web development to formal, academic specialization in mountaineering.",
+    },
+    {
+      label: "Current Focus",
+      body: "Pursuing a Bachelor in Mountaineering Studies. Combining technical problem-solving skills with practical and theoretical mountain education to operate effectively in high-altitude environments.",
+    },
+  ] satisfies PassionProfileSection[],
 };
 
 export const PASSION_INTRO_PHOTOS = [
@@ -64,21 +87,21 @@ export const PASSION_CHAPTERS: PassionChapter[] = [
     id: "chapter-1",
     number: "1.",
     paragraphs: [
-      "I grew up in the Kathmandu Valley — a place where prayer flags, concrete terraces, and Himalayan ridgelines share the same horizon. My family was practical: study hard, build a stable life. I was practical too, but I kept noticing light.",
-      "Architecture school sketches turned into late-night walks. I photographed doorways, staircases, and fog sitting low in the valley. I did not know it yet, but I was learning composition the way some people learn language — by listening first.",
+      "Parbat sits close enough to the Annapurna massif that altitude is never abstract — it is weather, light, and the shape of every horizon. That geography became the baseline: ridges as reference lines, cloud as scale, walking as the first way of learning a landscape.",
+      "Web development came first as craft and livelihood — systems, interfaces, problems solved in code. The mountains kept pulling. What started as field walks and camera frames became formal study: mountaineering as discipline, not just backdrop.",
     ],
     figures: [
       {
         id: "fig-1",
         type: "globe",
-        caption: "Fig 1: Valley coordinates",
+        caption: "Fig 1: Parbat & Annapurna",
       },
       {
         id: "fig-2",
         type: "photo",
-        caption: "Fig 2: Kathmandu mornings",
+        caption: "Fig 2: High-country light",
         imageSrc: "/field/IMG_6662.jpg",
-        imageAlt: "Morning light in the Kathmandu valley",
+        imageAlt: "Morning light across Himalayan foothills",
       },
     ],
   },
@@ -132,8 +155,8 @@ export const PASSION_CHAPTERS: PassionChapter[] = [
     id: "chapter-4",
     number: "4.",
     paragraphs: [
-      "Today I work as a freelance designer and front-end developer for teams who want software that feels considered. Client work funds the craft. Personal projects and mountain trips refill the visual library.",
-      "If you are here for the developer portfolio, you will find it on the home page. If you are here for the person behind it — this is the thread that ties the work together: storytelling, restraint, and a permanent curiosity about what happens just outside the frame.",
+      "Today those two paths run parallel: freelance design and front-end development on one side, a Bachelor in Mountaineering Studies on the other. Technical problem-solving from the screen transfers to route planning, gear systems, and reading terrain under pressure.",
+      "If you are here for the developer portfolio, you will find it on the home page. If you are here for the mountaineer — this is the thread that ties it together: high-altitude geography, field discipline, and the same curiosity about what happens just outside the frame.",
     ],
     figures: [
       {
