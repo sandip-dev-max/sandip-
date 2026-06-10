@@ -29,7 +29,12 @@ function WorkCard({ item }: { item: WriterWorkItem }) {
       <div>
         <h2 className="writer-display writer-work-card-title">
           {item.title}
-          {item.isNew ? (
+          {item.isOngoing ? (
+            <span className="writer-work-badge writer-work-badge--ongoing">
+              Ongoing
+            </span>
+          ) : null}
+          {item.isNew && !item.isOngoing ? (
             <span className="writer-work-badge">New</span>
           ) : null}
         </h2>

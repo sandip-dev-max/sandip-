@@ -1,6 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import type { RefObject } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { pinScrollDistance, SCROLL_PIN_DEFAULTS } from "@/lib/scroll-pin";
 import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
 

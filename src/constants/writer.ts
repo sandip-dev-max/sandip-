@@ -1,4 +1,5 @@
 import { WRITER_POEMS } from "@/constants/writer-poems";
+import { WRITER_STORIES } from "@/constants/writer-stories";
 import {
   SITE_BRAND_NAME,
   SITE_CONTACT_EMAIL,
@@ -33,9 +34,21 @@ export type WriterWorkItem = {
   imageAlt: string;
   href: string;
   isNew?: boolean;
+  isOngoing?: boolean;
 };
 
-export const WRITER_FEATURED_WORK: WriterWorkItem[] = WRITER_POEMS.map((poem) => ({
+const WRITER_STORY_ITEMS: WriterWorkItem[] = WRITER_STORIES.map((story) => ({
+  id: story.id,
+  title: story.title,
+  excerpt: story.excerpt,
+  image: story.image,
+  imageAlt: story.imageAlt,
+  href: `/writer/${story.slug}`,
+  isNew: story.isNew,
+  isOngoing: story.isOngoing,
+}));
+
+const WRITER_POEM_ITEMS: WriterWorkItem[] = WRITER_POEMS.map((poem) => ({
   id: poem.id,
   title: poem.title,
   excerpt: poem.excerpt,
@@ -45,14 +58,19 @@ export const WRITER_FEATURED_WORK: WriterWorkItem[] = WRITER_POEMS.map((poem) =>
   isNew: poem.isNew,
 }));
 
+export const WRITER_FEATURED_WORK: WriterWorkItem[] = [
+  ...WRITER_STORY_ITEMS,
+  ...WRITER_POEM_ITEMS,
+];
+
 export const WRITER_ABOUT = {
-  upcomingLabel: "Latest poem",
-  upcomingNote: "Fresh from the desk — a letter written in verse.",
-  clickTip: "Tip! Click to read the full poem",
-  upcomingTitle: "Mama — I will be gone",
+  upcomingLabel: "Ongoing novel",
+  upcomingNote: "A long-legged bird, a puny god, and a love named Maine.",
+  clickTip: "Tip! Click to read the latest chapters",
+  upcomingTitle: "The Long Legged Bird",
   upcomingExcerpt:
-    "A letter to a mother — crossing rivers, mountains, and the long distance between leaving and returning.",
-  upcomingHref: "/writer/mama-i-will-be-gone",
+    "An ongoing novel — Christ at tea, a bird with long legs, and a riverbank confession about Maine.",
+  upcomingHref: "/writer/the-long-legged-bird",
   roles: ["Writer", "Design strategist", `Based in ${SITE_LOCATION}`],
   bioLead:
     "As a multidisciplinary freelancer, I believe the digital product must be an intelligent dialogue between the writer and the reader — clarity first, then rhythm, then surprise.",
@@ -74,11 +92,18 @@ export const WRITER_ABOUT = {
     "Verse",
   ],
   indexLabel: "Selected works",
-  selectedWorks: WRITER_POEMS.map((poem) => ({
-    slug: poem.slug,
-    title: poem.title,
-    note: poem.excerpt,
-  })),
+  selectedWorks: [
+    ...WRITER_STORIES.map((story) => ({
+      slug: story.slug,
+      title: story.title,
+      note: story.excerpt,
+    })),
+    ...WRITER_POEMS.map((poem) => ({
+      slug: poem.slug,
+      title: poem.title,
+      note: poem.excerpt,
+    })),
+  ],
   stampName: SITE_BRAND_NAME,
   stampDate: "Est. 2024",
 } as const;
@@ -87,22 +112,27 @@ export const WRITER_INVERTED = {
   word: "Website",
 } as const;
 
+export const WRITER_HAND_IMAGE = {
+  src: "/writer-handwriting.jpg",
+  alt: "Handwritten letter on aged paper",
+} as const;
+
 export const WRITER_STATEMENT = {
   lines: ["Think,", "Create", "Deliver"],
   bio: "A strong project is created by deep collaboration. I write the briefs, the interfaces, and the case studies — so the story and the system stay in the same voice.",
   ctaLabel: "All work",
   ctaHref: "/#work",
-  portraitSrc: "/about-writing-hand.png",
-  portraitAlt: "Illustrated hand writing with a pen",
+  portraitSrc: WRITER_HAND_IMAGE.src,
+  portraitAlt: WRITER_HAND_IMAGE.alt,
   featureSrc: "/hero.png",
   featureAlt: "Yudeat in the mountains",
 } as const;
 
 export const WRITER_STATS = [
-  { label: "Poems published", value: "4", suffix: "pieces" },
-  { label: "Stanzas written", value: "24", suffix: "verses" },
+  { label: "Poems published", value: "100", suffix: "plus" },
+  { label: "Works written", value: "100", suffix: "plus" },
+  { label: "Years writing", value: "2", suffix: "nearly" },
   { label: "Letters home", value: "1", suffix: "to mama" },
-  { label: "Stations stood", value: "1", suffix: "forever" },
 ] as const;
 
 export const WRITER_PIXEL = {
@@ -132,6 +162,7 @@ export const WRITER_FOOTER = {
 } as const;
 
 export const WRITER_MARQUEE_TICKER = [
+  "The Long Legged Bird",
   "Mama — I will be gone",
   "The Passenger Station",
   "Obsidian shadow's mind",

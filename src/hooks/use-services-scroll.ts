@@ -268,7 +268,7 @@ export function useServicesScroll(
 
       lenis.scrollTo(scrollPosition, { duration: 1.1 });
     },
-    [lenis, reducedMotion],
+    [lenis, reducedMotion, refs],
   );
 
   const selectIndex = useCallback(
@@ -281,7 +281,7 @@ export function useServicesScroll(
       activeIndexRef.current = index;
       onIndexChangeRef.current(index);
     },
-    [reducedMotion, scrollToIndex],
+    [reducedMotion, refs, scrollToIndex],
   );
 
   return { selectIndex, scrollScrubEnabled: () => scrollScrubRef.current };

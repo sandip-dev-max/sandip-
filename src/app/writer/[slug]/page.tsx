@@ -1,29 +1,51 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { WriterPoemReader } from "@/components/writer/WriterPoemReader";
+import { WriterStoryReader } from "@/components/writer/WriterStoryReader";
 import { SITE_BRAND_NAME } from "@/constants/site";
 import {
-  getAllWriterPoems,
+  getAdjacentWriterWorks,
+  getAllWriterSlugs,
   getWriterPoemBySlug,
-  getWriterPoemSlugs,
-} from "@/lib/writer-poems";
+  getWriterStoryBySlug,
+  getWriterWorkKind,
+} from "@/lib/writer-works";
+import { getAllWriterPoems } from "@/lib/writer-poems";
 
-type WriterPoemPageProps = {
+type WriterWorkPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return getWriterPoemSlugs().map((slug) => ({ slug }));
+  return getAllWriterSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
-}: WriterPoemPageProps): Promise<Metadata> {
+}: WriterWorkPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const poem = getWriterPoemBySlug(slug);
+  const kind = getWriterWorkKind(slug);
 
+  if (kind === "story") {
+    const story = getWriterStoryBySlug(slug);
+    if (!story) {
+      return { title: `Work not found — ${SITE_BRAND_NAME}` };
+    }
+
+    return {
+      title: `${story.title} — ${SITE_BRAND_NAME}`,
+      description: story.excerpt,
+      openGraph: {
+        title: story.title,
+        description: story.excerpt,
+        images: [{ url: story.image, alt: story.imageAlt }],
+      },
+    };
+  }
+
+  const poem = getWriterPoemBySlug(slug);
   if (!poem) {
-    return { title: `Poem not found — ${SITE_BRAND_NAME}` };
+    return { title: `Work not found — ${SITE_BRAND_NAME}` };
   }
 
   return {
@@ -37,10 +59,32 @@ export async function generateMetadata({
   };
 }
 
-export default async function WriterPoemPage({ params }: WriterPoemPageProps) {
+export default async function WriterWorkPage({ params }: WriterWorkPageProps) {
   const { slug } = await params;
-  const poem = getWriterPoemBySlug(slug);
+  const kind = getWriterWorkKind(slug);
 
+  if (!kind) {
+    notFound();
+  }
+
+  const { previous, next } = getAdjacentWriterWorks(slug);
+
+  if (kind === "story") {
+    const story = getWriterStoryBySlug(slug);
+    if (!story) {
+      notFound();
+    }
+
+    return (
+      <WriterStoryReader
+        story={story}
+        previousWork={previous}
+        nextWork={next}
+      />
+    );
+  }
+
+  const poem = getWriterPoemBySlug(slug);
   if (!poem) {
     notFound();
   }

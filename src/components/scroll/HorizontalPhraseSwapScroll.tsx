@@ -2,7 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import { useMemo, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import {
   killScrollTriggersFor,
   scheduleScrollTriggerRefresh,

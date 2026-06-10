@@ -31,7 +31,7 @@ export function getSurfaceFieldLayout(index: number, total: number): FieldLayout
   };
 }
 
-export function getInnerFieldLayout(index: number, _total: number): FieldLayout {
+export function getInnerFieldLayout(index: number): FieldLayout {
   const size = 4.5 + seededOffset(index, 6) * 3.5;
   const aspect = 0.9 + seededOffset(index, 7) * 0.35;
 

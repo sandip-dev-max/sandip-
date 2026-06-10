@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { RefObject } from "react";
 import { ProjectCardActions } from "@/components/portfolio/ProjectCardActions";
 import { PROJECTS } from "@/constants/projects";
@@ -18,11 +19,13 @@ export function ProjectGallery({ galleryRef }: ProjectGalleryProps) {
           className="group relative flex min-h-0 flex-col justify-end overflow-hidden rounded-sm border border-neutral-800 p-4 md:p-6"
         >
           <div className="pointer-events-none absolute inset-0 z-0 bg-neutral-900">
-            <div className="absolute -top-[10%] left-0 h-[120%] w-full">
-              <img
+            <div className="absolute -top-[10%] left-0 h-[120%] w-full overflow-hidden">
+              <Image
                 src={project.image}
                 alt={project.imageAlt}
-                className="project-img h-full w-full object-cover object-top opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="project-img object-cover object-top opacity-90 transition-opacity duration-300 group-hover:opacity-100"
               />
             </div>
           </div>

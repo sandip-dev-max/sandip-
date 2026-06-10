@@ -170,8 +170,8 @@ export const WRITER_POEMS: WriterPoem[] = [
       "Sanity at the doorstep of love — frozen hearts, stranger eyes, and the temper where feeling meets reason.",
     date: "June 10, 2026",
     publishedAt: "2026-06-10",
-    image: "/about-writing-hand.png",
-    imageAlt: "Hand writing at a desk",
+    image: "/writer-handwriting.jpg",
+    imageAlt: "Handwritten letter on aged paper",
     stanzas: [
       [
         "A rolling stone maybe, maybe a pen with white , black and purple stripes,",

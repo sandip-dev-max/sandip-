@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { WRITER_ABOUT, WRITER_INVERTED } from "@/constants/writer";
+import { WRITER_ABOUT, WRITER_HAND_IMAGE, WRITER_INVERTED } from "@/constants/writer";
 
 export function WriterAboutSection() {
   return (
@@ -106,11 +106,11 @@ export function WriterAboutSection() {
         <div className="writer-grid-cell writer-grid-cell--portrait" data-writer-reveal>
           <div className="writer-media-frame writer-portrait-frame relative">
             <Image
-              src="/about-writing-hand.png"
-              alt="Writing by hand"
+              src={WRITER_HAND_IMAGE.src}
+              alt={WRITER_HAND_IMAGE.alt}
               fill
               sizes="25vw"
-              className="object-cover object-[center_72%]"
+              className="object-cover object-top grayscale contrast-[1.08]"
             />
           </div>
           <p className="writer-portrait-caption">

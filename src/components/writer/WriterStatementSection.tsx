@@ -45,7 +45,7 @@ export function WriterStatementSection() {
             alt={WRITER_STATEMENT.portraitAlt}
             fill
             sizes="20vw"
-            className="object-cover object-[center_72%]"
+            className="object-cover object-top grayscale contrast-[1.08]"
           />
         </div>
       </div>

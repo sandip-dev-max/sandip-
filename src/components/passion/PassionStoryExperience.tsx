@@ -15,7 +15,7 @@ import {
   PASSION_PAGE_NAV,
 } from "@/constants/passion-story";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
 
 const PortfolioHeader = dynamic(
