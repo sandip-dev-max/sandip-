@@ -97,7 +97,10 @@ export function WorkSection() {
                 className="block"
                 aria-label={`View ${project.title}`}
               >
-                <div className="work-card-media relative aspect-square overflow-hidden bg-[#f1f0ed] ring-1 ring-brutal-fg/[0.07]">
+                <div
+                  data-webgl-image
+                  className="work-card-media relative aspect-square overflow-hidden bg-[#f1f0ed] ring-1 ring-brutal-fg/[0.07]"
+                >
                   <Image
                     src={project.image}
                     alt={project.imageAlt}

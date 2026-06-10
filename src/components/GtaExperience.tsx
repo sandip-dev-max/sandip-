@@ -12,6 +12,7 @@ import { WorkSection } from "@/components/work/WorkSection";
 import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 import { SiteFooter } from "@/components/portfolio/SiteFooter";
 import { SplashScreen } from "@/components/splash/SplashScreen";
+import { ScrollMarquee } from "@/components/scroll/ScrollMarquee";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 export function GtaExperience() {
@@ -48,6 +49,7 @@ export function GtaExperience() {
       {showContent && (
         <>
           <PortfolioHero />
+          <ScrollMarquee />
           <DockMenu />
           <ServicesSection />
           <WorkWithUsSection />

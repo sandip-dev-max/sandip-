@@ -1,6 +1,12 @@
 "use client";
 
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import {
+  createScrollVelocityState,
+  updateScrollVelocity,
+  type ScrollVelocityState,
+} from "@/lib/scroll-velocity";
+import { writeScrollVelocity } from "@/lib/scroll-velocity-store";
 import Lenis from "lenis";
 import {
   createContext,
@@ -12,9 +18,18 @@ import {
 
 type LenisContextValue = {
   lenis: Lenis | null;
+  /** Snapshot of velocity — for React consumers; WebGL reads the live store each frame. */
+  scrollVelocity: number;
+  velocityState: ScrollVelocityState;
 };
 
-const LenisContext = createContext<LenisContextValue>({ lenis: null });
+const defaultVelocity = createScrollVelocityState();
+
+const LenisContext = createContext<LenisContextValue>({
+  lenis: null,
+  scrollVelocity: 0,
+  velocityState: defaultVelocity,
+});
 
 export function useLenis() {
   return useContext(LenisContext);
@@ -26,6 +41,8 @@ type LenisProviderProps = {
 
 export function LenisProvider({ children }: LenisProviderProps) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
+  const [velocitySnapshot, setVelocitySnapshot] =
+    useState<ScrollVelocityState>(defaultVelocity);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -39,6 +56,10 @@ export function LenisProvider({ children }: LenisProviderProps) {
     });
 
     setLenis(instance);
+
+    let lastScroll = instance.scroll;
+    let localVelocity = createScrollVelocityState();
+    let frame = 0;
 
     const onScroll = () => ScrollTrigger.update();
     instance.on("scroll", onScroll);
@@ -64,6 +85,18 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
     const ticker = (time: number) => {
       instance.raf(time * 1000);
+      localVelocity = updateScrollVelocity(
+        localVelocity,
+        instance.scroll,
+        lastScroll,
+      );
+      lastScroll = instance.scroll;
+      writeScrollVelocity(localVelocity);
+
+      frame += 1;
+      if (frame % 4 === 0) {
+        setVelocitySnapshot({ ...localVelocity });
+      }
     };
 
     gsap.ticker.add(ticker);
@@ -79,10 +112,20 @@ export function LenisProvider({ children }: LenisProviderProps) {
       ScrollTrigger.defaults({ scroller: window });
       root.classList.remove("lenis", "lenis-smooth");
       setLenis(null);
+      writeScrollVelocity(createScrollVelocityState());
+      setVelocitySnapshot(createScrollVelocityState());
     };
   }, []);
 
   return (
-    <LenisContext.Provider value={{ lenis }}>{children}</LenisContext.Provider>
+    <LenisContext.Provider
+      value={{
+        lenis,
+        scrollVelocity: velocitySnapshot.normalized,
+        velocityState: velocitySnapshot,
+      }}
+    >
+      {children}
+    </LenisContext.Provider>
   );
 }

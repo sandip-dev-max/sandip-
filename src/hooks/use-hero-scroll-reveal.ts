@@ -7,9 +7,10 @@ import { scheduleRevealRefresh } from "@/lib/section-reveal";
 
 const REVEAL_DURATION = 1;
 const REVEAL_EASE = "power2.inOut";
-const GALLERY_INTERACTIVE_AT = 0.72;
+const GALLERY_INTERACTIVE_AT = 0.55;
 const HERO_SCROLL_STEPS = 1;
-const HERO_SCROLL_VH = 100;
+const HERO_SCROLL_VH = 115;
+const ABOUT_REVEAL_AT = 0.38;
 
 export type HeroRevealRefs = {
   scrollSection: RefObject<HTMLDivElement | null>;
@@ -96,8 +97,8 @@ export function useHeroScrollReveal(
         return;
       }
 
-      gsap.set(galleryGrid.current, { opacity: 0, scale: 0.98 });
-      gsap.set(bentoCards, { yPercent: 8, opacity: 0.85 });
+      gsap.set(galleryGrid.current, { opacity: 0, scale: 1 });
+      gsap.set(bentoCards, { y: 28, opacity: 0 });
 
       const fade = { duration: REVEAL_DURATION, ease: REVEAL_EASE };
 
@@ -124,17 +125,21 @@ export function useHeroScrollReveal(
         .to(leftColumn.current, { xPercent: -120, opacity: 0, ...fade }, 0)
         .to(rightColumn.current, { xPercent: 120, opacity: 0, ...fade }, 0)
         .to(footer.current, { yPercent: 100, opacity: 0, ...fade }, 0)
-        .to(galleryGrid.current, { opacity: 1, scale: 1, ...fade }, 0)
+        .to(
+          galleryGrid.current,
+          { opacity: 1, duration: REVEAL_DURATION * 0.7, ease: "power2.out" },
+          ABOUT_REVEAL_AT,
+        )
         .to(
           bentoCards,
           {
-            yPercent: 0,
+            y: 0,
             opacity: 1,
-            duration: REVEAL_DURATION,
-            ease: "none",
-            stagger: 0.08,
+            duration: REVEAL_DURATION * 0.65,
+            ease: "power3.out",
+            stagger: 0.06,
           },
-          0,
+          ABOUT_REVEAL_AT + 0.04,
         );
 
       scheduleRevealRefresh();

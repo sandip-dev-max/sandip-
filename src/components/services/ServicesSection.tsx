@@ -199,6 +199,7 @@ export function ServicesSection() {
                 <div
                   key={service.id}
                   ref={(el) => registerImageRef(index, el)}
+                  data-webgl-image
                   className={`col-start-1 row-start-1 will-change-transform ${
                     index === activeIndex ? "opacity-100" : "opacity-0"
                   }`}

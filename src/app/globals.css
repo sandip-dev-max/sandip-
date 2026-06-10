@@ -36,6 +36,48 @@ body {
   overflow-x: hidden;
 }
 
+.scroll-marquee-mask {
+  overflow: hidden;
+  width: 100%;
+}
+
+.scroll-marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 2.5rem;
+  padding-inline: 1.25rem;
+  will-change: transform;
+}
+
+.scroll-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-family-sans);
+  font-size: clamp(1.35rem, 3.2vw, 2.35rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: rgb(17 17 17 / 0.88);
+  white-space: nowrap;
+}
+
+.scroll-marquee-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background: #e85d4c;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-marquee-track {
+    will-change: auto;
+    transform: none !important;
+  }
+}
+
 body {
   background-color: #f0ede6;
   color: #111111;
@@ -204,12 +246,22 @@ html.scroll-locked body {
 
 .who-we-are-reveal {
   position: relative;
-  z-index: 15;
+  z-index: 25;
   background-color: #f3f1ec;
   background-image:
+    linear-gradient(
+      90deg,
+      rgb(17 17 17 / 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      180deg,
+      rgb(17 17 17 / 0.04) 1px,
+      transparent 1px
+    ),
     radial-gradient(
       ellipse 70% 50% at 82% 12%,
-      rgb(232 93 76 / 0.16),
+      rgb(232 93 76 / 0.14),
       transparent 58%
     ),
     radial-gradient(
@@ -218,6 +270,12 @@ html.scroll-locked body {
       transparent 62%
     ),
     linear-gradient(180deg, rgb(255 255 255 / 0.55), transparent 40%);
+  background-size:
+    3.5rem 3.5rem,
+    3.5rem 3.5rem,
+    auto,
+    auto,
+    auto;
 }
 
 .about-stage {
@@ -234,203 +292,296 @@ html.scroll-locked body {
   pointer-events: none;
 }
 
-.about-collage-grid {
+.about-layout {
   position: relative;
   z-index: 10;
+  display: grid;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.about-copy {
+  position: relative;
+  z-index: 20;
+  border-radius: 1.25rem;
+  border: 1px solid rgb(17 17 17 / 0.06);
+  background: rgb(255 255 255 / 0.72);
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px -32px rgb(17 17 17 / 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.about-mountain-scene {
+  position: relative;
+  z-index: 12;
   display: flex;
+  min-height: 22rem;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
-  padding-bottom: 1.5rem;
+  justify-content: center;
+  touch-action: none;
+  cursor: grab;
 }
 
-.about-collage-grid > * {
+.about-mountain-scene:active {
+  cursor: grabbing;
+}
+
+.about-mountain-stage {
   position: relative;
+  width: min(100%, 22rem);
+  height: min(58vh, 26rem);
+  perspective: 1200px;
+  perspective-origin: 50% 42%;
+}
+
+.about-mountain-world {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.about-mountain-stack {
+  position: relative;
+  width: min(72vw, 15rem);
+  aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+  transform-origin: 50% 62%;
+}
+
+.about-mountain-webgl-source {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 22rem;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.35rem;
 }
 
-.about-collage-writing {
-  z-index: 12;
-  align-self: flex-start;
-  max-width: 10.5rem;
+.about-mountain-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url("/about-mountain.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 0.35rem;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08) inset;
 }
 
-.about-collage-creative {
-  z-index: 12;
-  align-self: flex-end;
-  max-width: 15rem;
-  margin-top: -1.5rem;
+.about-mountain-layer[data-layer-index="0"] {
+  clip-path: inset(0 0 91.6667% 0);
+  transform: translateZ(77px);
 }
 
-.about-collage-portrait {
-  z-index: 4;
-  max-width: 12.5rem;
+.about-mountain-layer[data-layer-index="1"] {
+  clip-path: inset(8.3333% 0 83.3333% 0);
+  transform: translateZ(70px);
 }
 
-.about-collage-stat {
-  z-index: 14;
-  max-width: 14rem;
+.about-mountain-layer[data-layer-index="2"] {
+  clip-path: inset(16.6667% 0 75% 0);
+  transform: translateZ(63px);
 }
 
-.about-collage-bio {
-  z-index: 20;
-  max-width: 38rem;
-  padding-block: 0.25rem;
+.about-mountain-layer[data-layer-index="3"] {
+  clip-path: inset(25% 0 66.6667% 0);
+  transform: translateZ(56px);
 }
 
-.about-collage-outline {
-  z-index: 11;
-  align-self: flex-start;
-  max-width: 7rem;
+.about-mountain-layer[data-layer-index="4"] {
+  clip-path: inset(33.3333% 0 58.3333% 0);
+  transform: translateZ(49px);
 }
 
-.about-collage-contact {
-  z-index: 14;
-  max-width: 14.5rem;
+.about-mountain-layer[data-layer-index="5"] {
+  clip-path: inset(41.6667% 0 50% 0);
+  transform: translateZ(42px);
 }
 
-.about-collage-stamp {
-  z-index: 11;
-  align-self: flex-end;
-  max-width: 7rem;
+.about-mountain-layer[data-layer-index="6"] {
+  clip-path: inset(50% 0 41.6667% 0);
+  transform: translateZ(35px);
 }
 
-@media (min-width: 640px) {
-  .about-collage-grid {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: auto;
-    align-content: start;
-    gap: 0.75rem 1rem;
-    padding-bottom: 0;
+.about-mountain-layer[data-layer-index="7"] {
+  clip-path: inset(58.3333% 0 33.3333% 0);
+  transform: translateZ(28px);
+}
+
+.about-mountain-layer[data-layer-index="8"] {
+  clip-path: inset(66.6667% 0 25% 0);
+  transform: translateZ(21px);
+}
+
+.about-mountain-layer[data-layer-index="9"] {
+  clip-path: inset(75% 0 16.6667% 0);
+  transform: translateZ(14px);
+}
+
+.about-mountain-layer[data-layer-index="10"] {
+  clip-path: inset(83.3333% 0 8.3333% 0);
+  transform: translateZ(7px);
+}
+
+.about-mountain-layer[data-layer-index="11"] {
+  clip-path: inset(91.6667% 0 0 0);
+  transform: translateZ(0);
+}
+
+.about-orbit-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.about-orbit-card-inner {
+  box-shadow: 0 22px 50px -24px rgb(17 17 17 / 0.42);
+}
+
+.about-orbit-card--writing {
+  transform: translate(-50%, -50%) rotateY(-48deg) translateZ(9.5rem)
+    rotateY(48deg);
+}
+
+.about-orbit-card--creative {
+  transform: translate(-50%, -50%) rotateY(52deg) translateZ(10.5rem)
+    rotateY(-52deg) translateY(-1.5rem);
+}
+
+.about-mountain-base {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  width: 72%;
+  height: 18%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(17 17 17 / 0.22),
+    transparent 72%
+  );
+  transform: translate(-50%, -50%) rotateX(82deg) translateZ(-12px);
+  filter: blur(6px);
+}
+
+.about-mountain-glow {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  width: 55%;
+  height: 42%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(232 93 76 / 0.28),
+    transparent 70%
+  );
+  transform: translate(-50%, -50%) translateZ(40px);
+  filter: blur(18px);
+  opacity: 0.75;
+}
+
+.about-mountain-hint {
+  margin-top: 0.85rem;
+  text-align: center;
+}
+
+.about-meta {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.about-stat-card,
+.about-contact-card {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-rows: auto auto;
+    gap: 1.5rem 2rem;
   }
 
-  .about-collage-grid > * {
-    max-width: none;
-    width: auto;
-  }
-
-  .about-collage-writing {
-    grid-column: 1 / 4;
+  .about-copy {
+    grid-column: 1;
     grid-row: 1;
-    width: 11rem;
-    margin-top: 0;
+    padding: 2rem 2.25rem;
   }
 
-  .about-collage-creative {
-    grid-column: 9 / 13;
+  .about-mountain-scene {
+    grid-column: 2;
     grid-row: 1;
-    width: 16rem;
-    margin-top: 0;
-    justify-self: end;
+    align-self: center;
+    min-height: 24rem;
   }
 
-  .about-collage-portrait {
-    grid-column: 5 / 9;
+  .about-mountain-stage {
+    width: min(100%, 26rem);
+    height: min(62vh, 30rem);
+  }
+
+  .about-mountain-stack {
+    width: min(68%, 17rem);
+  }
+
+  .about-meta {
+    grid-column: 1 / -1;
     grid-row: 2;
-    width: min(100%, 14rem);
-    justify-self: center;
-  }
-
-  .about-collage-bio {
-    grid-column: 2 / 12;
-    grid-row: 3;
-    max-width: 40rem;
-    justify-self: center;
-    padding-block: 0.5rem;
-  }
-
-  .about-collage-stat {
-    grid-column: 9 / 13;
-    grid-row: 4;
-    max-width: 13rem;
-    justify-self: end;
-  }
-
-  .about-collage-outline {
-    grid-column: 1 / 3;
-    grid-row: 5;
-    width: 6.5rem;
-  }
-
-  .about-collage-contact {
-    grid-column: 3 / 6;
-    grid-row: 5;
-    width: 14rem;
-  }
-
-  .about-collage-stamp {
-    grid-column: 10 / 12;
-    grid-row: 5;
-    width: 6.5rem;
-    justify-self: end;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .about-collage-grid {
-    grid-template-rows: repeat(5, auto);
-    gap: 0.5rem 1.25rem;
-    align-content: start;
+  .about-layout {
+    gap: 1.25rem 2.75rem;
   }
 
-  .about-collage-writing {
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-    width: 13rem;
+  .about-copy {
+    padding: 2.25rem 2.5rem;
   }
 
-  .about-collage-creative {
-    grid-column: 10 / 13;
-    grid-row: 1 / 2;
-    width: 19rem;
+  .about-mountain-stage {
+    width: min(100%, 30rem);
+    height: min(64vh, 32rem);
   }
 
-  .about-collage-portrait {
-    grid-column: 5 / 8;
-    grid-row: 1 / 2;
-    width: min(100%, 15rem);
-    align-self: center;
-    margin-top: 0.5rem;
+  .about-mountain-stack {
+    width: 18rem;
   }
 
-  .about-collage-bio {
-    grid-column: 3 / 11;
-    grid-row: 2 / 4;
-    max-width: 44rem;
-    padding-block: 0.75rem 0.25rem;
+  .about-orbit-card--writing {
+    transform: translate(-50%, -50%) rotateY(-52deg) translateZ(11rem)
+      rotateY(52deg);
   }
 
-  .about-collage-stat {
-    grid-column: 10 / 13;
-    grid-row: 2 / 3;
-    max-width: 12.5rem;
+  .about-orbit-card--creative {
+    transform: translate(-50%, -50%) rotateY(58deg) translateZ(12rem)
+      rotateY(-58deg) translateY(-2rem);
   }
 
-  .about-collage-outline {
-    grid-column: 1 / 3;
-    grid-row: 4;
-    width: 7rem;
-  }
-
-  .about-collage-contact {
-    grid-column: 3 / 5;
-    grid-row: 4;
-    width: 14rem;
-  }
-
-  .about-collage-stamp {
-    grid-column: 10 / 12;
-    grid-row: 4;
-    width: 7rem;
+  .about-meta {
+    grid-template-columns: minmax(0, 14rem) minmax(0, 16rem);
+    justify-content: start;
+    gap: 1.25rem;
   }
 }
+
 
 .about-watermark {
   position: absolute;
   left: 50%;
-  top: 42%;
+  top: 52%;
   z-index: 0;
   width: max-content;
   max-width: 100%;
@@ -516,6 +667,11 @@ html.scroll-locked body {
   .about-float,
   .about-orb {
     animation: none;
+  }
+
+  .about-mountain-scene {
+    cursor: default;
+    touch-action: auto;
   }
 }
 
@@ -1395,6 +1551,145 @@ html.scroll-locked body {
   transform-origin: center center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+}
+
+.field-piece--interactive {
+  z-index: 14;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: inherit;
+}
+
+.field-piece--interactive:focus-visible {
+  outline: 2px solid rgb(232 93 76 / 0.85);
+  outline-offset: 3px;
+}
+
+.field-piece--interactive:hover .field-piece-frame-3d {
+  box-shadow:
+    0 28px 60px -22px rgb(17 17 17 / 0.55),
+    0 0 0 1px rgb(255 255 255 / 0.14) inset;
+}
+
+.field-piece--selected .field-piece-frame-3d {
+  box-shadow:
+    0 0 0 2px rgb(232 93 76 / 0.9),
+    0 28px 64px -20px rgb(232 93 76 / 0.45);
+}
+
+.field-pin-viewport--viewer-open .field-world-3d {
+  filter: saturate(0.72) brightness(0.82);
+}
+
+.field-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  pointer-events: auto;
+}
+
+.field-viewer-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #0f0f0f;
+  padding: 1.25rem 1.25rem 1.5rem;
+  box-shadow: 12px 0 48px -12px rgb(0 0 0 / 0.45);
+}
+
+.field-viewer-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.06);
+  color: rgb(255 255 255 / 0.82);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.field-viewer-close:hover {
+  border-color: rgb(255 255 255 / 0.28);
+  background: rgb(255 255 255 / 0.12);
+}
+
+.field-viewer-figure {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field-viewer-image-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border-radius: 0.65rem;
+  background: rgb(255 255 255 / 0.03);
+  overflow: hidden;
+}
+
+.field-viewer-image {
+  object-fit: contain;
+}
+
+.field-viewer-caption {
+  flex-shrink: 0;
+}
+
+.field-viewer-title {
+  font-family: var(--font-family-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: rgb(255 255 255 / 0.9);
+}
+
+.field-viewer-meta {
+  margin-top: 0.35rem;
+  font-family: var(--font-family-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.45);
+}
+
+.field-viewer-backdrop {
+  border: none;
+  background: rgb(17 17 17 / 0.42);
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .field-viewer {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .field-viewer-panel {
+    grid-row: 2;
+    box-shadow: 0 -16px 48px -12px rgb(0 0 0 / 0.5);
+  }
+
+  .field-viewer-backdrop {
+    grid-row: 1;
+  }
 }
 
 .field-piece--inner {

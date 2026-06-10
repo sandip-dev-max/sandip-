@@ -104,6 +104,7 @@ export function PortfolioHero() {
                     <img
                       src="/hero.png"
                       alt="Yudeat in front of a lake and mountains"
+                      data-webgl-image
                       className="hero-image h-full w-full object-cover object-[center_68%]"
                     />
                   </div>

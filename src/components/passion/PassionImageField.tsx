@@ -2,7 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   IMAGE_FIELD_INNER_ITEMS,
   IMAGE_FIELD_SURFACE_ITEMS,
@@ -10,29 +10,48 @@ import {
   type ImageFieldItem,
   type ImageFieldTag,
 } from "@/constants/image-field";
+import { FieldPieceViewer } from "@/components/passion/FieldPieceViewer";
 import { PassionFieldFooter } from "@/components/passion/PassionFieldFooter";
 import { useFieldScrollDive } from "@/hooks/use-field-scroll-dive";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { setScrollLocked } from "@/lib/scroll-lock";
 import { gsap } from "@/lib/gsap";
 
 function FieldPiece({
   item,
   setRef,
   variant,
+  isSelected,
+  onSelect,
 }: {
   item: ImageFieldItem;
   setRef: (id: string) => (node: HTMLDivElement | null) => void;
   variant: "outer" | "inner";
+  isSelected: boolean;
+  onSelect: (item: ImageFieldItem) => void;
 }) {
+  const handleActivate = () => onSelect(item);
+
   return (
     <div
       ref={setRef(item.id)}
-      className={`field-piece ${
+      role="button"
+      tabIndex={0}
+      onClick={handleActivate}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleActivate();
+        }
+      }}
+      className={`field-piece field-piece--interactive ${
         variant === "inner" ? "field-piece--inner" : "field-piece--outer"
-      }`}
+      } ${isSelected ? "field-piece--selected" : ""}`}
       data-field-id={item.id}
       data-tags={item.tags.join(" ")}
       data-depth={variant}
+      aria-label={`View ${item.alt}`}
+      aria-pressed={isSelected ? "true" : "false"}
     >
       <div className="field-piece-frame field-piece-frame-3d overflow-hidden bg-[#f4f4f4] shadow-[0_18px_50px_-28px_rgba(17,17,17,0.45)] ring-1 ring-brutal-fg/[0.07]">
         <div className="relative h-full w-full">
@@ -57,6 +76,7 @@ function FieldPiece({
 export function PassionImageField() {
   const reducedMotion = usePrefersReducedMotion();
   const [activeTag, setActiveTag] = useState<ImageFieldTag>("all");
+  const [selectedItem, setSelectedItem] = useState<ImageFieldItem | null>(null);
 
   const sectionRef = useRef<HTMLElement>(null);
   const scrollStageRef = useRef<HTMLDivElement>(null);
@@ -89,6 +109,19 @@ export function PassionImageField() {
       activeTag === "all" || tags.includes(activeTag),
     [activeTag],
   );
+
+  const handleSelectPiece = useCallback((item: ImageFieldItem) => {
+    setSelectedItem((current) => (current?.id === item.id ? null : item));
+  }, []);
+
+  const handleCloseViewer = useCallback(() => {
+    setSelectedItem(null);
+  }, []);
+
+  useEffect(() => {
+    setScrollLocked(selectedItem !== null);
+    return () => setScrollLocked(false);
+  }, [selectedItem]);
 
   useFieldScrollDive(
     {
@@ -149,7 +182,9 @@ export function PassionImageField() {
         >
           <div
             ref={pinViewportRef}
-            className="field-pin-viewport relative h-[100dvh] w-full overflow-hidden"
+            className={`field-pin-viewport relative h-[100dvh] w-full overflow-hidden ${
+              selectedItem ? "field-pin-viewport--viewer-open" : ""
+            }`}
           >
             <div ref={headerRef} className="relative z-20 will-change-transform">
               <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-end lg:gap-12">
@@ -208,6 +243,8 @@ export function PassionImageField() {
                     item={item}
                     setRef={setOuterRef}
                     variant="outer"
+                    isSelected={selectedItem?.id === item.id}
+                    onSelect={handleSelectPiece}
                   />
                 ))}
                 {IMAGE_FIELD_INNER_ITEMS.map((item) => (
@@ -216,6 +253,8 @@ export function PassionImageField() {
                     item={item}
                     setRef={setInnerRef}
                     variant="inner"
+                    isSelected={selectedItem?.id === item.id}
+                    onSelect={handleSelectPiece}
                   />
                 ))}
               </div>
@@ -264,6 +303,10 @@ export function PassionImageField() {
           </p>
         </nav>
       </div>
+
+      {selectedItem ? (
+        <FieldPieceViewer item={selectedItem} onClose={handleCloseViewer} />
+      ) : null}
 
       <PassionFieldFooter />
     </section>
