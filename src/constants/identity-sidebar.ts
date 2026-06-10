@@ -11,7 +11,7 @@ export const IDENTITY_SIDEBAR_ITEMS: IdentitySidebarItem[] = [
     id: "writer",
     number: "01",
     label: "Writer",
-    href: "/blog",
+    href: "/writer",
     accent: "writer",
   },
   {
