@@ -13,6 +13,7 @@ export const WRITER_SITE_TITLE = "The Writer's Desk";
 export const WRITER_NAV = {
   location: SITE_LOCATION,
   menuLabel: "Menu",
+  messagesLabel: "Messages",
   homeHref: "/",
   blogHref: "/blog",
 } as const;

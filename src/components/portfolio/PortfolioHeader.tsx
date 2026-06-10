@@ -56,16 +56,16 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
   return (
     <>
       <header
-        className={`relative z-[210] flex shrink-0 items-center justify-between gap-4 px-5 py-4 sm:px-8 sm:py-5 lg:px-10 ${headerBorder}`}
+        className={`relative z-[210] flex shrink-0 items-center justify-between gap-3 px-4 py-3.5 sm:gap-4 sm:px-8 sm:py-5 lg:px-10 ${headerBorder}`}
       >
         <Link
           href="/"
-          className={`${pinyonScript.className} text-2xl leading-none sm:text-3xl ${overlay ? "text-white" : "text-brutal-fg"}`}
+          className={`${pinyonScript.className} shrink-0 text-xl leading-none sm:text-3xl ${overlay ? "text-white" : "text-brutal-fg"}`}
         >
           Yudeat
         </Link>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex min-w-0 items-center justify-end gap-1.5 sm:gap-3">
           <span
             className={`hidden items-center gap-2 font-mono text-[10px] uppercase tracking-widest md:inline-flex ${muted}`}
           >
@@ -76,7 +76,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
           <button
             type="button"
             onClick={openChat}
-            className={`rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest transition-colors ${border} ${fg} ${overlay ? "hover:bg-white/10" : "hover:border-brutal-fg"}`}
+            className={`shrink-0 rounded-full border px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-widest transition-colors sm:px-3 sm:text-[10px] ${border} ${fg} ${overlay ? "hover:bg-white/10" : "hover:border-brutal-fg"}`}
           >
             Messages
           </button>
@@ -86,7 +86,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className={`hidden items-center justify-center rounded-full border px-3 py-1.5 transition-colors sm:inline-flex ${border} ${fg} ${overlay ? "hover:bg-white/10" : "hover:border-brutal-fg"}`}
+            className={`hidden items-center justify-center rounded-full border px-3 py-1.5 transition-colors md:inline-flex ${border} ${fg} ${overlay ? "hover:bg-white/10" : "hover:border-brutal-fg"}`}
           >
             <span className="ri-linkedin-fill text-base" aria-hidden />
           </Link>
@@ -96,7 +96,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className={`flex h-8 w-8 items-center justify-center rounded-full border transition-colors sm:h-9 sm:w-9 ${border} ${fg} ${overlay ? "hover:bg-white/10" : "hover:border-brutal-fg"}`}
+            className={`hidden h-8 w-8 items-center justify-center rounded-full border transition-colors sm:flex sm:h-9 sm:w-9 ${border} ${fg} ${overlay ? "hover:bg-white/10" : "hover:border-brutal-fg"}`}
           >
             <span className="ri-github-fill text-base" aria-hidden />
           </Link>

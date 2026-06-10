@@ -5,7 +5,7 @@ import { WRITER_ABOUT, WRITER_INVERTED } from "@/constants/writer";
 export function WriterAboutSection() {
   return (
     <>
-      <section className="writer-newspaper-grid writer-rule-x" aria-label="About the writer">
+      <section id="about" className="writer-newspaper-grid writer-rule-x" aria-label="About the writer">
         <div
           className="writer-grid-cell writer-grid-cell--upcoming"
           data-writer-reveal

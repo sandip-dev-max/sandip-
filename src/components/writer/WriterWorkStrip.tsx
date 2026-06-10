@@ -80,7 +80,7 @@ export function WriterWorkStrip() {
   }, [progress]);
 
   return (
-    <section className="writer-work-section" aria-label="Featured writing and work">
+    <section id="work" className="writer-work-section" aria-label="Featured writing and work">
       <div className="writer-work-progress" aria-hidden="true">
         <span ref={progressBarRef} className="writer-work-progress-bar" />
       </div>

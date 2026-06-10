@@ -67,6 +67,8 @@ export function WorkWithUsSection() {
   useWorkWithUsReveal({ sectionRef }, reducedMotion);
 
   const { eyebrow, team, metrics, workflow } = WORK_WITH_US;
+  const outerMembers = team.members.filter((member) => member.ring === "outer");
+  const innerMembers = team.members.filter((member) => member.ring === "inner");
 
   return (
     <section
@@ -123,49 +125,77 @@ export function WorkWithUsSection() {
             />
 
             <div className="work-with-orbit relative flex h-full w-full items-center justify-center p-8">
-              <div
-                data-wwu-ring-wrap
-                className="work-with-ring-wrap"
-                aria-hidden="true"
-              >
-                <div className="work-with-ring work-with-ring--outer" />
-              </div>
-              <div
-                data-wwu-ring-wrap
-                className="work-with-ring-wrap"
-                aria-hidden="true"
-              >
-                <div className="work-with-ring work-with-ring--inner" />
-              </div>
-
               <p className="work-with-orbit-copy relative z-10 max-w-[11rem] text-center font-sans text-[clamp(1.05rem,2.2vw,1.35rem)] font-medium leading-snug tracking-[-0.02em] text-white">
                 {team.headline}
               </p>
 
-              {team.members.map((member, index) => (
+              <div data-wwu-orbit className="work-with-orbit-reveal" aria-hidden="true">
                 <div
-                  key={member.id}
-                  data-wwu-avatar
-                  data-member-id={member.id}
-                  data-avatar-index={reducedMotion ? undefined : String(index)}
-                  className={`work-with-avatar work-with-avatar--${member.ring} ${
-                    reducedMotion ? "" : "work-with-avatar-float"
+                  className={`work-with-orbit-ring work-with-orbit-ring--outer${
+                    reducedMotion ? " work-with-orbit-ring--static" : ""
                   }`}
                 >
+                  <div className="work-with-ring work-with-ring--outer" />
+                {outerMembers.map((member, index) => (
                   <div
-                    data-wwu-avatar-inner
-                    className="relative size-full overflow-hidden rounded-full ring-2 ring-white/20 transition-transform duration-500 group-hover:scale-105"
+                    key={member.id}
+                    data-wwu-avatar
+                    data-member-id={member.id}
+                    data-avatar-index={String(index)}
+                    className="work-with-avatar work-with-avatar--outer"
                   >
-                    <Image
-                      src={member.imageSrc}
-                      alt={member.name}
-                      fill
-                      sizes="64px"
-                      className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
-                    />
+                    <div
+                      data-wwu-avatar-inner
+                      className={`work-with-avatar-upright work-with-avatar-upright--outer${
+                        reducedMotion ? " work-with-avatar-upright--static" : ""
+                      } relative size-full overflow-hidden rounded-full ring-2 ring-white/20 transition-transform duration-500 group-hover:scale-105`}
+                    >
+                      <Image
+                        src={member.imageSrc}
+                        alt={member.name}
+                        fill
+                        sizes="64px"
+                        className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+                      />
+                    </div>
                   </div>
+                ))}
                 </div>
-              ))}
+              </div>
+
+              <div data-wwu-orbit className="work-with-orbit-reveal" aria-hidden="true">
+                <div
+                  className={`work-with-orbit-ring work-with-orbit-ring--inner${
+                    reducedMotion ? " work-with-orbit-ring--static" : ""
+                  }`}
+                >
+                  <div className="work-with-ring work-with-ring--inner" />
+                {innerMembers.map((member, index) => (
+                  <div
+                    key={member.id}
+                    data-wwu-avatar
+                    data-member-id={member.id}
+                    data-avatar-index={String(outerMembers.length + index)}
+                    className="work-with-avatar work-with-avatar--inner"
+                  >
+                    <div
+                      data-wwu-avatar-inner
+                      className={`work-with-avatar-upright work-with-avatar-upright--inner${
+                        reducedMotion ? " work-with-avatar-upright--static" : ""
+                      } relative size-full overflow-hidden rounded-full ring-2 ring-white/20 transition-transform duration-500 group-hover:scale-105`}
+                    >
+                      <Image
+                        src={member.imageSrc}
+                        alt={member.name}
+                        fill
+                        sizes="64px"
+                        className="object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+                      />
+                    </div>
+                  </div>
+                ))}
+                </div>
+              </div>
             </div>
           </article>
 

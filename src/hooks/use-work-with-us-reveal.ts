@@ -12,7 +12,7 @@ const REVEAL_TARGETS = [
   "[data-wwu-eyebrow]",
   "[data-wwu-title]",
   "[data-wwu-panel]",
-  "[data-wwu-ring-wrap]",
+  "[data-wwu-orbit]",
   "[data-wwu-avatar-inner]",
   "[data-wwu-metric]",
   "[data-wwu-node]",
@@ -35,9 +35,7 @@ export function useWorkWithUsReveal(
         const eyebrow = section.querySelector("[data-wwu-eyebrow]");
         const titles = section.querySelectorAll("[data-wwu-title]");
         const panels = section.querySelectorAll<HTMLElement>("[data-wwu-panel]");
-        const ringWraps = section.querySelectorAll<HTMLElement>(
-          "[data-wwu-ring-wrap]",
-        );
+        const orbits = section.querySelectorAll<HTMLElement>("[data-wwu-orbit]");
         const avatarInners = section.querySelectorAll<HTMLElement>(
           "[data-wwu-avatar-inner]",
         );
@@ -61,7 +59,7 @@ export function useWorkWithUsReveal(
         gsap.set(eyebrow, { y: 32, opacity: 0 });
         gsap.set(titles, { y: 40, opacity: 0 });
         gsap.set(panels, { y: 72, opacity: 0, scale: 0.94 });
-        gsap.set(ringWraps, { scale: 0.78, opacity: 0 });
+        gsap.set(orbits, { scale: 0.78, opacity: 0 });
         gsap.set(avatarInners, { scale: 0, opacity: 0 });
         gsap.set(metrics, { x: 36, y: 24, opacity: 0, scale: 0.92 });
         gsap.set(nodes, { y: 22, opacity: 0, scale: 0.88 });
@@ -103,7 +101,7 @@ export function useWorkWithUsReveal(
             0.08,
           )
           .to(
-            ringWraps,
+            orbits,
             { scale: 1, opacity: 1, duration: 0.2, stagger: 0.06, ease: "power2.out" },
             0.14,
           )

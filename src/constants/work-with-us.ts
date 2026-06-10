@@ -20,9 +20,9 @@ export type WorkWithUsTeamMember = {
 };
 
 export const WORK_WITH_US = {
-  eyebrow: "Work with us",
+  eyebrow: "Work with me",
   team: {
-    headline: "A strong team of experts",
+    headline: "A strong hand on every build",
     members: [
       {
         id: "m1",

@@ -1129,14 +1129,33 @@ html.scroll-locked body {
   will-change: opacity;
 }
 
-.work-with-ring-wrap {
+.work-with-orbit-reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.work-with-orbit-ring {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+.work-with-orbit-ring--outer {
+  animation: work-with-orbit-spin 42s linear infinite;
+}
+
+.work-with-orbit-ring--inner {
+  animation: work-with-orbit-spin 30s linear infinite reverse;
+}
+
+.work-with-orbit-ring--static {
+  animation: none;
 }
 
 .work-with-panel {
@@ -1158,13 +1177,37 @@ html.scroll-locked body {
 .work-with-ring--outer {
   width: min(78%, 20rem);
   aspect-ratio: 1;
-  animation: work-with-ring-spin 32s linear infinite;
+  border-color: rgb(255 255 255 / 0.34);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06) inset,
+    0 0 28px rgb(232 93 76 / 0.12);
 }
 
 .work-with-ring--inner {
   width: min(52%, 13rem);
   aspect-ratio: 1;
-  animation: work-with-ring-spin 22s linear infinite reverse;
+  border-color: rgb(255 255 255 / 0.28);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.05) inset,
+    0 0 18px rgb(255 255 255 / 0.06);
+}
+
+.work-with-avatar-upright {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+}
+
+.work-with-avatar-upright--outer {
+  animation: work-with-orbit-spin 42s linear infinite reverse;
+}
+
+.work-with-avatar-upright--inner {
+  animation: work-with-orbit-spin 30s linear infinite;
+}
+
+.work-with-avatar-upright--static {
+  animation: none;
 }
 
 .work-with-avatar {
@@ -1173,8 +1216,9 @@ html.scroll-locked body {
   left: 50%;
   width: 2.65rem;
   height: 2.65rem;
+  pointer-events: auto;
   transform: translate(-50%, -50%) rotate(var(--orbit-angle))
-    translateY(calc(var(--orbit-radius) * -1)) rotate(calc(var(--orbit-angle) * -1));
+    translateY(calc(var(--orbit-radius) * -1));
 }
 
 .work-with-avatar--outer {
@@ -1344,44 +1388,12 @@ html.scroll-locked body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .work-with-avatar-float {
-    animation: work-with-orbit-drift 6s ease-in-out infinite;
-  }
-
-  .work-with-avatar-float[data-avatar-index="0"] {
-    animation-delay: 0s;
-  }
-
-  .work-with-avatar-float[data-avatar-index="1"] {
-    animation-delay: 0.15s;
-  }
-
-  .work-with-avatar-float[data-avatar-index="2"] {
-    animation-delay: 0.3s;
-  }
-
-  .work-with-avatar-float[data-avatar-index="3"] {
-    animation-delay: 0.45s;
-  }
-
-  .work-with-avatar-float[data-avatar-index="4"] {
-    animation-delay: 0.6s;
-  }
-
-  .work-with-avatar-float[data-avatar-index="5"] {
-    animation-delay: 0.75s;
-  }
-
-  .work-with-avatar-float[data-avatar-index="6"] {
-    animation-delay: 0.9s;
-  }
-
   .work-with-pill-dot {
     animation: work-with-pulse 2.4s ease-in-out infinite;
   }
 }
 
-@keyframes work-with-ring-spin {
+@keyframes work-with-orbit-spin {
   from {
     transform: rotate(0deg);
   }
@@ -1393,25 +1405,11 @@ html.scroll-locked body {
 
 @media (prefers-reduced-motion: reduce) {
   .work-with-pill-dot,
-  .work-with-avatar-float,
-  .work-with-ring--outer,
-  .work-with-ring--inner {
+  .work-with-orbit-ring--outer,
+  .work-with-orbit-ring--inner,
+  .work-with-avatar-upright--outer,
+  .work-with-avatar-upright--inner {
     animation: none;
-  }
-}
-
-@keyframes work-with-orbit-drift {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) rotate(var(--orbit-angle))
-      translateY(calc(var(--orbit-radius) * -1))
-      rotate(calc(var(--orbit-angle) * -1));
-  }
-
-  50% {
-    transform: translate(-50%, -50%) rotate(calc(var(--orbit-angle) + 4deg))
-      translateY(calc(var(--orbit-radius) * -1 - 4px))
-      rotate(calc((var(--orbit-angle) + 4deg) * -1));
   }
 }
 

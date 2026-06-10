@@ -98,22 +98,98 @@
   text-align: center;
 }
 
-.writer-header-menu {
+.writer-header-actions {
   justify-self: end;
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  width: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+  align-items: center;
+  gap: 0.65rem;
 }
 
-.writer-header-menu span {
+.writer-header-messages {
+  border: 1px solid var(--writer-rule);
+  background: none;
+  padding: 0.45rem 0.75rem;
+  font-family: var(--font-family-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--writer-ink);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.writer-header-messages:hover {
+  background: var(--writer-ink);
+  color: var(--writer-paper);
+}
+
+.writer-header-messages--on-dark {
+  border-color: rgb(235 232 228 / 0.28);
+  color: rgb(235 232 228 / 0.88);
+}
+
+.writer-header-messages--on-dark:hover {
+  background: rgb(235 232 228);
+  color: #1a1a1a;
+}
+
+.writer-header-menu-btn {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border: 1px solid var(--writer-rule);
+  border-radius: 9999px;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.2s ease;
+}
+
+.writer-header-menu-btn:hover {
+  border-color: var(--writer-ink);
+}
+
+.writer-header-menu-btn span {
   display: block;
   height: 1px;
   background: var(--writer-ink);
+}
+
+.writer-header-menu-btn span:nth-child(1) {
+  width: 0.875rem;
+}
+
+.writer-header-menu-btn span:nth-child(2) {
+  width: 0.75rem;
+}
+
+.writer-header-menu-btn span:nth-child(3) {
+  width: 0.5rem;
+}
+
+.writer-header-menu-btn--on-dark {
+  border-color: rgb(235 232 228 / 0.28);
+}
+
+.writer-header-menu-btn--on-dark:hover {
+  border-color: rgb(235 232 228 / 0.6);
+}
+
+.writer-header-menu-btn--on-dark span {
+  background: rgb(235 232 228);
+}
+
+.writer-poem-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .writer-work-section {

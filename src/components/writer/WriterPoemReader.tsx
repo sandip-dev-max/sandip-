@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { WriterPoem } from "@/constants/writer-poems";
+import { WriterNavActions } from "@/components/writer/WriterNavActions";
 import { WriterPoemBody } from "@/components/writer/WriterPoemBody";
 import { WRITER_SITE_TITLE } from "@/constants/writer";
 
@@ -17,10 +18,13 @@ export function WriterPoemReader({
   return (
     <div className="writer-poem-reader">
       <header className="writer-poem-header">
-        <Link href="/writer" className="writer-poem-back">
-          <span aria-hidden="true">←</span>
-          {WRITER_SITE_TITLE}
-        </Link>
+        <div className="writer-poem-header-row">
+          <Link href="/writer" className="writer-poem-back">
+            <span aria-hidden="true">←</span>
+            {WRITER_SITE_TITLE}
+          </Link>
+          <WriterNavActions variant="dark" />
+        </div>
         <time className="writer-poem-date" dateTime={poem.publishedAt}>
           {poem.date}
         </time>

@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 import { Pinyon_Script } from "next/font/google";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -29,7 +30,16 @@ type PortfolioMenuProps = {
   onClose: () => void;
 };
 
+function resolveMenuHref(href: string, pathname: string): string {
+  if (href.startsWith("/#") && pathname === "/") {
+    return href.slice(1);
+  }
+
+  return href;
+}
+
 export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
+  const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
   const hasAnimatedRef = useRef(false);
   const [mounted, setMounted] = useState(false);
@@ -117,7 +127,16 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
 
   const menuBody = (
     <>
-      <div className="flex min-h-0 flex-1 flex-col bg-black px-6 py-8 text-white sm:px-10 sm:py-10 lg:w-[58%] lg:px-12 lg:py-12">
+      <button
+        type="button"
+        onClick={onClose}
+        className="fixed right-5 top-[max(1rem,env(safe-area-inset-top))] z-[210] font-sans text-[clamp(1.5rem,5vw,2rem)] font-medium leading-none tracking-[-0.04em] text-white mix-blend-difference transition-opacity hover:opacity-50 lg:hidden"
+        aria-label="Close menu"
+      >
+        Close
+      </button>
+
+      <div className="flex min-h-0 flex-1 flex-col bg-black px-5 pb-8 pt-[max(2rem,env(safe-area-inset-top))] text-white sm:px-10 sm:py-10 lg:w-[58%] lg:px-12 lg:py-12 lg:pt-12">
         <Link
           href="/"
           onClick={handleNavClick}
@@ -126,30 +145,30 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
           Yudeat
         </Link>
 
-        <nav className="mt-16 flex flex-col gap-2 sm:mt-20" aria-label="Main">
+        <nav className="mt-8 flex flex-col gap-0.5 sm:mt-20 sm:gap-2" aria-label="Main">
           {MENU_MAIN_LINKS.map((item) => (
             <a
               key={item.label}
-              href={item.href}
+              href={resolveMenuHref(item.href, pathname)}
               onClick={handleNavClick}
-              className="font-sans text-[clamp(2.5rem,8vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.04em] transition-opacity hover:opacity-60"
+              className="py-0.5 font-sans text-[clamp(1.85rem,7vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.04em] transition-opacity hover:opacity-60"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="mt-auto pt-12 sm:pt-16">
+        <div className="mt-8 pt-6 sm:mt-auto sm:pt-12 lg:pt-16">
           <p className="font-mono text-[10px] uppercase tracking-widest text-white/45">
             Latest work
           </p>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-3 grid grid-cols-1 gap-x-4 gap-y-2 sm:mt-4 sm:grid-cols-2">
             {MENU_LATEST_WORK.map((item) => (
               <li key={item.label}>
                 <a
-                  href={item.href}
+                  href={resolveMenuHref(item.href, pathname)}
                   onClick={handleNavClick}
-                  className="font-sans text-lg font-medium tracking-tight text-white transition-opacity hover:opacity-60 sm:text-xl"
+                  className="block font-sans text-base font-medium tracking-tight text-white transition-opacity hover:opacity-60 sm:text-xl"
                 >
                   {item.label}
                 </a>
@@ -159,12 +178,12 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
         </div>
       </div>
 
-      <div className="flex min-h-[40vh] flex-col bg-brutal-bg px-6 py-8 text-brutal-fg sm:px-10 sm:py-10 lg:w-[42%] lg:px-12 lg:py-12">
+      <div className="flex shrink-0 flex-col bg-brutal-bg px-5 py-8 text-brutal-fg sm:px-10 sm:py-10 lg:min-h-0 lg:w-[42%] lg:flex-1 lg:px-12 lg:py-12">
         <div className="flex items-start justify-between gap-6">
-          <div className="font-mono text-[10px] uppercase leading-relaxed tracking-widest text-brutal-fg/70">
+          <div className="min-w-0 font-mono text-[10px] uppercase leading-relaxed tracking-widest text-brutal-fg/70">
             <a
               href={`mailto:${SITE_CONTACT_EMAIL}`}
-              className="block text-brutal-fg transition-opacity hover:opacity-60"
+              className="block break-all text-brutal-fg transition-opacity hover:opacity-60"
             >
               {SITE_CONTACT_EMAIL}
             </a>
@@ -174,14 +193,15 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
           <button
             type="button"
             onClick={onClose}
-            className="relative z-10 shrink-0 font-sans text-[clamp(2rem,6vw,4rem)] font-medium leading-none tracking-[-0.04em] transition-opacity hover:opacity-50"
+            className="relative z-10 hidden shrink-0 font-sans text-[clamp(1.75rem,6vw,4rem)] font-medium leading-none tracking-[-0.04em] transition-opacity hover:opacity-50 lg:block"
+            aria-label="Close menu"
           >
             Close
           </button>
         </div>
 
         <nav
-          className="mt-auto flex flex-col gap-2 pt-10 font-sans text-xl font-medium lowercase tracking-tight sm:text-2xl"
+          className="mt-6 flex flex-row flex-wrap gap-x-5 gap-y-2 pt-2 font-sans text-lg font-medium lowercase tracking-tight sm:mt-auto sm:flex-col sm:gap-2 sm:pt-10 sm:text-2xl"
           aria-label="Social"
         >
           {MENU_SOCIAL_LINKS.map((item) => (
@@ -190,7 +210,7 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-fit transition-opacity hover:opacity-50"
+              className="w-fit py-1 transition-opacity hover:opacity-50"
             >
               {item.label}
             </a>
@@ -209,7 +229,7 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
         aria-hidden="false"
       >
         <div
-          className="flex h-full min-h-0 w-full flex-col lg:flex-row"
+          className="flex h-full max-h-dvh min-h-0 w-full flex-col overflow-y-auto overscroll-contain pb-[max(0px,env(safe-area-inset-bottom))] lg:flex-row lg:overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
@@ -225,7 +245,7 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
         aria-hidden="true"
       >
         <div
-          className="flex h-full min-h-0 w-full flex-col lg:flex-row"
+          className="flex h-full max-h-dvh min-h-0 w-full flex-col overflow-y-auto overscroll-contain pb-[max(0px,env(safe-area-inset-bottom))] lg:flex-row lg:overflow-hidden"
           role="dialog"
           aria-modal="false"
           aria-label="Site menu"
