@@ -110,6 +110,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
       instance.destroy();
       ScrollTrigger.scrollerProxy(root, {});
       ScrollTrigger.defaults({ scroller: window });
+      ScrollTrigger.clearScrollMemory?.();
       root.classList.remove("lenis", "lenis-smooth");
       setLenis(null);
       writeScrollVelocity(createScrollVelocityState());
