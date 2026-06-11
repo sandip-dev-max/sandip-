@@ -254,16 +254,6 @@ export function WorkWithMe() {
             aria-roledescription="carousel"
             aria-label="Work with me"
           >
-            <button
-              type="button"
-              onClick={goToPrevious}
-              disabled={activeIndex === 0}
-              className="absolute left-0 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white backdrop-blur-sm transition enabled:hover:border-white/35 enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-25 sm:left-2"
-              aria-label="Previous"
-            >
-              <i className="ri-arrow-left-s-line text-xl" aria-hidden="true" />
-            </button>
-
             <div
               ref={trackRef}
               className="carousel-track relative h-full w-full [transform-style:preserve-3d]"
@@ -313,16 +303,6 @@ export function WorkWithMe() {
                 </article>
               ))}
             </div>
-
-            <button
-              type="button"
-              onClick={goToNext}
-              disabled={activeIndex === CARD_COUNT - 1}
-              className="absolute right-0 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white backdrop-blur-sm transition enabled:hover:border-white/35 enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-25 sm:right-2"
-              aria-label="Next"
-            >
-              <i className="ri-arrow-right-s-line text-xl" aria-hidden="true" />
-            </button>
           </div>
 
           <div className="absolute bottom-7 left-0 right-0 z-20 flex flex-col items-center gap-4 px-5">
