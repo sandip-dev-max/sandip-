@@ -69,18 +69,18 @@ export function PassionFieldFooter() {
       aria-labelledby="passion-field-footer-heading"
     >
       <div className="passion-field-footer-grid mx-auto max-w-[96rem] lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-        <div className="relative px-5 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
+        <div className="relative px-4 py-10 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
           <h2
             id="passion-field-footer-heading"
             data-field-footer-reveal
-            className="max-w-[18ch] font-sans text-[clamp(2rem,5.5vw,4.5rem)] font-black uppercase leading-[0.92] tracking-[-0.045em] text-brutal-fg"
+            className="max-w-[18ch] font-sans text-[clamp(1.65rem,7.5vw,4.5rem)] font-black uppercase leading-[0.94] tracking-[-0.045em] text-brutal-fg sm:leading-[0.92]"
           >
             {PASSION_FIELD_FOOTER.headline}
           </h2>
 
           <div
             data-field-footer-reveal
-            className="mt-14 grid gap-10 border-t border-brutal-fg/[0.08] pt-10 sm:grid-cols-[auto_1fr_auto] sm:items-start sm:gap-8"
+            className="mt-10 grid gap-6 border-t border-brutal-fg/[0.08] pt-8 sm:mt-14 sm:grid-cols-[auto_1fr_auto] sm:items-start sm:gap-8 sm:pt-10"
           >
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-brutal-fg/42">
               {PASSION_FIELD_FOOTER.sitemapLabel}
@@ -138,7 +138,7 @@ export function PassionFieldFooter() {
           </div>
         </div>
 
-        <div className="relative border-t border-brutal-fg/[0.1] px-5 py-12 sm:px-8 sm:py-14 lg:border-l lg:border-t-0 lg:px-10 lg:py-16">
+        <div className="relative border-t border-brutal-fg/[0.1] px-4 py-10 sm:px-8 sm:py-14 lg:border-l lg:border-t-0 lg:px-10 lg:py-16">
           <p
             data-field-footer-reveal
             className="font-mono text-[10px] uppercase tracking-[0.18em] text-brutal-fg/42"

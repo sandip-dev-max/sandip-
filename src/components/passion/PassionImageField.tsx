@@ -61,8 +61,8 @@ function FieldPiece({
             fill
             sizes={
               variant === "inner"
-                ? "(max-width: 768px) 28vw, 12vw"
-                : "(max-width: 768px) 42vw, 18vw"
+                ? "(max-width: 767px) 22vw, 12vw"
+                : "(max-width: 767px) 32vw, 18vw"
             }
             className="field-piece-image object-cover object-center"
             loading={variant === "inner" ? "lazy" : undefined}
@@ -174,7 +174,7 @@ export function PassionImageField() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-[96rem] px-5 pt-14 sm:px-8 sm:pt-16 lg:px-10">
+      <div className="relative mx-auto max-w-[96rem] px-4 pt-10 sm:px-8 sm:pt-16 lg:px-10">
         <div
           ref={scrollStageRef}
           className="field-scroll-stage relative"
@@ -182,25 +182,28 @@ export function PassionImageField() {
         >
           <div
             ref={pinViewportRef}
-            className={`field-pin-viewport relative h-[100dvh] w-full overflow-hidden ${
+            className={`field-pin-viewport relative h-[100svh] w-full overflow-hidden touch-pan-y ${
               selectedItem ? "field-pin-viewport--viewer-open" : ""
             }`}
           >
-            <div ref={headerRef} className="relative z-20 will-change-transform">
-              <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-end lg:gap-12">
+            <div
+              ref={headerRef}
+              className="field-stage-header relative z-20 will-change-transform"
+            >
+              <div className="field-header-grid grid gap-4 sm:gap-8 lg:grid-cols-[auto_1fr] lg:items-end lg:gap-12">
                 <p
-                  className="field-brand-static font-sans text-[clamp(2.5rem,6vw,4rem)] font-black uppercase leading-none tracking-[-0.06em]"
+                  className="field-brand-static font-sans text-[clamp(2rem,10vw,4rem)] font-black uppercase leading-none tracking-[-0.06em]"
                   aria-hidden="true"
                 >
                   Field
                 </p>
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brutal-fg/45">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-brutal-fg/45 sm:text-[10px] sm:tracking-[0.2em]">
                     Visual archive
                   </p>
                   <h2
                     id="image-field-heading"
-                    className="mt-3 max-w-xl font-sans text-[clamp(1.5rem,3vw,2.25rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-brutal-fg"
+                    className="mt-2 max-w-xl font-sans text-[clamp(1.25rem,5vw,2.25rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-brutal-fg sm:mt-3 sm:leading-[1.1]"
                   >
                     Scattered notes from shoots, screens, and walks
                   </h2>
@@ -216,22 +219,22 @@ export function PassionImageField() {
 
             <div
               ref={coreRef}
-              className="field-core pointer-events-none absolute inset-0 z-[22] flex flex-col items-center justify-center px-6 text-center"
+              className="field-core pointer-events-none absolute inset-0 z-[22] flex flex-col items-center justify-center px-4 text-center sm:px-6"
             >
-              <p className="field-core-eyebrow font-mono text-[10px] uppercase tracking-[0.22em]">
+              <p className="field-core-eyebrow font-mono text-[9px] uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.22em]">
                 Inside the archive
               </p>
-              <p className="field-core-headline mt-4 max-w-md font-sans text-[clamp(1.35rem,3vw,2rem)] font-semibold leading-[1.15] tracking-[-0.03em]">
+              <p className="field-core-headline mt-3 max-w-[16rem] font-sans text-[clamp(1.05rem,4.8vw,2rem)] font-semibold leading-[1.18] tracking-[-0.03em] sm:mt-4 sm:max-w-md sm:leading-[1.15]">
                 Surrounded by frames, screens, and mountain light
               </p>
-              <p className="field-core-sub mt-3 max-w-sm font-sans text-sm leading-relaxed">
-                Keep scrolling to filter and explore
+              <p className="field-core-sub mt-2 max-w-[14rem] font-sans text-[0.8125rem] leading-relaxed sm:mt-3 sm:max-w-sm sm:text-sm">
+                Keep scrolling, then tap a frame to view
               </p>
             </div>
 
             <div
               ref={canvasRef}
-              className="field-canvas field-canvas-dive field-canvas-3d absolute inset-x-0 top-[12%] bottom-[8%] mx-auto max-w-[96rem]"
+              className="field-canvas field-canvas-dive field-canvas-3d absolute inset-x-0 top-[16%] bottom-[10%] mx-auto max-w-[96rem] sm:top-[14%] sm:bottom-[9%] lg:top-[12%] lg:bottom-[8%]"
             >
               <div
                 ref={worldRef}
@@ -262,18 +265,19 @@ export function PassionImageField() {
 
             <p
               ref={hintRef}
-              className="field-scroll-hint absolute bottom-8 left-1/2 z-30 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.18em] text-brutal-fg/45"
+              className="field-scroll-hint absolute bottom-6 left-1/2 z-30 max-w-[14rem] -translate-x-1/2 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-brutal-fg/45 sm:bottom-8 sm:max-w-none sm:text-[10px] sm:tracking-[0.18em]"
             >
-              Scroll to enter ↓
+              <span className="sm:hidden">Swipe up to enter the field ↓</span>
+              <span className="hidden sm:inline">Scroll to enter ↓</span>
             </p>
           </div>
         </div>
 
         <nav
-          className="relative z-10 mt-10 border-t border-brutal-fg/[0.08] pt-8"
+          className="field-filter-nav relative z-10 mt-8 border-t border-brutal-fg/[0.08] pt-6 sm:mt-10 sm:pt-8"
           aria-label="Image field filters"
         >
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+          <div className="field-tag-row flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5">
             {IMAGE_FIELD_TAGS.map((tag) =>
               activeTag === tag ? (
                 <button
@@ -281,7 +285,7 @@ export function PassionImageField() {
                   type="button"
                   onClick={() => setActiveTag(tag)}
                   aria-pressed="true"
-                  className="rounded-full border border-brutal-fg bg-brutal-fg px-4 py-2 font-mono text-[11px] lowercase tracking-[0.06em] text-white transition-colors"
+                  className="rounded-full border border-brutal-fg bg-brutal-fg px-3 py-1.5 font-mono text-[10px] lowercase tracking-[0.06em] text-white transition-colors sm:px-4 sm:py-2 sm:text-[11px]"
                 >
                   {tag}
                 </button>
@@ -291,7 +295,7 @@ export function PassionImageField() {
                   type="button"
                   onClick={() => setActiveTag(tag)}
                   aria-pressed="false"
-                  className="rounded-full border border-brutal-fg/22 bg-white px-4 py-2 font-mono text-[11px] lowercase tracking-[0.06em] text-brutal-fg transition-colors hover:border-brutal-fg/45"
+                  className="rounded-full border border-brutal-fg/22 bg-white px-3 py-1.5 font-mono text-[10px] lowercase tracking-[0.06em] text-brutal-fg transition-colors hover:border-brutal-fg/45 sm:px-4 sm:py-2 sm:text-[11px]"
                 >
                   {tag}
                 </button>

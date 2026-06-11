@@ -37,14 +37,14 @@ export function PassionFieldBridge() {
     <div
       ref={bridgeRef}
       data-passion-bridge
-      className="passion-field-bridge relative overflow-hidden border-t border-brutal-fg/[0.07] bg-white py-20 sm:py-24 lg:py-28"
+      className="passion-field-bridge relative overflow-hidden border-t border-brutal-fg/[0.07] bg-white py-14 sm:py-24 lg:py-28"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgb(237_168_120/0.14),transparent_70%)]"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 text-center sm:px-8 lg:px-10">
+      <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-8 lg:px-10">
         <p
           data-story-reveal
           className="font-mono text-[10px] uppercase tracking-[0.2em] text-brutal-fg/42"
@@ -53,7 +53,7 @@ export function PassionFieldBridge() {
         </p>
         <h2
           data-story-reveal
-          className="mt-4 font-sans text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-brutal-fg"
+          className="mt-3 font-sans text-[clamp(1.5rem,6.5vw,3rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-brutal-fg sm:mt-4"
         >
           Enter the field
         </h2>

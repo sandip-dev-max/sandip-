@@ -69,7 +69,7 @@ export function FieldPieceViewer({ item, onClose }: FieldPieceViewerProps) {
               src={item.src}
               alt={item.alt}
               fill
-              sizes="50vw"
+              sizes="(max-width: 767px) 100vw, 50vw"
               className="field-viewer-image object-contain"
               priority
             />

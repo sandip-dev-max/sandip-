@@ -14,8 +14,8 @@ export const SERVICES: Service[] = [
     title: "Web Design",
     description:
       "Interface systems, landing pages, and product UI  structured layouts with clear hierarchy and motion that feels intentional.",
-    image: "/project4.png",
-    imageAlt: "Web design — portfolio interface preview",
+    image: "/web-design.png",
+    imageAlt: "Web design — desktop monitor with interactive website layout",
   },
   {
     id: "video-editing",
@@ -23,8 +23,8 @@ export const SERVICES: Service[] = [
     title: "Video Editing",
     description:
       "Video editing to help you create professional and engaging videos.",
-    image: "/project2.png",
-    imageAlt: "Video editing — e-commerce brand layout",
+    image: "/video-editing.png",
+    imageAlt: "Video editing — mobile trim, speed, and music controls",
   },
   {
     id: "development",
@@ -32,8 +32,8 @@ export const SERVICES: Service[] = [
     title: "Development",
     description:
       "Fast, scalable websites engineered for performance and growth  Next.js, type safe APIs, and production ready delivery.",
-    image: "/hero.png",
-    imageAlt: "Development — workspace with laptop in low light",
+    image: "/development.png",
+    imageAlt: "Development — glowing brain and light bulb innovation concept",
   },
   {
     id: "seo",
@@ -41,8 +41,8 @@ export const SERVICES: Service[] = [
     title: "SEO",
     description:
       "SEO services to help your website rank higher in search engines and attract more traffic.",
-    image: "/project3.png",
-    imageAlt: "SEO services  e-commerce brand layout",
+    image: "/seo.png",
+    imageAlt: "SEO — search bar with colorful SEO lettering",
   },
   {
     id: "marketing",
@@ -50,8 +50,8 @@ export const SERVICES: Service[] = [
     title: "Marketing",
     description:
       "Conversion-focused pages, SEO foundations, and launch assets that help teams ship campaigns without friction.",
-    image: "/project1.png",
-    imageAlt: "Marketing — education platform landing",
+    image: "/marketing.jpg",
+    imageAlt: "Marketing — digital advertising, SEO, and brand strategy illustration",
   },
   {
     id: "devops",
@@ -59,8 +59,8 @@ export const SERVICES: Service[] = [
     title: "DevOps",
     description:
       "DevOps services to help you deploy and manage your applications.",
-    image: "/hero.png",
-    imageAlt: "DevOps — education platform landing",
+    image: "/devops.png",
+    imageAlt: "DevOps — CI/CD lifecycle diagram with Dev and Ops loops",
   },
 ];
 

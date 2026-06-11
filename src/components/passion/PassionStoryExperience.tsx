@@ -315,20 +315,20 @@ export function PassionStoryExperience() {
         <PortfolioHeader />
 
         <nav
-          className="passion-top-nav relative z-10 border-b border-brutal-fg/[0.07] px-5 py-8 sm:px-8 lg:px-10"
+          className="passion-top-nav relative z-10 border-b border-brutal-fg/[0.07] px-4 py-6 sm:px-8 sm:py-8 lg:px-10"
           aria-label="Passion story sections"
         >
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 lg:gap-4">
+          <ul className="passion-top-nav-grid grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-6 lg:grid-cols-4 lg:gap-4 xl:grid-cols-7">
             {PASSION_PAGE_NAV.map((item) => (
               <li key={item.label}>
                 <Link
                   href={item.href}
                   className="passion-nav-link group block"
                 >
-                  <p className="font-sans text-[0.9375rem] font-medium tracking-[-0.02em] text-brutal-fg transition-opacity group-hover:opacity-55">
+                  <p className="passion-nav-label font-sans text-[0.8125rem] font-medium tracking-[-0.02em] text-brutal-fg transition-opacity group-hover:opacity-55 sm:text-[0.9375rem]">
                     {item.label}
                   </p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-brutal-fg/42">
+                  <p className="passion-nav-sublabel mt-0.5 font-mono text-[9px] uppercase tracking-[0.12em] text-brutal-fg/42 sm:mt-1 sm:text-[10px] sm:tracking-[0.14em]">
                     {item.sublabel}
                   </p>
                 </Link>
@@ -338,44 +338,44 @@ export function PassionStoryExperience() {
         </nav>
 
         <main className="relative z-10">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
             <PassionIntroHero />
             <PassionProfileIntro />
 
-            <div className="space-y-20 py-16 sm:space-y-24 sm:py-20 lg:space-y-28 lg:py-24">
+            <div className="space-y-14 py-12 sm:space-y-24 sm:py-20 lg:space-y-28 lg:py-24">
               {PASSION_CHAPTERS.map((chapter) => (
                 <section
                   key={chapter.id}
                   id={chapter.id}
                   data-story-chapter
-                  className="passion-chapter grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10"
+                  className="passion-chapter grid grid-cols-1 gap-5 sm:gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10"
                   aria-labelledby={`${chapter.id}-title`}
                 >
                   <div
                     data-story-number
-                    className="lg:col-span-1"
+                    className="passion-chapter-number-wrap lg:col-span-1"
                     aria-hidden="true"
                   >
-                    <span className="passion-chapter-number font-sans text-[clamp(2.5rem,6vw,4rem)] font-semibold leading-none tracking-[-0.05em] text-brutal-fg">
+                    <span className="passion-chapter-number font-sans text-[clamp(2rem,8vw,4rem)] font-semibold leading-none tracking-[-0.05em] text-brutal-fg">
                       {chapter.number}
                     </span>
                   </div>
 
-                  <div className="grid gap-10 lg:col-span-11 lg:grid-cols-11 lg:gap-8">
-                    <div className="space-y-6 lg:col-span-5">
+                  <div className="grid gap-8 sm:gap-10 lg:col-span-11 lg:grid-cols-11 lg:gap-8">
+                    <div className="space-y-4 sm:space-y-6 lg:col-span-5">
                       {chapter.paragraphs.map((paragraph, index) => (
                         <p
                           key={index}
                           data-story-reveal
                           id={index === 0 ? `${chapter.id}-title` : undefined}
-                          className="passion-paragraph font-sans text-[1.0625rem] leading-[1.78] tracking-[-0.015em] text-brutal-fg/88"
+                          className="passion-paragraph font-sans text-[0.9375rem] leading-[1.72] tracking-[-0.015em] text-brutal-fg/88 sm:text-[1.0625rem] sm:leading-[1.78]"
                         >
                           {paragraph}
                         </p>
                       ))}
                     </div>
 
-                    <div className="grid gap-10 sm:grid-cols-2 lg:col-span-6 lg:grid-cols-2 lg:gap-8">
+                    <div className="passion-figure-grid grid grid-cols-2 gap-3 sm:gap-6 lg:col-span-6 lg:gap-8">
                       {chapter.figures.map((figure) => (
                         <PassionFigureBlock key={figure.id} figure={figure} />
                       ))}

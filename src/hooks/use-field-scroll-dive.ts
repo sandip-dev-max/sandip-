@@ -231,31 +231,61 @@ export function useFieldScrollDive(
         });
 
         mm.add("(max-width: 767px)", () => {
+          let vectors: DiveVector[] = [];
+
+          const measure = () => {
+            vectors = measureDiveVectors(canvas.current!, outerPieces);
+          };
+
+          measure();
+          window.addEventListener("resize", measure);
+
+          gsap.set(outerPieces, { scale: 1.22 });
+
           const timeline = gsap.timeline({
             scrollTrigger: {
               trigger: scrollStage.current,
               start: "top top",
-              end: pinScrollDistance(2, 90),
+              end: pinScrollDistance(2, 68),
               pin: pinViewport.current,
-              scrub: 0.85,
+              scrub: 0.6,
               ...SCROLL_PIN_DEFAULTS,
             },
           });
 
           if (header.current) {
-            timeline.to(header.current, { autoAlpha: 0, duration: 0.2 }, 0);
+            timeline.to(
+              header.current,
+              { autoAlpha: 0, y: -16, duration: 0.18, ease: "power2.in" },
+              0,
+            );
           }
           if (hint.current) {
-            timeline.to(hint.current, { autoAlpha: 0, duration: 0.15 }, 0.05);
+            timeline.to(
+              hint.current,
+              { autoAlpha: 0, y: 8, duration: 0.14, ease: "power2.in" },
+              0.06,
+            );
           }
 
           outerPieces.forEach((piece, index) => {
+            const vector = vectors[index] ?? { nx: 0, ny: 0, dist: 0.5 };
+            const push = 22 + vector.dist * 48;
+            const scale = 1.28 + vector.dist * 0.95;
+            const tiltY = vector.nx * (12 + vector.dist * 18);
+            const tiltX = -vector.ny * (10 + vector.dist * 14);
+            const depth = -vector.dist * 220;
+
             timeline.to(
               piece,
               {
-                scale: 1.6 + index * 0.05,
-                rotationY: index % 2 === 0 ? 14 : -14,
-                z: -index * 40,
+                x: vector.nx * push + "vw",
+                y: vector.ny * push + "vh",
+                z: depth,
+                scale,
+                rotationY: tiltY,
+                rotationX: tiltX,
+                transformPerspective: 900,
                 duration: 1,
                 ease: "power2.inOut",
               },
@@ -265,34 +295,49 @@ export function useFieldScrollDive(
 
           timeline.to(
             world.current,
-            { scale: 2.2, duration: 1, ease: "power2.inOut" },
+            { z: 90, scale: 1.42, duration: 1, ease: "power2.inOut" },
             0,
           );
 
-          timeline.to(
-            innerPieces,
-            {
-              autoAlpha: 1,
-              scale: 1,
-              z: 0,
-              stagger: 0.06,
-              duration: 0.5,
-              ease: "power2.out",
-            },
-            0.35,
-          );
+          innerPieces.forEach((piece, index) => {
+            const ringAngle = (index / innerPieces.length) * Math.PI * 2;
+            const ringX = Math.cos(ringAngle) * 7;
+            const ringY = Math.sin(ringAngle) * 5;
+            const depth = -60 + (index % 3) * 70;
+
+            timeline.to(
+              piece,
+              {
+                autoAlpha: 1,
+                scale: 1.05 + (index % 2) * 0.12,
+                z: depth,
+                x: ringX + "vw",
+                y: ringY + "vh",
+                rotationY: Math.cos(ringAngle) * -10,
+                rotationX: Math.sin(ringAngle) * 8,
+                transformPerspective: 900,
+                duration: 0.45,
+                ease: "power3.out",
+              },
+              0.28 + index * 0.035,
+            );
+          });
 
           timeline.to(
             vignette.current,
-            { autoAlpha: 1, duration: 0.5 },
-            0.4,
+            { autoAlpha: 0.88, duration: 0.45, ease: "power2.out" },
+            0.38,
           );
 
           timeline.to(
             core.current,
-            { autoAlpha: 1, scale: 1, duration: 0.45 },
-            0.55,
+            { autoAlpha: 1, scale: 1, duration: 0.4, ease: "power3.out" },
+            0.52,
           );
+
+          return () => {
+            window.removeEventListener("resize", measure);
+          };
         });
 
         requestAnimationFrame(() => scheduleScrollTriggerRefresh());

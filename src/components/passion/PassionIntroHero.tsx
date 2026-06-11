@@ -52,7 +52,7 @@ export function PassionIntroHero() {
     <header
       ref={introRef}
       data-story-intro
-      className="passion-intro relative overflow-hidden border-b border-brutal-fg/[0.07] py-14 sm:py-16 lg:py-20"
+      className="passion-intro relative overflow-hidden border-b border-brutal-fg/[0.07] py-10 sm:py-16 lg:py-20"
     >
       <div
         className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-1.5 bg-gradient-to-r from-[#e85d4c] via-[#f0c27b] to-[#4a6fa5] opacity-90"
@@ -66,16 +66,16 @@ export function PassionIntroHero() {
         <span className="passion-orb passion-orb-c" />
       </div>
 
-      <div className="relative z-10 grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
+      <div className="relative z-10 grid gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-16">
         <div>
           <p
             data-story-reveal
-            className="font-mono text-[10px] uppercase tracking-[0.2em] text-brutal-fg/45"
+            className="font-mono text-[9px] uppercase tracking-[0.18em] text-brutal-fg/45 sm:text-[10px] sm:tracking-[0.2em]"
           >
             {PASSION_INTRO.eyebrow}
           </p>
 
-          <h1 className="mt-5 max-w-3xl font-sans text-[clamp(2.25rem,5.5vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-brutal-fg">
+          <h1 className="mt-4 max-w-3xl font-sans text-[clamp(1.85rem,7vw,4rem)] font-semibold leading-[1.05] tracking-[-0.045em] text-brutal-fg sm:mt-5 sm:leading-[1.02]">
             {titleWords.map((word, index) => (
               <span
                 key={`${word}-${index}`}
@@ -89,14 +89,14 @@ export function PassionIntroHero() {
 
           <p
             data-story-reveal
-            className="mt-5 max-w-2xl font-sans text-[1.0625rem] leading-relaxed tracking-[-0.015em] text-brutal-fg/62"
+            className="mt-4 max-w-2xl font-sans text-[0.9375rem] leading-relaxed tracking-[-0.015em] text-brutal-fg/62 sm:mt-5 sm:text-[1.0625rem]"
           >
             {PASSION_INTRO.subtitle}
           </p>
 
           <div
             data-story-reveal
-            className="mt-8 flex flex-wrap items-center gap-4 font-mono text-[10px] uppercase tracking-[0.16em] text-brutal-fg/40"
+            className="mt-6 flex flex-wrap items-center gap-2 sm:mt-8 sm:gap-3 lg:gap-4"
           >
             <span className="passion-intro-chip">Parbat, Nepal</span>
             <span className="passion-intro-chip">Mountaineering studies</span>
@@ -105,7 +105,7 @@ export function PassionIntroHero() {
         </div>
 
         <div
-          className="passion-intro-collage relative mx-auto aspect-[4/5] w-full max-w-[22rem] lg:max-w-none lg:justify-self-end"
+          className="passion-intro-collage relative mx-auto aspect-[4/5] w-full max-w-[16.5rem] sm:max-w-[22rem] lg:max-w-none lg:justify-self-end"
           aria-hidden="true"
         >
           {PASSION_INTRO_PHOTOS.map((photo, index) => {
@@ -129,7 +129,7 @@ export function PassionIntroHero() {
                       src={photo.src}
                       alt={photo.alt}
                       fill
-                      sizes="(max-width: 1024px) 55vw, 280px"
+                      sizes="(max-width: 640px) 42vw, (max-width: 1024px) 55vw, 280px"
                       className="object-cover object-center"
                       priority={index === 0}
                     />
@@ -143,7 +143,7 @@ export function PassionIntroHero() {
 
       <div
         data-story-reveal
-        className="passion-chapter-rule relative z-10 mt-14 origin-left bg-gradient-to-r from-brutal-fg/28 via-brutal-fg/10 to-transparent"
+        className="passion-chapter-rule relative z-10 mt-10 origin-left bg-gradient-to-r from-brutal-fg/28 via-brutal-fg/10 to-transparent sm:mt-14"
         aria-hidden="true"
       />
     </header>

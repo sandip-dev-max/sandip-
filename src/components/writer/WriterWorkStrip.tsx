@@ -11,16 +11,30 @@ import {
 import { useHorizontalDrag } from "@/hooks/use-horizontal-drag";
 import { gsap } from "@/lib/gsap";
 
-function WorkCard({ item }: { item: WriterWorkItem }) {
+type WorkCardProps = {
+  item: WriterWorkItem;
+  variant?: "panel" | "carousel";
+};
+
+function WorkCard({ item, variant = "panel" }: WorkCardProps) {
+  const isCarousel = variant === "carousel";
+
   return (
-    <article className="writer-work-card writer-rule-y" data-writer-reveal>
+    <article
+      className={`writer-work-card${isCarousel ? " writer-work-card--carousel" : " writer-rule-y"}`}
+      data-writer-reveal
+    >
       <Link href={item.href} className="writer-work-card-image group block">
         <div className="writer-work-card-media">
           <Image
             src={item.image}
             alt={item.imageAlt}
             fill
-            sizes="33vw"
+            sizes={
+              isCarousel
+                ? "(max-width: 1023px) 82vw, 33vw"
+                : "(max-width: 1023px) 100vw, 33vw"
+            }
             className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.06]"
           />
         </div>
@@ -66,13 +80,31 @@ function SplitTitle({ text }: { text: string }) {
   );
 }
 
+function WorkHeroBlock() {
+  return (
+    <>
+      <div>
+        <SplitTitle text={WRITER_HERO.centerTitle} />
+        <p className="writer-work-center-copy" data-writer-reveal>
+          {WRITER_HERO.centerSubtitle}
+        </p>
+      </div>
+      <p className="writer-work-tip writer-work-tip--pulse">
+        {WRITER_HERO.dragTip}
+      </p>
+    </>
+  );
+}
+
 export function WriterWorkStrip() {
-  const trackRef = useRef<HTMLDivElement>(null);
+  const desktopTrackRef = useRef<HTMLDivElement>(null);
+  const mobileTrackRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLSpanElement>(null);
   const [progress, setProgress] = useState(0);
   const panels = chunkWork(WRITER_FEATURED_WORK, 2);
 
-  useHorizontalDrag(trackRef, setProgress);
+  useHorizontalDrag(desktopTrackRef, setProgress);
+  useHorizontalDrag(mobileTrackRef, setProgress);
 
   useEffect(() => {
     const bar = progressBarRef.current;
@@ -90,7 +122,14 @@ export function WriterWorkStrip() {
         <span ref={progressBarRef} className="writer-work-progress-bar" />
       </div>
 
-      <div ref={trackRef} className="writer-work-strip writer-rule-x">
+      <div className="writer-work-mobile-hero lg:hidden" data-writer-hero>
+        <WorkHeroBlock />
+      </div>
+
+      <div
+        ref={desktopTrackRef}
+        className="writer-work-strip writer-work-strip--desktop writer-rule-x hidden lg:flex"
+      >
         {panels.map((pair, panelIndex) => {
           const left = pair[0];
           const right = pair[1];
@@ -100,15 +139,7 @@ export function WriterWorkStrip() {
               {left ? <WorkCard item={left} /> : <div className="writer-rule-y" />}
 
               <div className="writer-work-center writer-rule-y" data-writer-hero>
-                <div>
-                  <SplitTitle text={WRITER_HERO.centerTitle} />
-                  <p className="writer-work-center-copy" data-writer-reveal>
-                    {WRITER_HERO.centerSubtitle}
-                  </p>
-                </div>
-                <p className="writer-work-tip writer-work-tip--pulse">
-                  {WRITER_HERO.dragTip}
-                </p>
+                <WorkHeroBlock />
               </div>
 
               {right ? (
@@ -119,6 +150,17 @@ export function WriterWorkStrip() {
             </div>
           );
         })}
+      </div>
+
+      <div
+        ref={mobileTrackRef}
+        className="writer-work-strip writer-work-strip--mobile writer-rule-x lg:hidden"
+      >
+        {WRITER_FEATURED_WORK.map((item) => (
+          <div key={item.id} className="writer-work-mobile-panel">
+            <WorkCard item={item} variant="carousel" />
+          </div>
+        ))}
       </div>
     </section>
   );

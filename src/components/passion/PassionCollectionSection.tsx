@@ -54,7 +54,7 @@ function CollectionItem({
             src={item.imageSrc ?? "/hero.png"}
             alt={item.imageAlt ?? ""}
             fill
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 100vw, 33vw"
             className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
           />
         </div>
@@ -68,13 +68,13 @@ function CollectionItem({
         {String(index + 1).padStart(2, "0")}
       </div>
       {media}
-      <div className="mt-4 space-y-2">
+      <div className="mt-3 space-y-1.5 sm:mt-4 sm:space-y-2">
         {item.title ? (
-          <h3 className="font-sans text-[0.9375rem] font-semibold tracking-[-0.02em] text-brutal-fg transition-colors group-hover:text-brutal-fg/78">
+          <h3 className="font-sans text-[0.8125rem] font-semibold tracking-[-0.02em] text-brutal-fg transition-colors group-hover:text-brutal-fg/78 sm:text-[0.9375rem]">
             {item.title}
           </h3>
         ) : null}
-        <p className="font-sans text-[0.8125rem] leading-[1.65] tracking-[-0.01em] text-brutal-fg/58">
+        <p className="font-sans text-[0.75rem] leading-[1.55] tracking-[-0.01em] text-brutal-fg/58 sm:text-[0.8125rem] sm:leading-[1.65]">
           {item.description}
         </p>
         {item.caption && item.layout !== "note" ? (
@@ -113,7 +113,7 @@ export function PassionCollectionSection({
     <section
       id={collection.id}
       data-passion-collection
-      className="passion-collection relative overflow-hidden border-t border-brutal-fg/[0.07] py-16 sm:py-20 lg:py-24"
+      className="passion-collection relative overflow-hidden border-t border-brutal-fg/[0.07] py-12 sm:py-20 lg:py-24"
       aria-labelledby={`${collection.id}-heading`}
     >
       <div
@@ -132,7 +132,7 @@ export function PassionCollectionSection({
           <h2
             id={`${collection.id}-heading`}
             data-story-reveal
-            className="passion-collection-title font-sans text-[clamp(1.35rem,2.8vw,2rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-brutal-fg"
+            className="passion-collection-title font-sans text-[clamp(1.15rem,4.5vw,2rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-brutal-fg"
           >
             {collection.title}
           </h2>

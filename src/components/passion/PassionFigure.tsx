@@ -61,7 +61,7 @@ export function PassionFigureBlock({ figure }: PassionFigureProps) {
               src={figure.imageSrc ?? "/hero.png"}
               alt={figure.imageAlt ?? ""}
               fill
-              sizes="(max-width: 768px) 90vw, 320px"
+              sizes="(max-width: 768px) 45vw, 320px"
               className={`object-cover transition-transform duration-700 group-hover:scale-[1.04] ${
                 figure.type === "mountain"
                   ? "object-center"
@@ -72,7 +72,7 @@ export function PassionFigureBlock({ figure }: PassionFigureProps) {
         ) : null}
       </div>
 
-      <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-brutal-fg/42">
+      <figcaption className="mt-2 font-mono text-[9px] uppercase tracking-[0.12em] text-brutal-fg/42 sm:mt-3 sm:text-[10px] sm:tracking-[0.14em]">
         {figure.caption}
       </figcaption>
     </figure>
