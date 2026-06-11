@@ -17,6 +17,9 @@ import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { setScrollLocked } from "@/lib/scroll-lock";
 import { gsap } from "@/lib/gsap";
 
+const ARIA_PRESSED_TRUE = { "aria-pressed": "true" } as const;
+const ARIA_PRESSED_FALSE = { "aria-pressed": "false" } as const;
+
 function FieldPiece({
   item,
   setRef,
@@ -51,7 +54,7 @@ function FieldPiece({
       data-tags={item.tags.join(" ")}
       data-depth={variant}
       aria-label={`View ${item.alt}`}
-      aria-pressed={isSelected ? "true" : "false"}
+      {...(isSelected ? ARIA_PRESSED_TRUE : ARIA_PRESSED_FALSE)}
     >
       <div className="field-piece-frame field-piece-frame-3d overflow-hidden bg-[#f4f4f4] shadow-[0_18px_50px_-28px_rgba(17,17,17,0.45)] ring-1 ring-brutal-fg/[0.07]">
         <div className="relative h-full w-full">

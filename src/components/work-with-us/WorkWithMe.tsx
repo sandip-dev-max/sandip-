@@ -21,6 +21,10 @@ const CARDS = WORK_WITH_ME.cards;
 const CARD_COUNT = CARDS.length;
 const SCROLL_VH_PER_STEP = 42;
 
+const ARIA_HIDDEN = { "aria-hidden": "true" } as const;
+const ARIA_TAB_SELECTED = { "aria-selected": "true" } as const;
+const ARIA_TAB_UNSELECTED = { "aria-selected": "false" } as const;
+
 function getCardSpacing(): number {
   if (typeof window === "undefined") return 300;
   return window.matchMedia("(max-width: 639px)").matches ? 240 : 300;
@@ -263,7 +267,7 @@ export function WorkWithMe() {
                   key={card.id}
                   data-wwu-card
                   className="absolute left-1/2 top-1/2 w-[min(78vw,20rem)] -translate-x-1/2 -translate-y-1/2 will-change-transform sm:w-[22rem]"
-                  aria-hidden={index !== activeIndex ? true : undefined}
+                  {...(index !== activeIndex ? ARIA_HIDDEN : {})}
                   aria-label={`${card.number} ${card.title}`}
                 >
                   <div
@@ -316,7 +320,7 @@ export function WorkWithMe() {
                   key={card.id}
                   type="button"
                   role="tab"
-                  aria-selected={index === activeIndex ? "true" : "false"}
+                  {...(index === activeIndex ? ARIA_TAB_SELECTED : ARIA_TAB_UNSELECTED)}
                   aria-label={`Go to ${card.title}`}
                   onClick={() => scrollToIndex(index)}
                   className={`h-2.5 rounded-full transition-all duration-300 ${

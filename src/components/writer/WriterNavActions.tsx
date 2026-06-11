@@ -13,6 +13,9 @@ const PortfolioMenu = dynamic(
   { ssr: false },
 );
 
+const ARIA_EXPANDED_TRUE = { "aria-expanded": "true" } as const;
+const ARIA_EXPANDED_FALSE = { "aria-expanded": "false" } as const;
+
 type WriterNavActionsProps = {
   variant?: "light" | "dark";
 };
@@ -51,7 +54,7 @@ export function WriterNavActions({ variant = "light" }: WriterNavActionsProps) {
           type="button"
           className={`writer-header-menu-btn${isDark ? " writer-header-menu-btn--on-dark" : ""}`}
           onClick={openMenu}
-          aria-expanded={menuOpen}
+          {...(menuOpen ? ARIA_EXPANDED_TRUE : ARIA_EXPANDED_FALSE)}
           aria-label={WRITER_NAV.menuLabel}
         >
           <span />

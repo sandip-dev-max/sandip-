@@ -21,7 +21,7 @@ function WorkCard({ item, variant = "panel" }: WorkCardProps) {
 
   return (
     <article
-      className={`writer-work-card${isCarousel ? " writer-work-card--carousel" : " writer-rule-y"}`}
+      className={`writer-work-card group${isCarousel ? " writer-work-card--carousel" : " writer-rule-y"}`}
       data-writer-reveal
     >
       <Link href={item.href} className="writer-work-card-image group block">
