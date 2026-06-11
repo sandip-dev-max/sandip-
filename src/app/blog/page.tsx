@@ -35,7 +35,7 @@ export default function BlogIndexPage() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-12 sm:mt-16 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-14 lg:gap-x-12">
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-x-10 sm:gap-y-14 lg:gap-x-12">
           {posts.map((post) => (
             <BlogPostCard key={post.id} post={post} />
           ))}

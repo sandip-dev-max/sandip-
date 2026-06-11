@@ -16,7 +16,7 @@ import { scrollToHash } from "@/lib/scroll-to-hash";
 function sectionForHref(href: string): DockSectionId | null {
   if (href === "#hero") return "hero";
   if (href === "#work") return "work";
-  if (href === "#services") return "services";
+  if (href === "#work-with-me") return "work-with-me";
   if (href === "#contact") return "contact";
   return null;
 }

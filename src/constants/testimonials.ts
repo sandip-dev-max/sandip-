@@ -23,10 +23,10 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "1",
     quote:
-      "Delivered the full site ahead of schedule — and it still feels polished months later.",
-    name: "Nina",
-    detail: "34",
-    initials: "N",
+      "Clear communication from day one. The site went live on schedule and still feels sharp months later.",
+    name: "Predeep Chy",
+    detail: "Entrepreneur",
+    initials: "PC",
     position: "top-left",
     avatarClass:
       "bg-gradient-to-br from-rose-100 via-rose-50 to-orange-50 text-rose-900/80 ring-rose-200/80",
@@ -36,52 +36,39 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "2",
     quote:
-      "The first developer who understood our brand before writing a single line of code.",
-    name: "Sara",
-    detail: "27",
-    initials: "S",
-    position: "top-center",
+      "Our products finally have a digital home that feels as crafted and intentional as the furniture we build.",
+    name: "Steel Wood Nepal",
+    detail: "Furniture brand",
+    initials: "SW",
+    position: "top-right",
     avatarClass:
-      "bg-gradient-to-br from-sky-100 via-sky-50 to-indigo-50 text-sky-900/80 ring-sky-200/80",
-    tiltClass: "lg:rotate-[1.5deg]",
+      "bg-gradient-to-br from-amber-100 via-amber-50 to-yellow-50 text-amber-900/80 ring-amber-200/80",
+    tiltClass: "lg:rotate-[2deg]",
     floatDelay: "0.6s",
   },
   {
     id: "3",
     quote:
-      "I recommended Yudeat to my whole team before the end of the week.",
-    name: "Mia",
-    detail: "29",
-    initials: "M",
-    position: "top-right",
-    avatarClass:
-      "bg-gradient-to-br from-violet-100 via-violet-50 to-fuchsia-50 text-violet-900/80 ring-violet-200/80",
-    tiltClass: "lg:rotate-[2deg]",
-    floatDelay: "1.2s",
-  },
-  {
-    id: "4",
-    quote:
-      "Finally a build that doesn't feel like a template — it actually reflects us.",
-    name: "Tom",
-    detail: "31",
-    initials: "T",
+      "Fast, clean builds with real attention to detail — exactly what a growing tech team needs to ship with confidence.",
+    name: "Origin Tech",
+    detail: "Technology partner",
+    initials: "OT",
     position: "bottom-left",
     avatarClass:
-      "bg-gradient-to-br from-emerald-100 via-emerald-50 to-teal-50 text-emerald-900/80 ring-emerald-200/80",
+      "bg-gradient-to-br from-sky-100 via-sky-50 to-indigo-50 text-sky-900/80 ring-sky-200/80",
     tiltClass: "lg:-rotate-[1deg]",
     floatDelay: "0.3s",
   },
   {
-    id: "5",
+    id: "4",
     quote:
-      "Couldn't explain why it works so well — I just keep sending people the link.",
-    name: "Jake",
-    detail: "25",
-    initials: "J",
+      "Turned a vague brief into a polished product. I'd work together again without hesitation.",
+    name: "Jitendra Pandit",
+    detail: "Creative collaborator",
+    initials: "JP",
     position: "bottom-right",
     avatarClass:
-      "bg-gradient-to-br from-amber-100 via-amber-50 to-yellow-50 text-amber-900/80 ring-amber-200/80",
+      "bg-gradient-to-br from-emerald-100 via-emerald-50 to-teal-50 text-emerald-900/80 ring-emerald-200/80",
     tiltClass: "lg:-rotate-[2deg]",
     floatDelay: "0.9s",
   },

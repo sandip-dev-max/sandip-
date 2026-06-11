@@ -149,7 +149,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               >
                 Keep reading
               </h2>
-              <div className="mt-10 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-10">
+              <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-x-10 sm:gap-y-14">
                 {relatedPosts.map((relatedPost) => (
                   <BlogPostCard key={relatedPost.id} post={relatedPost} />
                 ))}

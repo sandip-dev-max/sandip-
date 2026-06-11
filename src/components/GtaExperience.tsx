@@ -6,8 +6,7 @@ import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
 import { DockMenu } from "@/components/portfolio/DockMenu";
 import { PortfolioHero } from "@/components/PortfolioHero";
 import { BlogSection } from "@/components/blog/BlogSection";
-import { ServicesSection } from "@/components/services/ServicesSection";
-import { WorkWithUsSection } from "@/components/work-with-us/WorkWithUsSection";
+import { WorkWithMe } from "@/components/work-with-us/WorkWithMe";
 import { WorkSection } from "@/components/work/WorkSection";
 import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 import { SiteFooter } from "@/components/portfolio/SiteFooter";
@@ -51,8 +50,7 @@ export function GtaExperience() {
           <PortfolioHero />
           <ScrollMarquee />
           <DockMenu />
-          <ServicesSection />
-          <WorkWithUsSection />
+          <WorkWithMe />
           <WorkSection />
           <TestimonialsSection />
           <BlogSection />

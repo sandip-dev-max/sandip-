@@ -10,14 +10,14 @@ export const DOCK_MENU_LEFT: DockMenuItem[] = [
 ];
 
 export const DOCK_MENU_RIGHT: DockMenuItem[] = [
-  { id: "services", label: "Services", href: "#services" },
+  { id: "work-with-me", label: "Services", href: "#work-with-me" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
 
 /** Section ids observed for active-state highlighting. */
 export const DOCK_SECTION_IDS = [
   "hero",
-  "services",
+  "work-with-me",
   "work",
   "testimonials",
   "contact",

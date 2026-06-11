@@ -26,38 +26,38 @@ function TestimonialBubble({
   return (
     <figure
       data-testimonial-bubble
-      className={`group w-full max-w-[min(100%,18rem)] transition-transform duration-500 ease-out hover:scale-[1.02] sm:max-w-[19rem] ${tiltClass}`}
+      className={`group mx-auto w-full max-w-none transition-transform duration-500 ease-out hover:scale-[1.02] lg:mx-0 lg:max-w-[min(100%,19rem)] ${tiltClass}`}
     >
       <div
         className={`relative ${reducedMotion ? "" : "testimonial-float"}`}
         data-delay={reducedMotion ? undefined : floatDelay}
       >
-        <blockquote className="relative rounded-[1.35rem] bg-brutal-fg px-4 py-4 font-sans text-[0.8125rem] font-medium leading-[1.45] tracking-[-0.015em] text-white/95 shadow-[0_20px_50px_-12px_rgba(17,17,17,0.35)] ring-1 ring-white/10 transition-shadow duration-500 group-hover:shadow-[0_28px_60px_-14px_rgba(17,17,17,0.42)] sm:px-[1.125rem] sm:py-[1.125rem] sm:text-[0.875rem]">
+        <blockquote className="relative rounded-[1.15rem] bg-brutal-fg px-3.5 py-3.5 font-sans text-[0.75rem] font-medium leading-[1.42] tracking-[-0.015em] text-white/95 shadow-[0_16px_40px_-12px_rgba(17,17,17,0.32)] ring-1 ring-white/10 transition-shadow duration-500 group-hover:shadow-[0_28px_60px_-14px_rgba(17,17,17,0.42)] sm:rounded-[1.35rem] sm:px-[1.125rem] sm:py-[1.125rem] sm:text-[0.875rem] sm:leading-[1.45]">
           <span
-            className="pointer-events-none absolute -left-0.5 -top-1 font-serif text-4xl leading-none text-white/12 select-none"
+            className="pointer-events-none absolute -left-0.5 -top-1 font-serif text-3xl leading-none text-white/12 select-none sm:text-4xl"
             aria-hidden
           >
             &ldquo;
           </span>
-          <p className="relative z-[1]">{quote}</p>
+          <p className="relative z-[1] line-clamp-5 sm:line-clamp-none">{quote}</p>
           <span
-            className="absolute -bottom-[7px] left-7 size-3.5 rotate-45 bg-brutal-fg ring-1 ring-white/10"
+            className="absolute -bottom-[6px] left-5 size-3 rotate-45 bg-brutal-fg ring-1 ring-white/10 sm:-bottom-[7px] sm:left-7 sm:size-3.5"
             aria-hidden
           />
         </blockquote>
       </div>
 
-      <figcaption className="mt-3.5 flex items-center gap-3 pl-1">
+      <figcaption className="mt-2.5 flex items-start gap-2 pl-0.5 sm:mt-3.5 sm:items-center sm:gap-3 sm:pl-1">
         <span
-          className={`flex size-9 shrink-0 items-center justify-center rounded-full font-sans text-xs font-semibold shadow-[0_8px_20px_-6px_rgba(17,17,17,0.2)] ring-2 ${avatarClass}`}
+          className={`flex size-8 shrink-0 items-center justify-center rounded-full font-sans text-[10px] font-semibold shadow-[0_8px_20px_-6px_rgba(17,17,17,0.2)] ring-2 sm:size-9 sm:text-xs ${avatarClass}`}
           aria-hidden
         >
           {initials}
         </span>
-        <span className="font-sans text-[0.8125rem] tracking-[-0.01em] text-brutal-fg/55">
-          <span className="font-medium text-brutal-fg/85">{name}</span>
-          <span className="text-brutal-fg/35"> · </span>
-          {detail}
+        <span className="min-w-0 font-sans text-[0.6875rem] leading-snug tracking-[-0.01em] text-brutal-fg/55 sm:text-[0.8125rem]">
+          <span className="block font-medium text-brutal-fg/85 sm:inline">{name}</span>
+          <span className="hidden text-brutal-fg/35 sm:inline"> · </span>
+          <span className="block text-brutal-fg/45 sm:inline">{detail}</span>
         </span>
       </figcaption>
     </figure>
@@ -99,9 +99,9 @@ export function TestimonialsSection() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:min-h-[100dvh] lg:px-10 lg:py-24">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-14 sm:px-8 sm:py-20 lg:min-h-[100dvh] lg:px-10 lg:py-24">
         <div className="relative mx-auto lg:min-h-[calc(100dvh-12rem)]">
-          <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center lg:absolute lg:inset-x-0 lg:top-1/2 lg:-translate-y-1/2">
+          <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-1 text-center lg:absolute lg:inset-x-0 lg:top-1/2 lg:-translate-y-1/2 lg:px-0">
             <p
               data-testimonial-header
               className="font-mono text-[10px] uppercase tracking-[0.22em] text-brutal-fg/45"
@@ -111,13 +111,13 @@ export function TestimonialsSection() {
             <h2
               id="testimonials-heading"
               data-testimonial-header
-              className="mt-5 text-balance font-sans text-[clamp(2.25rem,5.5vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-brutal-fg"
+              className="mt-4 text-balance font-sans text-[clamp(1.75rem,7vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.045em] text-brutal-fg sm:mt-5 sm:leading-[1.02]"
             >
               What others have been saying about my work
             </h2>
             <p
               data-testimonial-header
-              className="mt-5 max-w-md text-pretty font-sans text-[0.9375rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/50"
+              className="mt-4 max-w-md text-pretty font-sans text-[0.8125rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/50 sm:mt-5 sm:text-[0.9375rem]"
             >
               Real notes from clients and collaborators — the kind you get when
               the work ships on time and still feels considered.
@@ -125,7 +125,7 @@ export function TestimonialsSection() {
             <Link
               data-testimonial-cta
               href="#contact"
-              className="mt-9 inline-flex items-center gap-2.5 rounded-full border border-brutal-fg/8 bg-white/80 px-6 py-3 font-sans text-sm font-medium tracking-[-0.02em] text-brutal-fg shadow-[0_8px_30px_rgba(17,17,17,0.06)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brutal-fg/14 hover:bg-white hover:shadow-[0_14px_40px_rgba(17,17,17,0.1)]"
+              className="mt-7 inline-flex items-center gap-2 rounded-full border border-brutal-fg/8 bg-white/80 px-5 py-2.5 font-sans text-[0.8125rem] font-medium tracking-[-0.02em] text-brutal-fg shadow-[0_8px_30px_rgba(17,17,17,0.06)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brutal-fg/14 hover:bg-white hover:shadow-[0_14px_40px_rgba(17,17,17,0.1)] sm:mt-9 sm:gap-2.5 sm:px-6 sm:py-3 sm:text-sm"
             >
               Start a project
               <span
@@ -137,7 +137,7 @@ export function TestimonialsSection() {
             </Link>
           </div>
 
-          <div className="relative mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:mt-0 lg:block lg:min-h-[inherit]">
+          <div className="relative mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-x-6 sm:gap-y-8 lg:mt-0 lg:block lg:min-h-[inherit]">
             {TESTIMONIALS.map((item) => (
               <div
                 key={item.id}

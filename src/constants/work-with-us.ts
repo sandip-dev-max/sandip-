@@ -1,47 +1,29 @@
+import { SERVICES } from "@/constants/services";
 import { SITE_LOCATION } from "@/constants/site";
 
-export type WorkOffering = {
+export type WorkCarouselCard = {
   id: string;
   number: string;
   title: string;
   description: string;
+  image: string;
+  imageAlt: string;
 };
 
-export const WORK_WITH_US = {
+export const WORK_WITH_ME = {
+  id: "work-with-me",
   eyebrow: "Work with me",
   headline: "Here's what I can do for you.",
   intro:
     "Freelance design and front-end development for brands, founders, and teams. I take projects from idea to a polished, fast site you can actually ship.",
-  offerings: [
-    {
-      id: "web-design",
-      number: "01",
-      title: "Web Design",
-      description:
-        "Landing pages, portfolios, and product UI with clear hierarchy, strong typography, and motion that supports the story.",
-    },
-    {
-      id: "development",
-      number: "02",
-      title: "Development",
-      description:
-        "Next.js builds that are type-safe, responsive, and production-ready — scroll stories, galleries, and interactive sections included.",
-    },
-    {
-      id: "video-editing",
-      number: "03",
-      title: "Video Editing",
-      description:
-        "Edits for brand films, social content, and launch reels — paced, polished, and ready to publish.",
-    },
-    {
-      id: "seo-marketing",
-      number: "04",
-      title: "SEO & Marketing",
-      description:
-        "SEO foundations, launch pages, and campaign assets so your site ranks, converts, and ships on deadline.",
-    },
-  ] satisfies WorkOffering[],
+  cards: SERVICES.map((service, index) => ({
+    id: service.id,
+    number: String(index + 1).padStart(2, "0"),
+    title: service.title,
+    description: service.description,
+    image: service.image,
+    imageAlt: service.imageAlt,
+  })) satisfies WorkCarouselCard[],
   cta: {
     label: "Start a project",
     href: "/#contact",
