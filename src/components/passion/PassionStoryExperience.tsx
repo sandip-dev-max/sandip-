@@ -4,9 +4,6 @@ import { useGSAP } from "@gsap/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { PassionCollectionSection } from "@/components/passion/PassionCollectionSection";
-import { PassionFieldBridge } from "@/components/passion/PassionFieldBridge";
-import { PassionImageField } from "@/components/passion/PassionImageField";
 import { PassionFigureBlock } from "@/components/passion/PassionFigure";
 import { PassionIntroHero } from "@/components/passion/PassionIntroHero";
 import { PassionProfileIntro } from "@/components/passion/PassionProfileIntro";
@@ -391,17 +388,7 @@ export function PassionStoryExperience() {
             </div>
 
             <div className="space-y-4">
-              {PASSION_COLLECTIONS.map((collection) => (
-                <PassionCollectionSection
-                  key={collection.id}
-                  collection={collection}
-                />
-              ))}
-            </div>
           </div>
-
-          {/* <PassionFieldBridge /> */}
-          {/* <PassionImageField /> */}
         </main>
       </div>
     </>
