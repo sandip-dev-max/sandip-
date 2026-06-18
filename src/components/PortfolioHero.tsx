@@ -10,6 +10,7 @@ import { HERO_TECH_TAGS } from "@/constants/hero";
 import { useHeroScrollReveal } from "@/hooks/use-hero-scroll-reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { gsap } from "@/lib/gsap";
+import Image from "next/image";
 
 export function PortfolioHero() {
   const reducedMotion = usePrefersReducedMotion();
@@ -100,11 +101,12 @@ export function PortfolioHero() {
                   </div>
 
                   <div className="mt-4 h-[50vh] w-full overflow-hidden border border-brutal-border">
-                    <img
+                    <Image
                       src="/hero.jpeg"
                       alt="Sandip Bhatta - Full Stack Developer, Entrepreneur and Founder"
-                      data-webgl-image
-                      className="hero-image h-full w-full object-cover object-center"
+                      fill
+                      className="hero-image object-cover object-center"
+                      priority
                     />
                   </div>
 
