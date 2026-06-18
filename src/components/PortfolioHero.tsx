@@ -100,15 +100,15 @@ export function PortfolioHero() {
                     ))}
                   </div>
 
-                  <div className="mt-4 h-[50vh] w-full overflow-hidden border border-brutal-border">
-                    <Image
-                      src="/hero.jpeg"
-                      alt="Sandip Bhatta - Full Stack Developer, Entrepreneur and Founder"
-                      fill
-                      className="hero-image object-cover object-center"
-                      priority
-                    />
-                  </div>
+                  <div className="mt-1 mx-auto h-48 w-full max-w-sm overflow-hidden border border-brutal-border relative">
+  <Image
+    src="/hero.jpeg"
+    alt="Sandip Bhatta - Full Stack Developer, Entrepreneur and Founder"
+    fill
+    className="hero-image object-cover object-center"
+    priority
+  />
+</div>
 
                   <div className="mt-4 flex items-start gap-3 font-mono text-[10px] uppercase leading-relaxed tracking-widest text-brutal-fg/70 md:mt-5">
                     <span className="text-base leading-none" aria-hidden>
