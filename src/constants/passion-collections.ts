@@ -95,3 +95,5 @@ export const PASSION_COLLECTIONS: EditorialCollection[] = [
     ],
   },
 ];
+export type PassionCollection = EditorialCollection;
+export type PassionCollectionItem = EditorialItem;
