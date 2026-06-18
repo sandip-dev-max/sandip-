@@ -62,7 +62,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
           href="/"
           className={`${pinyonScript.className} shrink-0 text-xl leading-none sm:text-3xl ${overlay ? "text-white" : "text-brutal-fg"}`}
         >
-          Yudeat
+          Sandy
         </Link>
 
         <div className="flex min-w-0 items-center justify-end gap-1.5 sm:gap-3">
@@ -82,7 +82,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
           </button>
 
           <Link
-            href="https://www.linkedin.com/in/yudeat/"
+            href="https://www.linkedin.com/in/sandipbhatta-dev/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -92,7 +92,7 @@ export function PortfolioHeader({ overlay = false }: PortfolioHeaderProps) {
           </Link>
 
           <Link
-            href="https://github.com/yudeat"
+            href="https://github.com/sandip-dev-max"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"

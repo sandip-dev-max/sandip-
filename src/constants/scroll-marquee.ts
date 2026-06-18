@@ -1,10 +1,10 @@
 export const SCROLL_MARQUEE_PHRASES = [
-  "Design systems",
-  "Scroll storytelling",
-  "WebGL distortion",
-  "Brutalist UI",
-  "Frontend craft",
-  "Brand websites",
-  "Motion design",
-  "Creative development",
+  "Full Stack Developer",
+  "Entrepreneur",
+  "Fashion Enthusiast",
+  "Videographer",
+  "Photographer",
+  "Creative Designer",
+  "Product Builder",
+  "Founder",
 ] as const;

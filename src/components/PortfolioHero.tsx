@@ -99,13 +99,12 @@ export function PortfolioHero() {
                     ))}
                   </div>
 
-                  <div className="mt-5 aspect-[16/7] w-full overflow-hidden border border-brutal-border md:mt-6">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <div className="mt-4 h-[50vh] w-full overflow-hidden border border-brutal-border">
                     <img
-                      src="/hero.png"
-                      alt="Yudeat in front of a lake and mountains"
+                      src="/hero.jpeg"
+                      alt="Sandip Bhatta - Full Stack Developer, Entrepreneur and Founder"
                       data-webgl-image
-                      className="hero-image h-full w-full object-cover object-[center_68%]"
+                      className="hero-image h-full w-full object-cover object-center"
                     />
                   </div>
 
@@ -116,7 +115,7 @@ export function PortfolioHero() {
                     <p>
                       Based in Kathmandu,
                       <br />
-                      passionate in architect &amp; UI
+                      Full Stack Developer & Entrepreneur
                     </p>
                   </div>
                 </div>
@@ -146,7 +145,7 @@ export function PortfolioHero() {
 
                   <div className="flex flex-col gap-6 lg:items-end lg:text-right">
                     <h2 className="font-sans text-4xl font-black uppercase leading-[0.88] tracking-tighter md:text-6xl lg:text-7xl xl:text-8xl">
-                      Yudeat
+                      Sandy
                     </h2>
 
                     <div className="flex flex-col gap-3 font-mono text-[10px] uppercase tracking-widest text-brutal-fg/60 lg:items-end">
@@ -155,7 +154,7 @@ export function PortfolioHero() {
                         type="button"
                         className="inline-flex w-fit items-center gap-2 rounded-full border border-brutal-border px-4 py-2 text-brutal-fg transition-colors hover:border-brutal-fg hover:bg-brutal-fg hover:text-brutal-bg"
                       >
-                        Selected work
+                        Explore My Work
                         <span aria-hidden>↘</span>
                       </button>
                       <span className="text-brutal-fg/45">
@@ -172,12 +171,12 @@ export function PortfolioHero() {
               className="relative z-10 col-start-1 row-start-2 flex shrink-0 items-center justify-between border-t border-brutal-border px-5 py-4 font-mono text-[10px] uppercase tracking-widest text-brutal-fg/55 will-change-transform sm:px-8 sm:py-5 lg:px-10"
             >
               <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-                <span>Design &amp; code by Yudeat</span>
+                <span>Design &amp; code by Sandy</span>
                 <button
                   type="button"
                   className="flex items-center gap-2 transition-colors hover:text-brutal-fg"
                 >
-                  Climb
+                  Code
                   <span
                     className="h-1.5 w-1.5 rounded-full bg-brutal-fg"
                     aria-hidden

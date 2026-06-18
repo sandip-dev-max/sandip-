@@ -3,22 +3,22 @@ export type IdentitySidebarItem = {
   number: string;
   label: string;
   href: string;
-  accent: "writer" | "mountaineer";
+  accent: "Developer" | "Founder";
 };
 
 export const IDENTITY_SIDEBAR_ITEMS: IdentitySidebarItem[] = [
   {
-    id: "writer",
+    id: "Developer",
     number: "01",
-    label: "Writer",
-    href: "/writer",
-    accent: "writer",
+    label: "Developer",
+    href: "/Developer",
+    accent: "Developer",
   },
   {
-    id: "mountaineer",
+    id: "Founder",
     number: "02",
-    label: "Mountaineer",
+    label: "Founder",
     href: "/passion",
-    accent: "mountaineer",
+    accent: "Founder",
   },
 ];

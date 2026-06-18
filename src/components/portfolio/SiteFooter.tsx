@@ -300,7 +300,7 @@ export function SiteFooter() {
                 data-footer-brand
                 className="select-none text-center font-sans text-[clamp(2.75rem,12vw,7.5rem)] font-black uppercase leading-[0.82] tracking-tighter text-brutal-fg sm:text-[clamp(3rem,14vw,9rem)] lg:text-[clamp(3.25rem,12vw,10rem)]"
               >
-                YUDEAT
+                SANDIP
               </p>
               <FooterCreditBlock className="text-center" />
             </div>

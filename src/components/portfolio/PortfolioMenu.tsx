@@ -142,7 +142,7 @@ export function PortfolioMenu({ open, onClose }: PortfolioMenuProps) {
           onClick={handleNavClick}
           className={`${pinyonScript.className} w-fit text-3xl leading-none sm:text-4xl`}
         >
-          Yudeat
+          Sandip
         </Link>
 
         <nav className="mt-8 flex flex-col gap-0.5 sm:mt-20 sm:gap-2" aria-label="Main">

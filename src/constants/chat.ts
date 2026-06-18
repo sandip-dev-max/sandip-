@@ -1,5 +1,5 @@
 export const CHAT_INTRO =
-  "Hey — I'm Yudeat. Got a project, collab, or question? What's your name?";
+  "Hey — I'm Sandip. Got a project, collab, or question? What's your name?";
 
 export const CHAT_PROMPTS = {
   email: (name: string) =>

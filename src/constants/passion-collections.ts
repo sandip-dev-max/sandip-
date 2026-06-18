@@ -1,8 +1,8 @@
-export type PassionCollectionLayout = "note" | "square" | "wide" | "tall";
+export type EditorialLayout = "note" | "square" | "wide" | "tall";
 
-export type PassionCollectionItem = {
+export type EditorialItem = {
   id: string;
-  layout: PassionCollectionLayout;
+  layout: EditorialLayout;
   title?: string;
   description: string;
   caption?: string;
@@ -11,86 +11,87 @@ export type PassionCollectionItem = {
   href?: string;
 };
 
-export type PassionCollection = {
+export type EditorialCollection = {
   id: string;
   title: string;
-  items: PassionCollectionItem[];
+  items: EditorialItem[];
 };
 
-export const PASSION_COLLECTIONS: PassionCollection[] = [
+export const PASSION_COLLECTIONS: EditorialCollection[] = [
   {
-    id: "collections-mountains",
-    title: "Obsession with mountains & light",
+    id: "collections-fashion",
+    title: "Obsession with fashion & identity",
     items: [
       {
-        id: "ridge-grid",
+        id: "street-style-notes",
         layout: "note",
-        caption: "Fig 9: Elevation lines from a valley field sketch",
+        caption: "Fig 9: Everyday style observations",
         description:
-          "Before I shoot, I draw quick horizon studies — spacing, weight, and where the eye should rest.",
+          "I study how people dress in real environments — layering, color balance, and confidence in simple outfits.",
       },
       {
-        id: "misplaced-ridge",
+        id: "minimal-aesthetic",
         layout: "square",
-        title: "Ridge Studies",
+        title: "Minimal Aesthetic",
         description:
-          "A personal series that isolates Himalayan ridgelines from context — only snow, rock, and negative space. The frame becomes the story.",
-        imageSrc: "/field/IMG_6730.jpg",
-        imageAlt: "Snow-covered peaks rising above a cloud inversion",
+          "A personal focus on clean silhouettes, neutral tones, and structured fits. Less noise, more presence.",
+        imageSrc: "/min.jpeg",
+        imageAlt: "Minimal fashion aesthetic styling",
         href: "/passion#chapter-3",
       },
       {
-        id: "scroll-room",
+        id: "photography-mood",
         layout: "wide",
-        title: "Scroll Rooms",
+        title: "Fashion Photography",
         description:
-          "Experimental browser scenes where each scroll step opens a new room — part portfolio, part comic, part spatial essay about how we read interfaces.",
-        imageSrc: "/field/IMG_6689.jpg",
-        imageAlt: "Warm light across a mountain landscape",
+          "Short-form visual experiments capturing movement, fabric flow, and cinematic lighting inspired by street culture and modern brands.",
+        imageSrc: "/max.jpeg",
+        imageAlt: "Cinematic fashion photography frame",
       },
       {
-        id: "facades",
+        id: "urban-fit-stories",
         layout: "tall",
-        title: "Facades",
+        title: "Urban Fit Stories",
         description:
-          "Photographing concrete, brick, and temple timber without perspective drama. Straight lines, honest materials, and the quiet geometry of Kathmandu alleys.",
-        imageSrc: "/field/IMG_6664.jpg",
-        imageAlt: "Concrete and timber geometry in Kathmandu alleys",
+          "Every outfit is a narrative — captured in Kathmandu streets, where culture, weather, and mood shape personal style.",
+        imageSrc: "/minimal.jpeg",
+        imageAlt: "Street fashion in urban Kathmandu environment",
       },
     ],
   },
+
   {
-    id: "collections-design",
-    title: "Obsession with design and space",
+    id: "collections-creative-lens",
+    title: "Obsession with visuals & storytelling",
     items: [
       {
-        id: "street-signs",
+        id: "fashion-signage",
         layout: "tall",
-        title: "Street Signs of Kathmandu",
+        title: "Visual Identity in Streets",
         description:
-          "Hand-painted shop boards, rusted wayfinding, and improvised typography on corrugated metal. A growing archive of urban vernacular.",
+          "Typography, posters, shopfronts — I look at how visual communication in public spaces influences modern branding and fashion identity.",
         imageSrc: "/field/IMG_6659.jpg",
-        imageAlt: "Street typography and urban vernacular in Kathmandu",
-        caption: "Field notes from Thamel to Patan",
+        imageAlt: "Street typography and visual culture",
+        caption: "Found design language in real environments",
       },
       {
-        id: "blindsight",
+        id: "cinematic-ui",
         layout: "wide",
-        title: "Night Interfaces",
+        title: "Cinematic Interfaces",
         description:
-          "Dark UI studies inspired by cinema — memory panels, glowing accents, and interfaces that feel like scenes instead of dashboards.",
-        imageSrc: "/project1.png",
-        imageAlt: "Education platform UI with dark cinematic panels",
+          "UI inspired by fashion films and editorial shoots — dark tones, bold contrast, and storytelling through layout rhythm.",
+        imageSrc: "/explore.jpg",
+        imageAlt: "Cinematic digital interface design",
       },
-      {
-        id: "form-field",
-        layout: "wide",
-        title: "Form & Field",
-        description:
-          "I collect visual rhymes. I photograph ordinary spaces and pair frames that complete each other — hills with grids, handwriting with wireframes.",
-        imageSrc: "/field/IMG_6704.jpg",
-        imageAlt: "Field frame pairing landscape with visual rhythm",
-      },
+      // {
+      //   id: "style-fragments",
+      //   layout: "wide",
+      //   title: "Fragments of Style",
+      //   description:
+      //     "I don’t just capture outfits — I capture fragments: hands adjusting sleeves, shadows on fabric, movement between frames.",
+      //   imageSrc: "/field/IMG_6704.jpg",
+      //   imageAlt: "Fashion detail and movement study",
+      // },
     ],
   },
 ];

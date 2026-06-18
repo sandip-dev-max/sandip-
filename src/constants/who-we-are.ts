@@ -28,26 +28,26 @@ export const WHO_WE_ARE_NAV = {
 } as const;
 
 export const WHO_WE_ARE_BIO = {
-  name: "Yudeat",
-  headline: "Building digital experiences that stick",
+  name: "Sandip Bhatta",
+  headline: "Building technology, brands, and businesses",
   lead:
-    "My name is Yudeat — designer, front-end developer, and visual storyteller. I care about typography, brutalist structure, and work that feels alive in the browser.",
-  trail: `Based in ${SITE_LOCATION}, I ship for clients worldwide and keep one foot in the mountains.`,
+    "My name is Sandip Bhatta — a Full Stack Developer, Entrepreneur, Founder, and IT student from Nepal. I enjoy building modern web applications, digital products, and business solutions that blend technology, creativity, and innovation.",
+  trail: `Based in ${SITE_LOCATION}, I'm passionate about full stack development, entrepreneurship, UI/UX, and creating products that solve real-world problems.`,
   readMoreLabel: "Read my story",
   readMoreHref: "/passion",
-  contactLabel: "Say hello",
+  contactLabel: "Let's connect",
   contactHref: "#contact",
 } as const;
 
 export const WHO_WE_ARE_STAT = {
-  value: "4+",
+  value: "3+",
   label: "projects shipped",
   note: "Real products for real users — design, code, and polish in one loop.",
 } as const;
 
 export const WHO_WE_ARE_CONTACT_CARD = {
-  name: "Yudeat",
-  role: "designer & front-end developer",
+  name: "Sandip",
+  role: "Developer & Founder",
   phone: SITE_PHONE_DISPLAY,
   email: SITE_CONTACT_EMAIL,
   coordinates: "27°42′ N, 85°19′ E",

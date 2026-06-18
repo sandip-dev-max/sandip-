@@ -1,321 +1,321 @@
-"use client";
+// "use client";
 
-import { useGSAP } from "@gsap/react";
-import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  IMAGE_FIELD_INNER_ITEMS,
-  IMAGE_FIELD_SURFACE_ITEMS,
-  IMAGE_FIELD_TAGS,
-  type ImageFieldItem,
-  type ImageFieldTag,
-} from "@/constants/image-field";
-import { FieldPieceViewer } from "@/components/passion/FieldPieceViewer";
-import { PassionFieldFooter } from "@/components/passion/PassionFieldFooter";
-import { useFieldScrollDive } from "@/hooks/use-field-scroll-dive";
-import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
-import { setScrollLocked } from "@/lib/scroll-lock";
-import { gsap } from "@/lib/gsap";
+// import { useGSAP } from "@gsap/react";
+// import Image from "next/image";
+// import { useCallback, useEffect, useRef, useState } from "react";
+// import {
+//   IMAGE_FIELD_INNER_ITEMS,
+//   IMAGE_FIELD_SURFACE_ITEMS,
+//   IMAGE_FIELD_TAGS,
+//   type ImageFieldItem,
+//   type ImageFieldTag,
+// } from "@/constants/image-field";
+// import { FieldPieceViewer } from "@/components/passion/FieldPieceViewer";
+// import { PassionFieldFooter } from "@/components/passion/PassionFieldFooter";
+// import { useFieldScrollDive } from "@/hooks/use-field-scroll-dive";
+// import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+// import { setScrollLocked } from "@/lib/scroll-lock";
+// import { gsap } from "@/lib/gsap";
 
-const ARIA_PRESSED_TRUE = { "aria-pressed": "true" } as const;
-const ARIA_PRESSED_FALSE = { "aria-pressed": "false" } as const;
+// const ARIA_PRESSED_TRUE = { "aria-pressed": "true" } as const;
+// const ARIA_PRESSED_FALSE = { "aria-pressed": "false" } as const;
 
-function FieldPiece({
-  item,
-  setRef,
-  variant,
-  isSelected,
-  onSelect,
-}: {
-  item: ImageFieldItem;
-  setRef: (id: string) => (node: HTMLDivElement | null) => void;
-  variant: "outer" | "inner";
-  isSelected: boolean;
-  onSelect: (item: ImageFieldItem) => void;
-}) {
-  const handleActivate = () => onSelect(item);
+// function FieldPiece({
+//   item,
+//   setRef,
+//   variant,
+//   isSelected,
+//   onSelect,
+// }: {
+//   item: ImageFieldItem;
+//   setRef: (id: string) => (node: HTMLDivElement | null) => void;
+//   variant: "outer" | "inner";
+//   isSelected: boolean;
+//   onSelect: (item: ImageFieldItem) => void;
+// }) {
+//   const handleActivate = () => onSelect(item);
 
-  return (
-    <div
-      ref={setRef(item.id)}
-      role="button"
-      tabIndex={0}
-      onClick={handleActivate}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          handleActivate();
-        }
-      }}
-      className={`field-piece field-piece--interactive ${
-        variant === "inner" ? "field-piece--inner" : "field-piece--outer"
-      } ${isSelected ? "field-piece--selected" : ""}`}
-      data-field-id={item.id}
-      data-tags={item.tags.join(" ")}
-      data-depth={variant}
-      aria-label={`View ${item.alt}`}
-      {...(isSelected ? ARIA_PRESSED_TRUE : ARIA_PRESSED_FALSE)}
-    >
-      <div className="field-piece-frame field-piece-frame-3d overflow-hidden bg-[#f4f4f4] shadow-[0_18px_50px_-28px_rgba(17,17,17,0.45)] ring-1 ring-brutal-fg/[0.07]">
-        <div className="relative h-full w-full">
-          <Image
-            src={item.src}
-            alt={item.alt}
-            fill
-            sizes={
-              variant === "inner"
-                ? "(max-width: 767px) 22vw, 12vw"
-                : "(max-width: 767px) 32vw, 18vw"
-            }
-            className="field-piece-image object-cover object-center"
-            loading={variant === "inner" ? "lazy" : undefined}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div
+//       ref={setRef(item.id)}
+//       role="button"
+//       tabIndex={0}
+//       onClick={handleActivate}
+//       onKeyDown={(event) => {
+//         if (event.key === "Enter" || event.key === " ") {
+//           event.preventDefault();
+//           handleActivate();
+//         }
+//       }}
+//       className={`field-piece field-piece--interactive ${
+//         variant === "inner" ? "field-piece--inner" : "field-piece--outer"
+//       } ${isSelected ? "field-piece--selected" : ""}`}
+//       data-field-id={item.id}
+//       data-tags={item.tags.join(" ")}
+//       data-depth={variant}
+//       aria-label={`View ${item.alt}`}
+//       {...(isSelected ? ARIA_PRESSED_TRUE : ARIA_PRESSED_FALSE)}
+//     >
+//       <div className="field-piece-frame field-piece-frame-3d overflow-hidden bg-[#f4f4f4] shadow-[0_18px_50px_-28px_rgba(17,17,17,0.45)] ring-1 ring-brutal-fg/[0.07]">
+//         <div className="relative h-full w-full">
+//           <Image
+//             src={item.src}
+//             alt={item.alt}
+//             fill
+//             sizes={
+//               variant === "inner"
+//                 ? "(max-width: 767px) 22vw, 12vw"
+//                 : "(max-width: 767px) 32vw, 18vw"
+//             }
+//             className="field-piece-image object-cover object-center"
+//             loading={variant === "inner" ? "lazy" : undefined}
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
-export function PassionImageField() {
-  const reducedMotion = usePrefersReducedMotion();
-  const [activeTag, setActiveTag] = useState<ImageFieldTag>("all");
-  const [selectedItem, setSelectedItem] = useState<ImageFieldItem | null>(null);
+// export function PassionImageField() {
+//   const reducedMotion = usePrefersReducedMotion();
+//   const [activeTag, setActiveTag] = useState<ImageFieldTag>("all");
+//   const [selectedItem, setSelectedItem] = useState<ImageFieldItem | null>(null);
 
-  const sectionRef = useRef<HTMLElement>(null);
-  const scrollStageRef = useRef<HTMLDivElement>(null);
-  const pinViewportRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLDivElement>(null);
-  const worldRef = useRef<HTMLDivElement>(null);
-  const coreRef = useRef<HTMLDivElement>(null);
-  const vignetteRef = useRef<HTMLDivElement>(null);
-  const hintRef = useRef<HTMLParagraphElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const outerRefs = useRef<Record<string, HTMLDivElement | null>>({});
-  const innerRefs = useRef<Record<string, HTMLDivElement | null>>({});
+//   const sectionRef = useRef<HTMLElement>(null);
+//   const scrollStageRef = useRef<HTMLDivElement>(null);
+//   const pinViewportRef = useRef<HTMLDivElement>(null);
+//   const canvasRef = useRef<HTMLDivElement>(null);
+//   const worldRef = useRef<HTMLDivElement>(null);
+//   const coreRef = useRef<HTMLDivElement>(null);
+//   const vignetteRef = useRef<HTMLDivElement>(null);
+//   const hintRef = useRef<HTMLParagraphElement>(null);
+//   const headerRef = useRef<HTMLDivElement>(null);
+//   const outerRefs = useRef<Record<string, HTMLDivElement | null>>({});
+//   const innerRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  const setOuterRef = useCallback(
-    (id: string) => (node: HTMLDivElement | null) => {
-      outerRefs.current[id] = node;
-    },
-    [],
-  );
+//   const setOuterRef = useCallback(
+//     (id: string) => (node: HTMLDivElement | null) => {
+//       outerRefs.current[id] = node;
+//     },
+//     [],
+//   );
 
-  const setInnerRef = useCallback(
-    (id: string) => (node: HTMLDivElement | null) => {
-      innerRefs.current[id] = node;
-    },
-    [],
-  );
+//   const setInnerRef = useCallback(
+//     (id: string) => (node: HTMLDivElement | null) => {
+//       innerRefs.current[id] = node;
+//     },
+//     [],
+//   );
 
-  const isVisible = useCallback(
-    (tags: ImageFieldItem["tags"]) =>
-      activeTag === "all" || tags.includes(activeTag),
-    [activeTag],
-  );
+//   const isVisible = useCallback(
+//     (tags: ImageFieldItem["tags"]) =>
+//       activeTag === "all" || tags.includes(activeTag),
+//     [activeTag],
+//   );
 
-  const handleSelectPiece = useCallback((item: ImageFieldItem) => {
-    setSelectedItem((current) => (current?.id === item.id ? null : item));
-  }, []);
+//   const handleSelectPiece = useCallback((item: ImageFieldItem) => {
+//     setSelectedItem((current) => (current?.id === item.id ? null : item));
+//   }, []);
 
-  const handleCloseViewer = useCallback(() => {
-    setSelectedItem(null);
-  }, []);
+//   const handleCloseViewer = useCallback(() => {
+//     setSelectedItem(null);
+//   }, []);
 
-  useEffect(() => {
-    setScrollLocked(selectedItem !== null);
-    return () => setScrollLocked(false);
-  }, [selectedItem]);
+//   useEffect(() => {
+//     setScrollLocked(selectedItem !== null);
+//     return () => setScrollLocked(false);
+//   }, [selectedItem]);
 
-  useFieldScrollDive(
-    {
-      scrollStage: scrollStageRef,
-      pinViewport: pinViewportRef,
-      canvas: canvasRef,
-      world: worldRef,
-      core: coreRef,
-      vignette: vignetteRef,
-      hint: hintRef,
-      header: headerRef,
-      outerPieceRefs: outerRefs,
-      innerPieceRefs: innerRefs,
-    },
-    reducedMotion,
-  );
+//   useFieldScrollDive(
+//     {
+//       scrollStage: scrollStageRef,
+//       pinViewport: pinViewportRef,
+//       canvas: canvasRef,
+//       world: worldRef,
+//       core: coreRef,
+//       vignette: vignetteRef,
+//       hint: hintRef,
+//       header: headerRef,
+//       outerPieceRefs: outerRefs,
+//       innerPieceRefs: innerRefs,
+//     },
+//     reducedMotion,
+//   );
 
-  useGSAP(
-    () => {
-      IMAGE_FIELD_SURFACE_ITEMS.forEach((item) => {
-        const node = outerRefs.current[item.id];
-        if (!node) return;
+//   useGSAP(
+//     () => {
+//       IMAGE_FIELD_SURFACE_ITEMS.forEach((item) => {
+//         const node = outerRefs.current[item.id];
+//         if (!node) return;
 
-        const visible = isVisible(item.tags);
+//         const visible = isVisible(item.tags);
 
-        if (reducedMotion) {
-          node.style.visibility = visible ? "visible" : "hidden";
-          return;
-        }
+//         if (reducedMotion) {
+//           node.style.visibility = visible ? "visible" : "hidden";
+//           return;
+//         }
 
-        gsap.to(node, {
-          autoAlpha: visible ? 1 : 0,
-          duration: 0.4,
-          ease: "power2.out",
-        });
-      });
-    },
-    { scope: sectionRef, dependencies: [activeTag, reducedMotion, isVisible] },
-  );
+//         gsap.to(node, {
+//           autoAlpha: visible ? 1 : 0,
+//           duration: 0.4,
+//           ease: "power2.out",
+//         });
+//       });
+//     },
+//     { scope: sectionRef, dependencies: [activeTag, reducedMotion, isVisible] },
+//   );
 
-  return (
-    <section
-      id="image-field"
-      ref={sectionRef}
-      className="passion-image-field relative border-t border-brutal-fg/[0.07] bg-white text-brutal-fg"
-      aria-labelledby="image-field-heading"
-    >
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-2 bg-gradient-to-r from-[#e85d4c] via-[#f0c27b] to-[#4a6fa5] opacity-90"
-        aria-hidden="true"
-      />
+//   return (
+//     <section
+//       id="image-field"
+//       ref={sectionRef}
+//       className="passion-image-field relative border-t border-brutal-fg/[0.07] bg-white text-brutal-fg"
+//       aria-labelledby="image-field-heading"
+//     >
+//       <div
+//         className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-2 bg-gradient-to-r from-[#e85d4c] via-[#f0c27b] to-[#4a6fa5] opacity-90"
+//         aria-hidden="true"
+//       />
 
-      <div className="relative mx-auto max-w-[96rem] px-4 pt-10 sm:px-8 sm:pt-16 lg:px-10">
-        <div
-          ref={scrollStageRef}
-          className="field-scroll-stage relative"
-          aria-label="Scroll to enter the image field"
-        >
-          <div
-            ref={pinViewportRef}
-            className={`field-pin-viewport relative h-[100svh] w-full overflow-hidden touch-pan-y ${
-              selectedItem ? "field-pin-viewport--viewer-open" : ""
-            }`}
-          >
-            <div
-              ref={headerRef}
-              className="field-stage-header relative z-20 will-change-transform"
-            >
-              <div className="field-header-grid grid gap-4 sm:gap-8 lg:grid-cols-[auto_1fr] lg:items-end lg:gap-12">
-                <p
-                  className="field-brand-static font-sans text-[clamp(2rem,10vw,4rem)] font-black uppercase leading-none tracking-[-0.06em]"
-                  aria-hidden="true"
-                >
-                  Field
-                </p>
-                <div>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-brutal-fg/45 sm:text-[10px] sm:tracking-[0.2em]">
-                    Visual archive
-                  </p>
-                  <h2
-                    id="image-field-heading"
-                    className="mt-2 max-w-xl font-sans text-[clamp(1.25rem,5vw,2.25rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-brutal-fg sm:mt-3 sm:leading-[1.1]"
-                  >
-                    Scattered notes from shoots, screens, and walks
-                  </h2>
-                </div>
-              </div>
-            </div>
+//       <div className="relative mx-auto max-w-[96rem] px-4 pt-10 sm:px-8 sm:pt-16 lg:px-10">
+//         <div
+//           ref={scrollStageRef}
+//           className="field-scroll-stage relative"
+//           aria-label="Scroll to enter the image field"
+//         >
+//           <div
+//             ref={pinViewportRef}
+//             className={`field-pin-viewport relative h-[100svh] w-full overflow-hidden touch-pan-y ${
+//               selectedItem ? "field-pin-viewport--viewer-open" : ""
+//             }`}
+//           >
+//             <div
+//               ref={headerRef}
+//               className="field-stage-header relative z-20 will-change-transform"
+//             >
+//               <div className="field-header-grid grid gap-4 sm:gap-8 lg:grid-cols-[auto_1fr] lg:items-end lg:gap-12">
+//                 <p
+//                   className="field-brand-static font-sans text-[clamp(2rem,10vw,4rem)] font-black uppercase leading-none tracking-[-0.06em]"
+//                   aria-hidden="true"
+//                 >
+//                   Field
+//                 </p>
+//                 <div>
+//                   <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-brutal-fg/45 sm:text-[10px] sm:tracking-[0.2em]">
+//                     Visual archive
+//                   </p>
+//                   <h2
+//                     id="image-field-heading"
+//                     className="mt-2 max-w-xl font-sans text-[clamp(1.25rem,5vw,2.25rem)] font-semibold leading-[1.12] tracking-[-0.03em] text-brutal-fg sm:mt-3 sm:leading-[1.1]"
+//                   >
+//                     Scattered notes from shoots, screens, and walks
+//                   </h2>
+//                 </div>
+//               </div>
+//             </div>
 
-            <div
-              ref={vignetteRef}
-              className="field-vignette pointer-events-none absolute inset-0 z-[25]"
-              aria-hidden="true"
-            />
+//             <div
+//               ref={vignetteRef}
+//               className="field-vignette pointer-events-none absolute inset-0 z-[25]"
+//               aria-hidden="true"
+//             />
 
-            <div
-              ref={coreRef}
-              className="field-core pointer-events-none absolute inset-0 z-[22] flex flex-col items-center justify-center px-4 text-center sm:px-6"
-            >
-              <p className="field-core-eyebrow font-mono text-[9px] uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.22em]">
-                Inside the archive
-              </p>
-              <p className="field-core-headline mt-3 max-w-[16rem] font-sans text-[clamp(1.05rem,4.8vw,2rem)] font-semibold leading-[1.18] tracking-[-0.03em] sm:mt-4 sm:max-w-md sm:leading-[1.15]">
-                Surrounded by frames, screens, and mountain light
-              </p>
-              <p className="field-core-sub mt-2 max-w-[14rem] font-sans text-[0.8125rem] leading-relaxed sm:mt-3 sm:max-w-sm sm:text-sm">
-                Keep scrolling, then tap a frame to view
-              </p>
-            </div>
+//             <div
+//               ref={coreRef}
+//               className="field-core pointer-events-none absolute inset-0 z-[22] flex flex-col items-center justify-center px-4 text-center sm:px-6"
+//             >
+//               <p className="field-core-eyebrow font-mono text-[9px] uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.22em]">
+//                 Inside the archive
+//               </p>
+//               <p className="field-core-headline mt-3 max-w-[16rem] font-sans text-[clamp(1.05rem,4.8vw,2rem)] font-semibold leading-[1.18] tracking-[-0.03em] sm:mt-4 sm:max-w-md sm:leading-[1.15]">
+//                 Surrounded by frames, screens, and mountain light
+//               </p>
+//               <p className="field-core-sub mt-2 max-w-[14rem] font-sans text-[0.8125rem] leading-relaxed sm:mt-3 sm:max-w-sm sm:text-sm">
+//                 Keep scrolling, then tap a frame to view
+//               </p>
+//             </div>
 
-            <div
-              ref={canvasRef}
-              className="field-canvas field-canvas-dive field-canvas-3d absolute inset-x-0 top-[16%] bottom-[10%] mx-auto max-w-[96rem] sm:top-[14%] sm:bottom-[9%] lg:top-[12%] lg:bottom-[8%]"
-            >
-              <div
-                ref={worldRef}
-                className="field-world-3d relative h-full w-full will-change-transform"
-              >
-                {IMAGE_FIELD_SURFACE_ITEMS.map((item) => (
-                  <FieldPiece
-                    key={item.id}
-                    item={item}
-                    setRef={setOuterRef}
-                    variant="outer"
-                    isSelected={selectedItem?.id === item.id}
-                    onSelect={handleSelectPiece}
-                  />
-                ))}
-                {IMAGE_FIELD_INNER_ITEMS.map((item) => (
-                  <FieldPiece
-                    key={item.id}
-                    item={item}
-                    setRef={setInnerRef}
-                    variant="inner"
-                    isSelected={selectedItem?.id === item.id}
-                    onSelect={handleSelectPiece}
-                  />
-                ))}
-              </div>
-            </div>
+//             <div
+//               ref={canvasRef}
+//               className="field-canvas field-canvas-dive field-canvas-3d absolute inset-x-0 top-[16%] bottom-[10%] mx-auto max-w-[96rem] sm:top-[14%] sm:bottom-[9%] lg:top-[12%] lg:bottom-[8%]"
+//             >
+//               <div
+//                 ref={worldRef}
+//                 className="field-world-3d relative h-full w-full will-change-transform"
+//               >
+//                 {IMAGE_FIELD_SURFACE_ITEMS.map((item) => (
+//                   <FieldPiece
+//                     key={item.id}
+//                     item={item}
+//                     setRef={setOuterRef}
+//                     variant="outer"
+//                     isSelected={selectedItem?.id === item.id}
+//                     onSelect={handleSelectPiece}
+//                   />
+//                 ))}
+//                 {IMAGE_FIELD_INNER_ITEMS.map((item) => (
+//                   <FieldPiece
+//                     key={item.id}
+//                     item={item}
+//                     setRef={setInnerRef}
+//                     variant="inner"
+//                     isSelected={selectedItem?.id === item.id}
+//                     onSelect={handleSelectPiece}
+//                   />
+//                 ))}
+//               </div>
+//             </div>
 
-            <p
-              ref={hintRef}
-              className="field-scroll-hint absolute bottom-6 left-1/2 z-30 max-w-[14rem] -translate-x-1/2 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-brutal-fg/45 sm:bottom-8 sm:max-w-none sm:text-[10px] sm:tracking-[0.18em]"
-            >
-              <span className="sm:hidden">Swipe up to enter the field ↓</span>
-              <span className="hidden sm:inline">Scroll to enter ↓</span>
-            </p>
-          </div>
-        </div>
+//             <p
+//               ref={hintRef}
+//               className="field-scroll-hint absolute bottom-6 left-1/2 z-30 max-w-[14rem] -translate-x-1/2 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-brutal-fg/45 sm:bottom-8 sm:max-w-none sm:text-[10px] sm:tracking-[0.18em]"
+//             >
+//               <span className="sm:hidden">Swipe up to enter the field ↓</span>
+//               <span className="hidden sm:inline">Scroll to enter ↓</span>
+//             </p>
+//           </div>
+//         </div>
 
-        <nav
-          className="field-filter-nav relative z-10 mt-8 border-t border-brutal-fg/[0.08] pt-6 sm:mt-10 sm:pt-8"
-          aria-label="Image field filters"
-        >
-          <div className="field-tag-row flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5">
-            {IMAGE_FIELD_TAGS.map((tag) =>
-              activeTag === tag ? (
-                <button
-                  key={tag}
-                  type="button"
-                  onClick={() => setActiveTag(tag)}
-                  aria-pressed="true"
-                  className="rounded-full border border-brutal-fg bg-brutal-fg px-3 py-1.5 font-mono text-[10px] lowercase tracking-[0.06em] text-white transition-colors sm:px-4 sm:py-2 sm:text-[11px]"
-                >
-                  {tag}
-                </button>
-              ) : (
-                <button
-                  key={tag}
-                  type="button"
-                  onClick={() => setActiveTag(tag)}
-                  aria-pressed="false"
-                  className="rounded-full border border-brutal-fg/22 bg-white px-3 py-1.5 font-mono text-[10px] lowercase tracking-[0.06em] text-brutal-fg transition-colors hover:border-brutal-fg/45 sm:px-4 sm:py-2 sm:text-[11px]"
-                >
-                  {tag}
-                </button>
-              ),
-            )}
-          </div>
-          <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-brutal-fg/38">
-            Filter the field
-          </p>
-        </nav>
-      </div>
+//         <nav
+//           className="field-filter-nav relative z-10 mt-8 border-t border-brutal-fg/[0.08] pt-6 sm:mt-10 sm:pt-8"
+//           aria-label="Image field filters"
+//         >
+//           <div className="field-tag-row flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5">
+//             {IMAGE_FIELD_TAGS.map((tag) =>
+//               activeTag === tag ? (
+//                 <button
+//                   key={tag}
+//                   type="button"
+//                   onClick={() => setActiveTag(tag)}
+//                   aria-pressed="true"
+//                   className="rounded-full border border-brutal-fg bg-brutal-fg px-3 py-1.5 font-mono text-[10px] lowercase tracking-[0.06em] text-white transition-colors sm:px-4 sm:py-2 sm:text-[11px]"
+//                 >
+//                   {tag}
+//                 </button>
+//               ) : (
+//                 <button
+//                   key={tag}
+//                   type="button"
+//                   onClick={() => setActiveTag(tag)}
+//                   aria-pressed="false"
+//                   className="rounded-full border border-brutal-fg/22 bg-white px-3 py-1.5 font-mono text-[10px] lowercase tracking-[0.06em] text-brutal-fg transition-colors hover:border-brutal-fg/45 sm:px-4 sm:py-2 sm:text-[11px]"
+//                 >
+//                   {tag}
+//                 </button>
+//               ),
+//             )}
+//           </div>
+//           <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-brutal-fg/38">
+//             Filter the field
+//           </p>
+//         </nav>
+//       </div>
 
-      {selectedItem ? (
-        <FieldPieceViewer item={selectedItem} onClose={handleCloseViewer} />
-      ) : null}
+//       {selectedItem ? (
+//         <FieldPieceViewer item={selectedItem} onClose={handleCloseViewer} />
+//       ) : null}
 
-      <PassionFieldFooter />
-    </section>
-  );
-}
+//       <PassionFieldFooter />
+//     </section>
+//   );
+// }

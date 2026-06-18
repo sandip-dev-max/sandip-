@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { WriterExperience } from "@/components/writer/WriterExperience";
+// import { WriterExperience } from "@/components/writer/WriterExperience";
 import { WRITER_SITE_TITLE } from "@/constants/writer";
 import { SITE_BRAND_NAME } from "@/constants/site";
 
@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function WriterPage() {
-  return <WriterExperience />;
+  // return <WriterExperience />;
 }

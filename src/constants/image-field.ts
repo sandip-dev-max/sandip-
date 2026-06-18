@@ -18,7 +18,7 @@ export type ImageFieldItem = {
   index: number;
 };
 
-export const IMAGE_FIELD_BRAND = "Yudeat";
+export const IMAGE_FIELD_BRAND = "Sandip";
 
 export const IMAGE_FIELD_SURFACE_ITEMS: ImageFieldItem[] = [
   {

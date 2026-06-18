@@ -400,8 +400,8 @@ export function PassionStoryExperience() {
             </div>
           </div>
 
-          <PassionFieldBridge />
-          <PassionImageField />
+          {/* <PassionFieldBridge /> */}
+          {/* <PassionImageField /> */}
         </main>
       </div>
     </>

@@ -54,13 +54,13 @@ export const SERVICES: Service[] = [
     imageAlt: "Marketing — digital advertising, SEO, and brand strategy illustration",
   },
   {
-    id: "devops",
+    id: "Videography",
     number: "006",
-    title: "DevOps",
+    title: "Videography",
     description:
-      "DevOps services to help you deploy and manage your applications.",
-    image: "/devops.png",
-    imageAlt: "DevOps — CI/CD lifecycle diagram with Dev and Ops loops",
+      "Professional videography services to capture your story and bring it to life.",
+    image: "/videography.jpg",
+    imageAlt: "Videography — cinematic camera and lighting setup",
   },
 ];
 

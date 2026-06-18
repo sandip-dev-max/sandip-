@@ -68,9 +68,9 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
             <p className="about-eyebrow font-mono text-[10px] uppercase tracking-[0.22em] text-brutal-fg/45">
               (About me)
             </p>
-            <h2 className="about-headline mt-5 font-sans text-[clamp(2rem,5vw,3.5rem)] font-black uppercase leading-[0.9] tracking-[-0.045em] text-brutal-fg">
-              {WHO_WE_ARE_BIO.headline}
-            </h2>
+            <h2 className="about-headline mt-5 font-sans text-[clamp(1.25rem,3vw,2.25rem)] font-black uppercase leading-[0.9] tracking-[-0.045em] text-brutal-fg">
+  {WHO_WE_ARE_BIO.headline}
+</h2>
             <p className="about-lead mt-6 max-w-xl text-pretty text-[clamp(1.05rem,2.1vw,1.5rem)] leading-[1.45] tracking-[-0.02em] text-brutal-fg">
               {WHO_WE_ARE_BIO.lead}
             </p>

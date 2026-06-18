@@ -28,80 +28,62 @@ export type PassionChapter = {
 };
 
 export const PASSION_PAGE_NAV: PassionNavItem[] = [
-  { label: "Yudeat", sublabel: "Home", href: "/" },
-  { label: "Work", sublabel: "Projects index", href: "/#work" },
-  { label: "Passion", sublabel: "Story & craft", href: "/passion" },
-  { label: "Field", sublabel: "Image archive", href: "/passion#image-field" },
-  { label: "Journal", sublabel: "Writing", href: "/blog" },
-  { label: "Mountains", sublabel: "Field notes", href: "/passion#collections-mountains" },
+  { label: "Sandip", sublabel: "Home", href: "/" },
+  { label: "Work", sublabel: "Selected projects", href: "/#work" },
+  { label: "Passion", sublabel: "Beyond the screen", href: "/passion" },
+  {
+    label: "Gallery",
+    sublabel: "Creative archive",
+    href: "/passion#image-field",
+  },
+  { label: "Journal", sublabel: "Ideas & notes", href: "/blog" },
+  { label: "Lifestyle", sublabel: "Interests", href: "/passion#collections" },
   { label: "Contact", sublabel: "Get in touch", href: "/#contact" },
 ];
-
 export const PASSION_INTRO = {
-  eyebrow: "Mountaineer & maker",
-  title: "Rooted in the Annapurna",
+  eyebrow: "Developer • Founder • Creative",
+  title: "Building, creating, exploring",
   subtitle:
-    "From Parbat to the high country — studying mountains formally while building for the web.",
+    "Code, fashion, business, and storytelling — different mediums, same curiosity.",
 };
-
-export type PassionProfileSection = {
-  label: string;
-  body: string;
-};
-
 export const PASSION_PROFILE = {
   title: "Profile Introduction",
   sections: [
     {
-      label: "Origin & Roots",
-      body: "Born in Parbat, Nepal — a region defined by its proximity to the Annapurna range. This early environment fostered a foundational connection to mountain landscapes and high-altitude geography.",
+      label: "Developer",
+      body: "I enjoy turning ideas into digital products, focusing on clean interfaces and practical experiences.",
     },
     {
-      label: "Core Evolution",
-      body: "Developed a deep sense of belonging to the mountains, transitioning from a background in technology and web development to formal, academic specialization in mountaineering.",
+      label: "Founder",
+      body: "Building projects and businesses has taught me that good products start with solving real problems.",
     },
     {
-      label: "Current Focus",
-      body: "Pursuing a Bachelor in Mountaineering Studies. Combining technical problem-solving skills with practical and theoretical mountain education to operate effectively in high-altitude environments.",
+      label: "Creative",
+      body: "Fashion, videography, and design influence the way I approach both technology and everyday life.",
     },
   ] satisfies PassionProfileSection[],
 };
-
 export const PASSION_INTRO_PHOTOS = [
-  {
-    src: "/field/IMG_6730.jpg",
-    alt: "Himalayan ridgeline above a cloud inversion",
-  },
-  {
-    src: "/field/IMG_6711.jpg",
-    alt: "Mountain light on a valley walk",
-  },
-  {
-    src: "/field/IMG_6695.jpg",
-    alt: "Field frame from a ridge study",
-  },
+  { src: "/field/creative.jpeg", alt: "Creative lifestyle frame" },
+  { src: "/field/hera.jpeg", alt: "Street and fashion inspiration" },
+  { src: "/field/photo3.jpeg", alt: "Daily creative moments" },
 ] as const;
-
 export const PASSION_CHAPTERS: PassionChapter[] = [
   {
     id: "chapter-1",
     number: "1.",
     paragraphs: [
-      "Parbat sits close enough to the Annapurna massif that altitude is never abstract — it is weather, light, and the shape of every horizon. That geography became the baseline: ridges as reference lines, cloud as scale, walking as the first way of learning a landscape.",
-      "Web development came first as craft and livelihood — systems, interfaces, problems solved in code. The mountains kept pulling. What started as field walks and camera frames became formal study: mountaineering as discipline, not just backdrop.",
+      "Development is my main craft. I enjoy building products that combine thoughtful design with reliable functionality.",
+      "Every project is a chance to learn something new, whether it's creating better user experiences or solving technical challenges.",
     ],
     figures: [
-      {
-        id: "fig-1",
-        type: "globe",
-        caption: "Fig 1: Parbat & Annapurna",
-      },
+      { id: "fig-1", type: "globe", caption: "Fig 1: Building digitally" },
       {
         id: "fig-2",
-        type: "photo",
-        caption: "Fig 2: High-country light",
-        imageSrc: "/field/IMG_6662.jpg",
-        imageAlt: "Morning light across Himalayan foothills",
+        type: "screen",
+        caption: "Fig 2: Products in progress",
+        imageSrc: "/explore.jpg",
+        imageAlt: "Modern web project",
       },
     ],
   },
@@ -109,45 +91,35 @@ export const PASSION_CHAPTERS: PassionChapter[] = [
     id: "chapter-2",
     number: "2.",
     paragraphs: [
-      "Design arrived as a discipline before code did. I loved grids, brutalist posters, and the tension between raw structure and human warmth. Typography felt like architecture you could read.",
-      "When I started building interfaces, the same questions followed me: what should be loud, what should disappear, and how does someone feel five seconds after landing on a page?",
+      "Entrepreneurship keeps me curious. I enjoy exploring ideas, launching projects, and understanding how brands grow.",
+      "Creating something from scratch is challenging, but seeing an idea become real is always worth the process.",
     ],
     figures: [
-      {
-        id: "fig-3",
-        type: "clock",
-        caption: "Fig 3: Learning in seasons",
-      },
-      {
-        id: "fig-4",
-        type: "screen",
-        caption: "Fig 4: First shipped interface",
-        imageSrc: "/project4.png",
-        imageAlt: "Bold portfolio interface with expressive typography",
-      },
+      { id: "fig-3", type: "clock", caption: "Fig 3: Building over time" },
+      { id: "fig-4", type: "studio", caption: "Fig 4: Founder mindset" },
     ],
   },
   {
     id: "chapter-3",
     number: "3.",
     paragraphs: [
-      "Photography became my second profession — not because I chased weddings or stock libraries, but because walking with a camera slows me down. Mountains especially. They refuse fast aesthetics.",
-      "Some of my favorite frames are ordinary: pine silhouettes, cloud inversions, a ridge line that looks like a blade. I chase clarity, not drama. The same instinct shows up when I design a product dashboard.",
+      "Outside of work, I'm drawn to fashion and videography. I appreciate good styling, clean aesthetics, and visual storytelling.",
+      "Capturing moments through a camera and experimenting with different looks inspires many of my creative decisions.",
     ],
     figures: [
       {
         id: "fig-5",
-        type: "mountain",
-        caption: "Fig 5: Field study",
-        imageSrc: "/field/IMG_6730.jpg",
-        imageAlt: "Snow peaks above a sea of clouds in the Himalayas",
+        type: "photo",
+        caption: "Fig 5: Style & visuals",
+        imageSrc: "/yupppa.jpg",
+        imageAlt: "Creative photography",
       },
       {
         id: "fig-6",
         type: "photo",
-        caption: "Fig 6: Distance & scale",
-        imageSrc: "/field/IMG_6706.jpg",
-        imageAlt: "Rolling hills and soft morning light",
+        caption: "Fig 6: Everyday inspiration",
+        imageSrc: "/fashion.jpeg",
+        imageAlt: "Lifestyle photography",
       },
     ],
   },
@@ -155,21 +127,17 @@ export const PASSION_CHAPTERS: PassionChapter[] = [
     id: "chapter-4",
     number: "4.",
     paragraphs: [
-      "Today those two paths run parallel: freelance design and front-end development on one side, a Bachelor in Mountaineering Studies on the other. Technical problem-solving from the screen transfers to route planning, gear systems, and reading terrain under pressure.",
-      "If you are here for the developer portfolio, you will find it on the home page. If you are here for the mountaineer — this is the thread that ties it together: high-altitude geography, field discipline, and the same curiosity about what happens just outside the frame.",
+      "For me, technology and creativity aren't separate worlds. Design influences code, business shapes products, and storytelling connects everything together.",
+      "This space is simply a collection of the things I enjoy building, creating, and exploring along the way.",
     ],
     figures: [
-      {
-        id: "fig-7",
-        type: "studio",
-        caption: "Fig 7: Studio practice",
-      },
+      { id: "fig-7", type: "studio", caption: "Fig 7: Creative process" },
       {
         id: "fig-8",
         type: "screen",
-        caption: "Fig 8: Systems in production",
-        imageSrc: "/project2.png",
-        imageAlt: "Wholesale marketplace interface with clean product layout",
+        caption: "Fig 8: Always building",
+        imageSrc: "/nike.jpg",
+        imageAlt: "Creative digital work",
       },
     ],
   },

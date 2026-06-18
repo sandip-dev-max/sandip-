@@ -125,7 +125,7 @@ export function PortfolioChat({ open, onClose }: PortfolioChatProps) {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Message Yudeat"
+        aria-label="Message Sandip"
         className={`relative z-[1] mx-auto flex h-full w-full max-w-lg flex-col bg-white shadow-[0_40px_100px_-20px_rgba(17,17,17,0.35)] transition-transform duration-500 ease-out sm:my-6 sm:h-[calc(100%-3rem)] sm:rounded-[1.75rem] sm:ring-1 sm:ring-brutal-fg/[0.08] ${
           open ? "translate-y-0" : "translate-y-8"
         }`}

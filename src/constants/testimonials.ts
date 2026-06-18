@@ -36,9 +36,9 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "2",
     quote:
-      "Our products finally have a digital home that feels as crafted and intentional as the furniture we build.",
-    name: "Steel Wood Nepal",
-    detail: "Furniture brand",
+      "Sandip gave our café a digital home that perfectly captures its atmosphere.",
+    name: "Suman Shrestha",
+    detail: "Cafe owner",
     initials: "SW",
     position: "top-right",
     avatarClass:
@@ -62,10 +62,10 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: "4",
     quote:
-      "Turned a vague brief into a polished product. I'd work together again without hesitation.",
-    name: "Jitendra Pandit",
+      "Sandip's professionalism and attention to detail stood out throughout the project.",
+    name: "Bibek Kumar Sharma",
     detail: "Creative collaborator",
-    initials: "JP",
+    initials: "BS",
     position: "bottom-right",
     avatarClass:
       "bg-gradient-to-br from-emerald-100 via-emerald-50 to-teal-50 text-emerald-900/80 ring-emerald-200/80",

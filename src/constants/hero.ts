@@ -1,9 +1,9 @@
-export const HERO_TECH_TAGS = ["Next.js", "TypeScript", "UI Systems"] as const;
+export const HERO_TECH_TAGS = ["Founder", "Developer", "Visual Storyteller"] as const;
 
 /** Each role uses `\n` for a line break in the hero headline. */
 export const HERO_TYPEWRITER_ROLES = [
-  "Software\nEngineer",
-  "Mountaineering\nstudent",
-  "Writer",
-  "Passenger\nStation",
+  "Sandip\nBhatta",
+"Full Stack\nDeveloper",
+"Entrepreneur\n& Founder",
+"Product\nBuilder",
 ] as const;

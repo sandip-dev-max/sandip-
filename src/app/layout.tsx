@@ -19,7 +19,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yudeat — Software Developer",
+  title: "Sandip — Software Developer",
   description:
     "Building fast, clean web apps for real users. Open for freelance or full-time based in Kathmandu Valley, Nepal.",
 };
