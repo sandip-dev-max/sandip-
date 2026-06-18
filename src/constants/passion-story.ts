@@ -26,6 +26,10 @@ export type PassionChapter = {
   paragraphs: string[];
   figures: PassionFigure[];
 };
+export type PassionProfileSection = {
+  label: string;
+  body: string;
+};
 
 export const PASSION_PAGE_NAV: PassionNavItem[] = [
   { label: "Sandip", sublabel: "Home", href: "/" },

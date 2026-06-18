@@ -8,8 +8,8 @@ import {
 } from "@/constants/identity-sidebar";
 
 const ACCENT_CLASS: Record<IdentitySidebarItem["accent"], string> = {
-  writer: "identity-sidebar-card--writer",
-  mountaineer: "identity-sidebar-card--mountaineer",
+  Developer: "identity-sidebar-card--writer",
+  Founder: "identity-sidebar-card--mountaineer",
 };
 
 const ARIA_CURRENT_PAGE = { "aria-current": "page" } as const;

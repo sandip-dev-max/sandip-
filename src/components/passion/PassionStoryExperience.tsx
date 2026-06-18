@@ -4,14 +4,12 @@ import { useGSAP } from "@gsap/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { PassionCollectionSection } from "@/components/passion/PassionCollectionSection";
 import { PassionFigureBlock } from "@/components/passion/PassionFigure";
 import { PassionIntroHero } from "@/components/passion/PassionIntroHero";
 import { PassionProfileIntro } from "@/components/passion/PassionProfileIntro";
 import { PASSION_COLLECTIONS } from "@/constants/passion-collections";
-import {
-  PASSION_CHAPTERS,
-  PASSION_PAGE_NAV,
-} from "@/constants/passion-story";
+import { PASSION_CHAPTERS, PASSION_PAGE_NAV } from "@/constants/passion-story";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { gsap } from "@/lib/gsap";
 import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
@@ -70,7 +68,9 @@ export function PassionStoryExperience() {
       if (!root) return;
 
       const ctx = gsap.context(() => {
-        const chapters = root.querySelectorAll<HTMLElement>("[data-story-chapter]");
+        const chapters = root.querySelectorAll<HTMLElement>(
+          "[data-story-chapter]",
+        );
         const intro = root.querySelector<HTMLElement>("[data-story-intro]");
         const svgs = root.querySelectorAll<SVGSVGElement>("[data-story-draw]");
         const bridge = root.querySelector<HTMLElement>("[data-passion-bridge]");
@@ -113,7 +113,9 @@ export function PassionStoryExperience() {
           }
         }
 
-        const profile = root.querySelector<HTMLElement>("[data-passion-profile]");
+        const profile = root.querySelector<HTMLElement>(
+          "[data-passion-profile]",
+        );
         if (profile) {
           const profileItems = profile.querySelectorAll("[data-story-reveal]");
 
@@ -141,11 +143,19 @@ export function PassionStoryExperience() {
 
         collections.forEach((collection) => {
           const title = collection.querySelector("[data-story-reveal]");
-          const reveals = collection.querySelectorAll(".passion-collection-item");
-          const media = collection.querySelectorAll(".passion-collection-media");
+          const reveals = collection.querySelectorAll(
+            ".passion-collection-item",
+          );
+          const media = collection.querySelectorAll(
+            ".passion-collection-media",
+          );
 
           if (reducedMotion) {
-            gsap.set([title, ...reveals], { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" });
+            gsap.set([title, ...reveals], {
+              opacity: 1,
+              y: 0,
+              clipPath: "inset(0% 0% 0% 0%)",
+            });
             return;
           }
 
@@ -318,10 +328,7 @@ export function PassionStoryExperience() {
           <ul className="passion-top-nav-grid grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-6 lg:grid-cols-4 lg:gap-4 xl:grid-cols-7">
             {PASSION_PAGE_NAV.map((item) => (
               <li key={item.label}>
-                <Link
-                  href={item.href}
-                  className="passion-nav-link group block"
-                >
+                <Link href={item.href} className="passion-nav-link group block">
                   <p className="passion-nav-label font-sans text-[0.8125rem] font-medium tracking-[-0.02em] text-brutal-fg transition-opacity group-hover:opacity-55 sm:text-[0.9375rem]">
                     {item.label}
                   </p>
@@ -386,8 +393,14 @@ export function PassionStoryExperience() {
                 </section>
               ))}
             </div>
-
             <div className="space-y-4">
+              {PASSION_COLLECTIONS.map((collection) => (
+                <PassionCollectionSection
+                  key={collection.id}
+                  collection={collection}
+                />
+              ))}
+            </div>
           </div>
         </main>
       </div>
